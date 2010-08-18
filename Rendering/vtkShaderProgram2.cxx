@@ -44,7 +44,7 @@ vtkShaderProgram2::vtkShaderProgram2()
   
   this->LastBuildStatus=VTK_SHADER_PROGRAM2_COMPILE_FAILED;
   
-  // 8 as an initial capcity is nice because the allocation is aligned on
+  // 8 as an initial capacity is nice because the allocation is aligned on
   // 32-bit or 64-bit architecture.
   
   this->LastLinkLogCapacity=8;
@@ -843,13 +843,33 @@ void vtkShaderProgram2::PrintActiveUniformVariablesOnCout()
 // Tell if the shader program is valid with the current OpenGL state.
 bool vtkShaderProgram2::IsValid()
 {
+  assert("pre: context_is_set" && this->Context!=0);
+  assert("pre: current_context_matches" && this->Context->IsCurrent());
+  assert("pre: built" &&
+         this->GetLastBuildStatus()==VTK_SHADER_PROGRAM2_LINK_SUCCEEDED);
+
   // this line change the program log.
   GLuint progId=static_cast<GLuint>(this->Id);
   vtkgl::ValidateProgram(progId);
   
   GLint value;
   vtkgl::GetProgramiv(progId,vtkgl::VALIDATE_STATUS,&value);
-  return value==GL_TRUE;
+
+  bool result=value==GL_TRUE;
+
+  vtkgl::GetProgramiv(progId,vtkgl::INFO_LOG_LENGTH,&value);
+  if(static_cast<size_t>(value)>this->LastValidateLogCapacity)
+    {
+    if(this->LastValidateLog!=0)
+      {
+      delete[] this->LastValidateLog;
+      }
+    this->LastValidateLogCapacity=static_cast<size_t>(value);
+    this->LastValidateLog=new char[this->LastValidateLogCapacity];
+    }
+  vtkgl::GetProgramInfoLog(progId,value,0,this->LastValidateLog);
+
+  return result;
 }
 
 //----------------------------------------------------------------------------
@@ -901,7 +921,7 @@ int vtkShaderProgram2::GetAttributeLocation(const char *name)
 void vtkShaderProgram2::PrintSelf(ostream& os, vtkIndent indent)
 {
   this->Superclass::PrintSelf(os, indent);
-  
+
   os << indent << "Context: ";
   if(this->Context!=0)
     {
@@ -911,7 +931,37 @@ void vtkShaderProgram2::PrintSelf(ostream& os, vtkIndent indent)
     {
     os << "none" << endl;
     }
-  
+
+  os << indent << "PrintErrors: ";
+  if(this->PrintErrors)
+    {
+    os << "true" << endl;
+    }
+  else
+    {
+    os << "false" << endl;
+    }
+
+  os << indent << "LastBuildStatus: ";
+  switch(this->LastBuildStatus)
+    {
+    case VTK_SHADER_PROGRAM2_COMPILE_FAILED:
+      os << "Compile failed";
+      break;
+    case VTK_SHADER_PROGRAM2_LINK_FAILED:
+      os << "Link failed";
+      break;
+    case VTK_SHADER_PROGRAM2_LINK_SUCCEEDED:
+      os << "Link succeeded";
+      break;
+    default:
+      os << "ERROR unknown value!";
+      break;
+    }
+  os << endl;
+
+  os << indent << "OpenGL Id: " << this->Id << endl;
+
   os << indent << "UniformVariables: ";
   if(this->UniformVariables!=0)
     {
@@ -921,7 +971,7 @@ void vtkShaderProgram2::PrintSelf(ostream& os, vtkIndent indent)
     {
     os << "none" << endl;
     }
-  
+
   os << indent << "Shaders: ";
   if(this->Shaders!=0)
     {
@@ -930,16 +980,6 @@ void vtkShaderProgram2::PrintSelf(ostream& os, vtkIndent indent)
   else
     {
     os << "none" <<  endl;
-    }
-  
-  os << indent << "PrintErrors: ";
-  if(this->PrintErrors)
-    {
-    os << "true" << endl;
-    }
-  else
-    {
-    os << "false" << endl;
     }
 }
 

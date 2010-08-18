@@ -13,6 +13,8 @@ IF (VTK_USE_RENDERING AND VTK_USE_DISPLAY)
       PreIntegrationNonIncremental.cxx
       ProjectedTetrahedraZoomIn.cxx
       TestFinalColorWindowLevel.cxx
+#      TestFixedPointRayCastLightComponents.cxx
+      TestGPURayCastAdditive.cxx
       TestGPURayCastCompositeMaskBlend.cxx
       TestGPURayCastCompositeMask.cxx
       TestGPURayCastCompositeShadeMask.cxx
@@ -26,6 +28,7 @@ IF (VTK_USE_RENDERING AND VTK_USE_DISPLAY)
       TestGPURayCastFourComponentsMIP.cxx
       TestGPURayCastMIPToComposite.cxx
       TestGPURayCastNearestDataTypesMIP.cxx
+      TestGPURayCastPerspectiveParallel.cxx
       TestHAVSVolumeMapper.cxx
       TestMinIntensityRendering.cxx
       TestProjectedTetrahedra.cxx
