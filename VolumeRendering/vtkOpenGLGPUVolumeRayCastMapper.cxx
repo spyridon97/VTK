@@ -3603,14 +3603,14 @@ void vtkOpenGLGPUVolumeRayCastMapper::ClipBoundingBox(vtkRenderer *ren,
    camFarWorldPoint[3] = 1.;
 
   this->InvVolumeMatrix->MultiplyPoint( camNearWorldPoint, camNearPoint );
-  if (camNearPoint[3])
+  if (camNearPoint[3]!=0.0)
     {
     camNearPoint[0] /= camNearPoint[3];
     camNearPoint[1] /= camNearPoint[3];
     camNearPoint[2] /= camNearPoint[3];
     }
   this->InvVolumeMatrix->MultiplyPoint( camFarWorldPoint, camFarPoint );
-   if (camFarPoint[3])
+   if (camFarPoint[3]!=0.0)
      {
      camFarPoint[0] /= camFarPoint[3];
      camFarPoint[1] /= camFarPoint[3];
@@ -3624,13 +3624,28 @@ void vtkOpenGLGPUVolumeRayCastMapper::ClipBoundingBox(vtkRenderer *ren,
    camNearPoint[0] += direction[0]*.00001;
    camNearPoint[1] += direction[1]*.00001;
    camNearPoint[2] += direction[2]*.00001;
+  // We add an offset to the near plane to avoid hardware clipping of the
+  // near plane due to floating-point precision.
+  // camPlaneNormal is a unit vector, if the offset is larger than the
+  // distance between near and far point, it will not work, in this case we
+  // pick a fraction of the near-far distance.
+  double distNearFar=
+    sqrt(vtkMath::Distance2BetweenPoints(camNearPoint,camFarPoint));
+  double offset=0.001; // some arbitrary small value.
+  if(offset>=distNearFar)
+    {
+    offset=distNearFar/1000.0;
+    }
+  camNearPoint[0]+=camPlaneNormal[0]*offset;
+  camNearPoint[1]+=camPlaneNormal[1]*offset;
+  camNearPoint[2]+=camPlaneNormal[2]*offset;
    //range[0] = sqrt(vtkMath::Distance2BetweenPoints(camNearPoint, camPos));
   //range[1] = sqrt(vtkMath::Distance2BetweenPoints(camFarPoint, camPos));
 
   //double dist = range[1] - range[0];
   //range[0] += dist / (2<<16);
   //range[1] -= dist / (2<<16);
-  
+
   if(this->NearPlane==0)
     {
     this->NearPlane= vtkPlane::New();
@@ -6335,9 +6350,13 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadProjectionParameters(
 
   double *bounds=this->CurrentScalar->GetLoadedBounds();
 
-  double dx=bounds[1]-bounds[0];
-  double dy=bounds[3]-bounds[2];
-  double dz=bounds[5]-bounds[4];
+  double delta[3];
+  int i=0;
+  while(i<3)
+    {
+    delta[i]=bounds[2*i+1]-bounds[2*i];
+    ++i;
+    }
 
   // worldToTexture matrix is needed
 
@@ -6347,9 +6366,9 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadProjectionParameters(
 
   // Set the matrix
   datasetToTexture->Zero();
-  datasetToTexture->SetElement(0,0,dx);
-  datasetToTexture->SetElement(1,1,dy);
-  datasetToTexture->SetElement(2,2,dz);
+  datasetToTexture->SetElement(0,0,delta[0]);
+  datasetToTexture->SetElement(1,1,delta[1]);
+  datasetToTexture->SetElement(2,2,delta[2]);
   datasetToTexture->SetElement(3,3,1.0);
   datasetToTexture->SetElement(0,3,bounds[0]);
   datasetToTexture->SetElement(1,3,bounds[2]);
@@ -6376,23 +6395,14 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadProjectionParameters(
 
     // incremental vector:
     // direction in texture space times sample distance in world space.
-    dir[0]=dir[0]*this->ActualSampleDistance/dx;
-    dir[1]=dir[1]*this->ActualSampleDistance/dy;
-    dir[2]=dir[2]*this->ActualSampleDistance/dz;
-
-    GLint rayDir;
-    rayDir=vtkgl::GetUniformLocation(
-      static_cast<GLuint>(this->ProgramShader),"parallelRayDirection");
-    if(rayDir!=-1)
+    i=0;
+    while(i<3)
       {
-      vtkgl::Uniform3f(rayDir,static_cast<GLfloat>(dir[0]),
-                       static_cast<GLfloat>(dir[1]),
-                       static_cast<GLfloat>(dir[2]));
+      dir[i]=dir[i]*this->ActualSampleDistance/delta[i];
+      fvalues[i]=static_cast<float>(dir[i]);
+      ++i;
       }
-    else
-      {
-      vtkErrorMacro(<<"parallelRayDirection is not a uniform variable.");
-      }
+    v->SetUniformf("parallelRayDirection",3,fvalues);
     //cout<<"rayDir="<<dir[0]<<","<<dir[1]<<","<<dir[2]<<endl;
     }
   else
@@ -6423,9 +6433,49 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadProjectionParameters(
       cameraPosDataset[2]*=ratio;
       }
 
-    cameraPosTexture[0] = (cameraPosDataset[0]-bounds[0])/dx;
-    cameraPosTexture[1] = (cameraPosDataset[1]-bounds[2])/dy;
-    cameraPosTexture[2] = (cameraPosDataset[2]-bounds[4])/dz;
+    double *spacing=this->GetInput()->GetSpacing();
+    double spacingSign[3];
+    i=0;
+    while(i<3)
+      {
+      if(spacing[i]<0)
+        {
+        spacingSign[i]=-1.0;
+        }
+      else
+        {
+        spacingSign[i]=1.0;
+        }
+      ++i;
+      }
+
+    if(this->CellFlag)
+      {
+      i=0;
+      while(i<3)
+        {
+        cameraPosTexture[i] = spacingSign[i]*(cameraPosDataset[i]-bounds[i*2])/delta[i];
+        ++i;
+        }
+      }
+    else
+      {
+      // Initial fix by APGX (Gianluca Arcidiacono)
+      // http://www.vtk.org/pipermail/vtkusers/2010-August/110978.html
+      // VTKEdge Bug 8549
+
+      vtkIdType *loadedExtent=this->CurrentScalar->GetLoadedExtent();
+      i=0;
+      while(i<3)
+        {
+        double tmp; // between 0 and 1
+        tmp = spacingSign[i]*(cameraPosDataset[i] - bounds[i*2]) / delta[i];
+        double delta2=static_cast<double>(
+          loadedExtent[i*2+1]-loadedExtent[i*2]+1);
+        cameraPosTexture[i]=(tmp*(delta2-1)+0.5)/delta2;
+        ++i;
+        }
+      }
 
     // Only make sense for the vectorial part of the homogeneous matrix.
     // coefMatrix=transposeWorldToTexture*worldToTexture
