@@ -68,6 +68,7 @@ IF(VTK_USE_DISPLAY)
     TestTexturedBackground.cxx
     TestTDx.cxx
     TestTilingCxx.cxx
+    TestTransformCoordinateUseDouble.cxx
     TestTranslucentLUTAlphaBlending.cxx
     TestTranslucentLUTDepthPeeling.cxx
     TestTranslucentLUTDepthPeelingPass.cxx
