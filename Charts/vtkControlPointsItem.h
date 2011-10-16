@@ -191,17 +191,28 @@ public:
   // Description:
   // Move the points referred by pointIds by a given translation.
   // The new positions won't be outside the bounds.
+  // MovePoints is typically called with GetControlPointsIds() or GetSelection().
   // Warning: if you pass this->GetSelection(), the array is deleted after
   // each individual point move. Increase the reference count of the array.
+  // See also MoveAllPoints()
   void MovePoints(const vtkVector2f& translation, vtkIdTypeArray* pointIds);
+
+  // Description:
+  // Utility function to move all the control points of the given translation
+  void MovePoints(const vtkVector2f& translation);
 
   // Description:
   // Spread the points referred by pointIds
   // If factor > 0, points are moved away from each other.
   // If factor < 0, points are moved closer to each other
+  // SpreadPoints is typically called with GetControlPointsIds() or GetSelection().
   // Warning: if you pass this->GetSelection(), the array is deleted after
   // each individual point move. Increase the reference count of the array.
   void SpreadPoints(float factor, vtkIdTypeArray* pointIds);
+
+  // Description:
+  // Utility function to spread all the control points of a given factor
+  void SpreadPoints(float factor);
 
   // Description:
   // Returns the current point ID selected or -1 if there is no point current.
@@ -226,6 +237,15 @@ public:
   // You shouldn't have to call it but it is provided for rare cases.
   void ResetBounds();
 
+  // Description:
+  // Mouse button down event.
+  virtual bool MouseButtonPressEvent(const vtkContextMouseEvent &mouse);
+  virtual bool MouseDoubleClickEvent(const vtkContextMouseEvent &mouse);
+
+  // Description:
+  // Mouse move event.
+  virtual bool MouseMoveEvent(const vtkContextMouseEvent &mouse);
+
   virtual bool KeyPressEvent(const vtkContextKeyEvent &key);
   virtual bool KeyReleaseEvent(const vtkContextKeyEvent &key);
 
@@ -233,8 +253,14 @@ protected:
   vtkControlPointsItem();
   virtual ~vtkControlPointsItem();
 
-  virtual void StartChanges()=0;
-  virtual void EndChanges()=0;
+  void StartChanges();
+  void EndChanges();
+  void StartInteraction();
+  void StartInteractionIfNotStarted();
+  void Interaction();
+  void EndInteraction();
+  int GetInteractionsCount()const;
+  virtual void emitEvent(unsigned long event, void* params = 0) = 0;
 
   static void CallComputePoints(vtkObject* sender, unsigned long event, void* receiver, void* params);
 
@@ -261,15 +287,6 @@ protected:
   void DrawSelectedPoints(vtkContext2D* painter);
   virtual void DrawPoint(vtkContext2D* painter, vtkIdType index);
 
-  // Description:
-  // Mouse button down event.
-  virtual bool MouseButtonPressEvent(const vtkContextMouseEvent &mouse);
-  virtual bool MouseDoubleClickEvent(const vtkContextMouseEvent &mouse);
-
-  // Description:
-  // Mouse move event.
-  virtual bool MouseMoveEvent(const vtkContextMouseEvent &mouse);
-
   void SetCurrentPointPos(const vtkVector2f& newPos);
   vtkIdType SetPointPos(vtkIdType point, const vtkVector2f& newPos);
   void MoveCurrentPoint(const vtkVector2f& translation);
@@ -290,6 +307,7 @@ protected:
   vtkPen*             SelectedPointPen;
   vtkBrush*           SelectedPointBrush;
   int                 BlockUpdates;
+  int                 StartedInteractions;
   vtkIdType           CurrentPoint;
 
   double              Bounds[4];
