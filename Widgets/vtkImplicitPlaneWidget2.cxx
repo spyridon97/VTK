@@ -20,6 +20,7 @@
 #include "vtkCamera.h"
 #include "vtkRenderer.h"
 #include "vtkObjectFactory.h"
+#include "vtkStdString.h"
 #include "vtkWidgetEventTranslator.h"
 #include "vtkWidgetCallbackMapper.h" 
 #include "vtkEvent.h"
@@ -291,12 +292,12 @@ void vtkImplicitPlaneWidget2::MovePlaneAction(vtkAbstractWidget *w)
 
   int X = self->Interactor->GetEventPosition()[0];
   int Y = self->Interactor->GetEventPosition()[1];
-  int interactionState = self->WidgetRep->ComputeInteractionState(X, Y);
+  self->WidgetRep->ComputeInteractionState(X, Y);
   
   // Move the plane
   double factor = ( self->Interactor->GetControlKey() ? 0.5 : 1.0);
-  if (std::string( self->Interactor->GetKeySym() ) == "Down" ||
-      std::string( self->Interactor->GetKeySym() ) == "Left")
+  if (vtkStdString( self->Interactor->GetKeySym() ) == vtkStdString("Down") ||
+      vtkStdString( self->Interactor->GetKeySym() ) == vtkStdString("Left"))
     {
     self->GetImplicitPlaneRepresentation()->BumpPlane(-1,factor);
     }
