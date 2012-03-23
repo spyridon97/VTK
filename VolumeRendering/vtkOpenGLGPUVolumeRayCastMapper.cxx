@@ -2148,8 +2148,12 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadExtensions(
   // Cg compiler about an infinite loop.
 #ifndef APPLE_SNOW_LEOPARD_BUG
  #ifdef __APPLE__
-  this->LoadExtensionsSucceeded=0;
-  return;
+  const char *gl_vendor=reinterpret_cast<const char *>(glGetString(GL_VENDOR));
+  if(gl_vendor == 0 || strstr(gl_vendor,"ATI")==0)
+    {
+    this->LoadExtensionsSucceeded=0;
+    return;
+    }
  #endif
 #endif
 
