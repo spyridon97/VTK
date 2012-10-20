@@ -2143,13 +2143,19 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadExtensions(
   this->UnsupportedRequiredExtensions =
     new vtkUnsupportedRequiredExtensionsStringStream;
 
+
+  const char *gl_version=reinterpret_cast<const char *>(glGetString(GL_VERSION));
   // It does not work on Apple OS X Snow Leopard with nVidia.
+  // However it works with Apple OS X Lion with nVidia
   // There is a bug in the OpenGL driver with an error in the
   // Cg compiler about an infinite loop.
 #ifndef APPLE_SNOW_LEOPARD_BUG
  #ifdef __APPLE__
   const char *gl_vendor=reinterpret_cast<const char *>(glGetString(GL_VENDOR));
-  if(gl_vendor == 0 || strstr(gl_vendor,"ATI")==0)
+  const char *minNVIDIAVersion = "2.1 NVIDIA-8";
+  if(gl_vendor == 0 ||
+     (strstr(gl_vendor,"NVIDIA Corporation")!=0 &&
+      strncmp(gl_version, minNVIDIAVersion, strlen(minNVIDIAVersion)) < 0))
     {
     this->LoadExtensionsSucceeded=0;
     return;
@@ -2159,8 +2165,6 @@ void vtkOpenGLGPUVolumeRayCastMapper::LoadExtensions(
 
   // Assume success
   this->LoadExtensionsSucceeded=1;
-
-  const char *gl_version=reinterpret_cast<const char *>(glGetString(GL_VERSION));
   if(strstr(gl_version,"Mesa")!=0)
     {
     // - GL_VENDOR cannot be used because it can be "Brian Paul" or
