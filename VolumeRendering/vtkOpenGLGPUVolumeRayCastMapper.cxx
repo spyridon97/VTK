@@ -248,42 +248,85 @@ vtkStandardNewMacro(vtkOpenGLGPUVolumeRayCastMapper);
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
-class vtkOpacityTable
+class vtkTextureTable
 {
 public:
-  vtkOpacityTable()
+  vtkTextureTable()
     {
       this->TextureId=0;
-      this->LastBlendMode=vtkVolumeMapper::MAXIMUM_INTENSITY_BLEND;
-      this->LastSampleDistance=1.0;
       this->Table=0;
       this->Loaded=false;
       this->LastLinearInterpolation=false;
     }
-
-  ~vtkOpacityTable()
+  virtual ~vtkTextureTable()
     {
-      if(this->TextureId!=0)
-        {
-        glDeleteTextures(1,&this->TextureId);
-        this->TextureId=0;
-        }
-      if(this->Table!=0)
-        {
-        delete[] this->Table;
-        this->Table=0;
-        }
+    if(this->TextureId!=0)
+      {
+      glDeleteTextures(1,&this->TextureId);
+      this->TextureId=0;
+      }
+    if(this->Table!=0)
+      {
+      delete[] this->Table;
+      this->Table=0;
+      }
     }
-
-  bool IsLoaded()
+  bool IsLoaded()const
     {
-      return this->Loaded;
+    return this->Loaded;
     }
-
   void Bind()
     {
       assert("pre: uptodate" && this->Loaded);
       glBindTexture(GL_TEXTURE_1D,this->TextureId);
+    }
+  int ComputeTableSize(vtkPiecewiseFunction* function)
+    {
+    return this->ComputeTableSize(function->GetSize());
+    }
+  int ComputeTableSize(vtkScalarsToColors* function)
+    {
+    return this->ComputeTableSize(function->GetNumberOfAvailableColors());
+    }
+
+protected:
+  GLuint TextureId;
+  vtkTimeStamp BuildTime;
+  float *Table;
+  bool Loaded;
+  bool LastLinearInterpolation;
+
+private:
+  int ComputeTableSize(int functionSize)
+    {
+    unsigned int v = std::max(functionSize,
+                              vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize);
+    // Compute the next highest power of 2 of 32-bit v
+    // http://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+    --v;
+    v |= v >> 1;
+    v |= v >> 2;
+    v |= v >> 4;
+    v |= v >> 8;
+    v |= v >> 16;
+    return static_cast<int>(++v);
+    }
+};
+
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+class vtkOpacityTable: public vtkTextureTable
+{
+public:
+  vtkOpacityTable()
+    {
+      this->LastBlendMode=vtkVolumeMapper::MAXIMUM_INTENSITY_BLEND;
+      this->LastSampleDistance=1.0;
+    }
+
+  ~vtkOpacityTable()
+    {
     }
 
   // \pre the active texture is set to TEXTURE2
@@ -314,15 +357,13 @@ public:
          || needUpdate || !this->Loaded)
         {
         this->Loaded=false;
+        const int tableSize = this->ComputeTableSize(scalarOpacity);
         if(this->Table==0)
           {
-          this->Table=
-            new float[vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize];
+          this->Table= new float[tableSize];
           }
 
-        scalarOpacity->GetTable(range[0],range[1],
-                                vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize,
-                                this->Table);
+        scalarOpacity->GetTable(range[0],range[1],tableSize,this->Table);
 
         this->LastBlendMode=blendMode;
 
@@ -333,7 +374,7 @@ public:
           float *ptr=this->Table;
           double factor=sampleDistance/unitDistance;
           int i=0;
-          while(i<vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize)
+          while(i<tableSize)
             {
             if(*ptr>0.0001f)
               {
@@ -350,7 +391,7 @@ public:
           float *ptr=this->Table;
           double factor=sampleDistance/unitDistance;
           int i=0;
-          while(i<vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize)
+          while(i<tableSize)
             {
             if(*ptr>0.0001f)
               {
@@ -363,7 +404,7 @@ public:
           }
 
         glTexImage1D(GL_TEXTURE_1D,0,GL_ALPHA16,
-                     vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize,0,
+                     tableSize,0,
                      GL_ALPHA,GL_FLOAT,this->Table);
         vtkOpenGLGPUVolumeRayCastMapper::PrintError("1d opacity texture is too large");
         this->Loaded=true;
@@ -389,13 +430,8 @@ public:
         }
     }
 protected:
-  GLuint TextureId;
   int LastBlendMode;
   double LastSampleDistance;
-  vtkTimeStamp BuildTime;
-  float *Table;
-  bool Loaded;
-  bool LastLinearInterpolation;
 };
 
 //-----------------------------------------------------------------------------
@@ -417,40 +453,17 @@ private:
 };
 
 //-----------------------------------------------------------------------------
-class vtkRGBTable
+//
+//-----------------------------------------------------------------------------
+class vtkRGBTable: public vtkTextureTable
 {
 public:
   vtkRGBTable()
     {
-      this->TextureId=0;
-      this->Table=0;
-      this->Loaded=false;
-      this->LastLinearInterpolation=false;
     }
 
   ~vtkRGBTable()
     {
-      if(this->TextureId!=0)
-        {
-        glDeleteTextures(1,&this->TextureId);
-        this->TextureId=0;
-        }
-      if(this->Table!=0)
-        {
-        delete[] this->Table;
-        this->Table=0;
-        }
-    }
-
-  bool IsLoaded()
-    {
-      return this->Loaded;
-    }
-
-  void Bind()
-    {
-      assert("pre: uptodate" && this->Loaded);
-      glBindTexture(GL_TEXTURE_1D,this->TextureId);
     }
 
   // \pre the active texture is set properly. (default color,
@@ -512,12 +525,6 @@ public:
         glTexParameteri(GL_TEXTURE_1D,GL_TEXTURE_MAG_FILTER,value);
         }
     }
-protected:
-  GLuint TextureId;
-  vtkTimeStamp BuildTime;
-  float *Table;
-  bool Loaded;
-  bool LastLinearInterpolation;
 };
 
 //-----------------------------------------------------------------------------
