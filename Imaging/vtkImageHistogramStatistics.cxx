@@ -33,6 +33,7 @@ vtkImageHistogramStatistics::vtkImageHistogramStatistics()
   this->Median = 0;
   this->Mean = 0;
   this->StandardDeviation = 0;
+  this->NumberOfVoxels = 0;
 
   this->AutoRange[0] = 0;
   this->AutoRange[1] = 1;
@@ -57,6 +58,8 @@ void vtkImageHistogramStatistics::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "Median: " << this->Median << "\n";
   os << indent << "Mean: " << this->Mean << "\n";
   os << indent << "StandardDeviation: " << this->StandardDeviation << "\n";
+
+  os << indent << "NumberOfVoxels: " << this->NumberOfVoxels << "\n";
 
   os << indent << "AutoRange: " << this->AutoRange[0] << " "
      << this->AutoRange[1] << "\n";
@@ -118,6 +121,7 @@ int vtkImageHistogramStatistics::RequestData(
   this->Minimum = minVal*binSpacing + binOrigin;
   this->Maximum = maxVal*binSpacing + binOrigin;
   this->Median = midVal*binSpacing + binOrigin;
+  this->NumberOfVoxels = this->Total;
   this->Mean = 0.0;
   this->StandardDeviation = 0.0;
   if (total > 0)

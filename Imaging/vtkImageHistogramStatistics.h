@@ -67,6 +67,10 @@ public:
   double GetStandardDeviation() { return this->StandardDeviation; }
 
   // Description:
+  // Get the number of voxels value.  This is computed when Update() is called.
+  vtkIdType GetNumberOfVoxels() { return this->NumberOfVoxels; }
+
+  // Description:
   // Set the percentiles to use for automatic view range computation.
   // This allows one to compute a range that does not include outliers
   // that are significantly darker or significantly brighter than the
@@ -108,6 +112,7 @@ protected:
   double Mean;
   double StandardDeviation;
   double Median;
+  vtkIdType NumberOfVoxels;
 
   double AutoRange[2];
   double AutoRangePercentiles[2];
