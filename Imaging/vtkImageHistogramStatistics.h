@@ -62,6 +62,10 @@ public:
   double GetMedian() { return this->Median; }
 
   // Description:
+  // Get the mode value.  This is computed when Update() is called.
+  double GetMode() { return this->Mode; }
+
+  // Description:
   // Get the standard deviation of the values in the image.  This is
   // computed when Update() is called.
   double GetStandardDeviation() { return this->StandardDeviation; }
@@ -110,6 +114,7 @@ protected:
   double Minimum;
   double Maximum;
   double Mean;
+  double Mode;
   double StandardDeviation;
   double Median;
   vtkIdType NumberOfVoxels;
