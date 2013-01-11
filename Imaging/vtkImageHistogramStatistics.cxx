@@ -32,6 +32,7 @@ vtkImageHistogramStatistics::vtkImageHistogramStatistics()
   this->Maximum = 0;
   this->Median = 0;
   this->Mean = 0;
+  this->Mode = 0;
   this->StandardDeviation = 0;
   this->NumberOfVoxels = 0;
 
@@ -57,8 +58,8 @@ void vtkImageHistogramStatistics::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "Maximum: " << this->Maximum << "\n";
   os << indent << "Median: " << this->Median << "\n";
   os << indent << "Mean: " << this->Mean << "\n";
+  os << indent << "Mode: " << this->Mode << "\n";
   os << indent << "StandardDeviation: " << this->StandardDeviation << "\n";
-
   os << indent << "NumberOfVoxels: " << this->NumberOfVoxels << "\n";
 
   os << indent << "AutoRange: " << this->AutoRange[0] << " "
@@ -92,6 +93,7 @@ int vtkImageHistogramStatistics::RequestData(
   int midVal = 0;
   int minVal = -1;
   int maxVal = 0;
+  int modeVal = 0;
   double mom1 = 0;
   double mom2 = 0;
   int nx = this->Histogram->GetNumberOfTuples();
@@ -108,6 +110,7 @@ int vtkImageHistogramStatistics::RequestData(
     midVal = (sum > midSum ? midVal : ix);
     minVal = (sum > 0 ? minVal : ix);
     maxVal = (c == 0 ? maxVal : ix);
+    modeVal = (modeVal > c ? modeVal : ix );
     }
   if (minVal < maxVal)
     {
@@ -123,6 +126,7 @@ int vtkImageHistogramStatistics::RequestData(
   this->Median = midVal*binSpacing + binOrigin;
   this->NumberOfVoxels = this->Total;
   this->Mean = 0.0;
+  this->Mode = modeVal;
   this->StandardDeviation = 0.0;
   if (total > 0)
     {
