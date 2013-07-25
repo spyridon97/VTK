@@ -441,7 +441,7 @@ public:
 
 protected:
   // Construct object with default tuple dimension (number of components) of 1.
-  vtkAbstractArray(vtkIdType numComp=1);
+  vtkAbstractArray();
   ~vtkAbstractArray();
 
   // Description:

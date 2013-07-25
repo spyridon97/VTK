@@ -148,7 +148,7 @@ public:
     { this->RealSuperclass::SetArray(array, size, save, deleteMethod); }
 
 protected:
-  vtkIdTypeArray(vtkIdType numComp=1);
+  vtkIdTypeArray();
   ~vtkIdTypeArray();
 
 private:

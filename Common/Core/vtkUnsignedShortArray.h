@@ -148,7 +148,7 @@ public:
     { this->RealSuperclass::SetArray(array, size, save, deleteMethod); }
 
 protected:
-  vtkUnsignedShortArray(vtkIdType numComp=1);
+  vtkUnsignedShortArray();
   ~vtkUnsignedShortArray();
 
 private:
