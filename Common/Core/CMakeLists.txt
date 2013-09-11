@@ -129,6 +129,7 @@ SET(Module_SRCS
   vtkStringArray.cxx
   vtkTimePointUtility.cxx
   vtkTimeStamp.cxx
+  vtkTypedDataArray.txx
   vtkUnicodeStringArray.cxx
   vtkUnicodeString.cxx
   vtkUnsignedCharArray.cxx
@@ -165,6 +166,7 @@ set(${vtk-module}_HDRS
   vtkArrayPrint.h
   vtkArrayPrint.txx
   vtkAutoInit.h
+  vtkDataArrayIteratorMacro.h
   vtkDataArrayTemplateImplicit.txx
   vtkIOStreamFwd.h
   vtkInformationInternals.h
@@ -174,6 +176,8 @@ set(${vtk-module}_HDRS
   vtkSmartPointer.h
   vtkTemplateAliasMacro.h
   vtkTypeTraits.h
+  vtkTypedDataArray.h
+  vtkTypedDataArrayIterator.h
   vtkVariantCast.h
   vtkVariantCreate.h
   vtkVariantExtract.h
@@ -452,6 +456,7 @@ set_source_files_properties(
   vtkTemplateAliasMacro.h
   vtkTypeTraits.h
   vtkTypedArray.txx
+  vtkTypedDataArray.txx
   vtkVariantCast.h
   vtkVariantCreate.h
   vtkVariantExtract.h
