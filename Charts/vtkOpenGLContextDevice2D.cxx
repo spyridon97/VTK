@@ -730,7 +730,7 @@ void vtkOpenGLContextDevice2D::AlignText(double orientation, float width,
 void vtkOpenGLContextDevice2D::DrawString(float *point,
                                           const vtkStdString &string)
 {
-  float p[] = { floor(point[0]), floor(point[1]) };
+  float p[] = { static_cast<float>(floor(point[0])), static_cast<float>(floor(point[1])) };
 
   // Cache rendered text strings
   vtkTextureImageCache<TextPropertyKey>::CacheData cache =
@@ -823,10 +823,10 @@ void vtkOpenGLContextDevice2D::DrawImage(float p[2], float scale,
   this->SetTexture(image);
   this->Storage->Texture->Render(this->Renderer);
   int *extent = image->GetExtent();
-  float points[] = { p[0]                    , p[1],
-                     p[0]+scale*extent[1]+1.0, p[1],
-                     p[0]+scale*extent[1]+1.0, p[1]+scale*extent[3]+1.0,
-                     p[0]                    , p[1]+scale*extent[3]+1.0 };
+  float points[] = {static_cast<float>(p[0]                    ), static_cast<float>( p[1] ),
+                    static_cast<float>(p[0]+scale*extent[1]+1.0), static_cast<float>( p[1] ),
+                    static_cast<float>(p[0]+scale*extent[1]+1.0), static_cast<float>( p[1]+scale*extent[3]+1.0 ),
+                    static_cast<float>(p[0]                    ), static_cast<float>( p[1]+scale*extent[3]+1.0 )};
 
   float texCoord[] = { 0.0, 0.0,
                        1.0, 0.0,

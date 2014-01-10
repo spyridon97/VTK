@@ -904,9 +904,9 @@ void vtkOpenGLHAVSVolumeMapper::DrawFBOGeometry()
     {
     scale = this->LevelOfDetailMaxEdgeLength;
     }
-  float params[4] = {1.0/this->FramebufferObjectSize,
-                     1.0/this->FramebufferObjectSize,
-                     scale, 0.0};
+  float params[4] = {static_cast<float>(1.0/this->FramebufferObjectSize),
+                     static_cast<float>(1.0/this->FramebufferObjectSize),
+                     static_cast<float>(scale), 0.0F};
   vtkgl::ProgramLocalParameter4fvARB(vtkgl::FRAGMENT_PROGRAM_ARB, 0, params);
 
   // Draw geometry
@@ -938,9 +938,9 @@ void vtkOpenGLHAVSVolumeMapper::DrawFBOFlush(int screenWidth,
     {
     scale = this->LevelOfDetailMaxEdgeLength;
     }
-  float params[4] = {1.0/this->FramebufferObjectSize,
-                     1.0/this->FramebufferObjectSize,
-                     scale, 0.0};
+  float params[4] = {static_cast<float>(1.0/this->FramebufferObjectSize),
+                     static_cast<float>(1.0/this->FramebufferObjectSize),
+                     static_cast<float>(scale), 0.0F};
 
   // Bind fragment shader
   vtkgl::BindProgramARB(vtkgl::FRAGMENT_PROGRAM_ARB, this->FragmentProgramEnd);
