@@ -198,7 +198,7 @@ bool vtkPlotPoints::Paint(vtkContext2D *painter)
       if (id < this->Points->GetNumberOfPoints())
         {
         double *point = this->Points->GetPoint(id);
-        float p[] = { point[0], point[1] };
+        float p[] = { static_cast<float>(point[0]), static_cast<float>(point[1]) };
         painter->DrawPointSprites(this->HighlightMarker, p, 1);
         }
       }
@@ -227,7 +227,7 @@ bool vtkPlotPoints::PaintLegend(vtkContext2D *painter, const vtkRectf& rect,
     painter->ApplyBrush(this->Brush);
     painter->GetPen()->SetWidth(width);
 
-    float point[] = { rect[0]+0.5*rect[2], rect[1]+0.5*rect[3] };
+    float point[] = { static_cast<float>(rect[0]+0.5*rect[2]), static_cast<float>(rect[1]+0.5*rect[3]) };
     painter->DrawPointSprites(this->Marker, point, 1);
     }
   return true;

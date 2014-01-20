@@ -921,7 +921,7 @@ int vtkFreeTypeUtilities::GetBoundingBox(vtkTextProperty *tprop,
       this->GetWidthHeightDescender(
         currentLine, tprop, &currentWidth, &currentHeight, &notUsed);
       double newLineMovement[2] =
-        {-currentWidth, -currentHeight * tprop->GetLineSpacing()};
+        {static_cast<double>(-currentWidth), static_cast<double>(-currentHeight * tprop->GetLineSpacing())};
       vtkFreeTypeUtilitiesRotate2D(c, s, newLineMovement);
       newLineMovement[0] -= adjustedX;
       newLineMovement[1] -= adjustedY;
@@ -1148,7 +1148,7 @@ int vtkFreeTypeUtilities::PopulateImageData(vtkTextProperty *tprop,
       this->GetWidthHeightDescender(
         currentLine, tprop, &currentWidth, &currentHeight, &notUsed);
       double newLineMovement[2] =
-        {-currentWidth, -currentHeight * tprop->GetLineSpacing()};
+        {static_cast<double>(-currentWidth), static_cast<double>(-currentHeight * tprop->GetLineSpacing())};
       vtkFreeTypeUtilitiesRotate2D(c, s, newLineMovement);
       newLineMovement[0] -= adjustedX;
       newLineMovement[1] -= adjustedY;
