@@ -3,6 +3,29 @@ categories."""
 
 import sys, os, vtk
 
+def set_call_data_type(type):
+    """set_call_data_type(type) -- convenience decorator to easily set the CallDataType attribute
+    for python function used as observer callback.
+    For example:
+
+    import vtk
+
+    @vtk.set_call_data_type('string0')
+    def onError(caller, event, calldata):
+        print("caller: %s - event: %s - msg: %s" % (caller.GetClassName(), event, calldata))
+
+    lt = vtk.vtkLookupTable()
+    lt.AddObserver(vtk.vtkCommand.ErrorEvent, onError)
+    lt.SetTableRange(2,1)
+    """
+    supported_call_data_types = ['string0', 'vtkobject', 'int', 'long', 'double', 'float']
+    if type not in supported_call_data_types:
+        raise TypeError("'%s' is not a supported VTK call data type. Supported types are: %s" % (type, supported_call_data_types))
+    def wrap(f):
+        f.CallDataType = type
+        return f
+    return wrap
+
 #----------------------------------------------------------------------
 # the following functions are for the vtk regression testing and examples
 
