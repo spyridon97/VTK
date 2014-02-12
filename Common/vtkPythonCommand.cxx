@@ -43,6 +43,26 @@ void vtkPythonCommand::SetThreadState(PyThreadState *ts)
   this->ThreadState = ts;
 }
 
+namespace 
+{
+  PyObject* BuildCallDataArgList(PyObject * caller, const char *eventname, PyObject* callDataAsPyObject)
+  {
+  PyObject *arglist;
+  if (callDataAsPyObject)
+      {
+      arglist = Py_BuildValue((char*)"(NsN)", caller, eventname, callDataAsPyObject);
+      }
+  else
+      {
+      PyErr_Clear();
+      /* we couldn't create a the expected python object, so we pass in None */
+      Py_INCREF(Py_None);
+      arglist = Py_BuildValue((char*)"(NsN)", caller, eventname, Py_None);
+      }
+  return arglist;
+  }
+}
+
 void vtkPythonCommand::Execute(vtkObject *ptr, unsigned long eventtype,
                                void *CallData)
 {
@@ -108,22 +128,42 @@ void vtkPythonCommand::Execute(vtkObject *ptr, unsigned long eventtype,
     {
     CallDataTypeString = PyString_AsString(CallDataTypeObj);
     if (CallDataTypeString)
-        {
+        {              
         if (strcmp(CallDataTypeString, "string0") == 0)
             {
             // this means the user wants the CallData cast as a string
-            PyObject* CallDataAsString = PyString_FromString((char*)CallData);
-            if (CallDataAsString)
-                {
-                arglist = Py_BuildValue((char*)"(NsN)", obj2, eventname, CallDataAsString);
-                }
-            else
-                {
-                PyErr_Clear();
-                // we couldn't create a string, so we pass in None
-                Py_INCREF(Py_None);
-                arglist = Py_BuildValue((char*)"(NsN)", obj2, eventname, Py_None);
-                }
+            PyObject* CallDataAsString = PyString_FromString(reinterpret_cast<char*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsString);
+            }
+        else if (strcmp(CallDataTypeString, "vtkobject") == 0)
+            {
+            // this means the user wants the CallData cast as a vtkObject
+            PyObject* CallDataAsVTKObject = vtkPythonUtil::GetObjectFromPointer(reinterpret_cast<vtkObject*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsVTKObject);
+            }
+        else if (strcmp(CallDataTypeString, "int") == 0)
+            {
+            // this means the user wants the CallData cast as an int
+            PyObject* CallDataAsInt = PyInt_FromLong(*reinterpret_cast<int*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsInt);
+            }
+        else if (strcmp(CallDataTypeString, "long") == 0)
+            {
+            // this means the user wants the CallData cast as a long
+            PyObject* CallDataAsInt = PyLong_FromLong(*reinterpret_cast<long*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsInt);
+            }
+        else if (strcmp(CallDataTypeString, "double") == 0)
+            {
+            // this means the user wants the CallData cast as a double
+            PyObject* CallDataAsInt = PyFloat_FromDouble(*reinterpret_cast<double*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsInt);
+            }
+        else if (strcmp(CallDataTypeString, "float") == 0)
+            {
+            // this means the user wants the CallData cast as a float
+            PyObject* CallDataAsInt = PyFloat_FromDouble(*reinterpret_cast<float*>(CallData));
+            arglist = BuildCallDataArgList(obj2, eventname, CallDataAsInt);
             }
         else
             {
