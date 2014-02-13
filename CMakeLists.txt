@@ -14,17 +14,14 @@ ENDFOREACH()
 
 PROJECT(VTK)
 
-# Objective C compile flags, future CMake versions might make this obsolete
+# Objective-C++ compile flags.
+# CMake has no equivalent of CMAKE_CXX_FLAGS for Objective-C++ (bug #4756)
+# so we provide this in case the user needs to specify flags specifically
+# for Objective-C++ source files.  For example, to build with garbage
+# collection support, the -fobjc-gc flag would be used.
 IF(APPLE)
-  STRING(REGEX REPLACE "^.*MacOSX([0-9]*\\.[0-9]*)\\.sdk$" "\\1"
-         OSX_SDK_VERSION "${CMAKE_OSX_SYSROOT}")
-  SET(VTK_OBJCXX_FLAGS_DEFAULT)
-  IF(OSX_SDK_VERSION)
-    IF(${OSX_SDK_VERSION} VERSION_GREATER "10.4")
-      SET(VTK_OBJCXX_FLAGS_DEFAULT "-fobjc-gc")
-    ENDIF(${OSX_SDK_VERSION} VERSION_GREATER "10.4")
-  ENDIF(OSX_SDK_VERSION)
-  SET(VTK_REQUIRED_OBJCXX_FLAGS ${VTK_OBJCXX_FLAGS_DEFAULT} CACHE STRING "Extra flags for Objective C compilation")
+  SET(VTK_OBJCXX_FLAGS_DEFAULT "")
+  SET(VTK_REQUIRED_OBJCXX_FLAGS ${VTK_OBJCXX_FLAGS_DEFAULT} CACHE STRING "Extra flags for Objective-C++ compilation")
   MARK_AS_ADVANCED(VTK_REQUIRED_OBJCXX_FLAGS)
 ENDIF(APPLE)
 
