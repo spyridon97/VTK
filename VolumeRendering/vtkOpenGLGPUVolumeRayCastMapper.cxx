@@ -257,6 +257,8 @@ public:
       this->Table=0;
       this->Loaded=false;
       this->LastLinearInterpolation=false;
+      this->LastRange[0] = 0.;
+      this->LastRange[1] = 0.;
     }
   virtual ~vtkTextureTable()
     {
@@ -295,6 +297,7 @@ protected:
   float *Table;
   bool Loaded;
   bool LastLinearInterpolation;
+  double LastRange[2];
 
 private:
   int ComputeTableSize(int functionSize)
@@ -350,6 +353,10 @@ public:
         glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S,
                         vtkgl::CLAMP_TO_EDGE);
         }
+      if (range[0] != this->LastRange[0] || range[1] != this->LastRange[1])
+        {
+        needUpdate = true;
+        }
       if(scalarOpacity->GetMTime() > this->BuildTime ||
          (this->LastBlendMode!=blendMode)
          || (blendMode==vtkVolumeMapper::COMPOSITE_BLEND &&
@@ -364,7 +371,8 @@ public:
           }
 
         scalarOpacity->GetTable(range[0],range[1],tableSize,this->Table);
-
+        this->LastRange[0] = range[0];
+        this->LastRange[1] = range[1];
         this->LastBlendMode=blendMode;
 
         // Correct the opacity array for the spacing between the planes if we
@@ -485,6 +493,10 @@ public:
         glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S,
                         vtkgl::CLAMP_TO_EDGE);
         }
+      if (range[0] != this->LastRange[0] || range[1] != this->LastRange[1])
+        {
+        needUpdate = true;
+        }
       if(scalarRGB->GetMTime() > this->BuildTime
          || needUpdate || !this->Loaded)
         {
@@ -498,6 +510,8 @@ public:
         scalarRGB->GetTable(range[0],range[1],
                             vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize,
                             this->Table);
+        this->LastRange[0] = range[0];
+        this->LastRange[1] = range[1];
 
         glTexImage1D(GL_TEXTURE_1D,0,GL_RGB16,
                      vtkOpenGLGPUVolumeRayCastMapperOpacityTableSize,0,
