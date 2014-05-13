@@ -1,6 +1,6 @@
 vtk_add_test_cxx(
   TemporalStatistics.cxx
-  # TestBSplineWarp.cxx           # Fixme after vtkImageViewer deps
+  TestBSplineTransform.cxx
   TestPolyDataSilhouette.cxx
   TestProcrustesAlignmentFilter.cxx,NO_VALID
   TestTemporalCacheSimple.cxx,NO_VALID
