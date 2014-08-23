@@ -727,6 +727,7 @@ int vtkAbstractPolygonalHandleRepresentation3D::HasTranslucentPolygonalGeometry(
 //-----------------------------------------------------------------------------
 double* vtkAbstractPolygonalHandleRepresentation3D::GetBounds()
 {
+  this->BuildRepresentation();
   return this->Actor ? this->Actor->GetBounds() : NULL;
 }
 
