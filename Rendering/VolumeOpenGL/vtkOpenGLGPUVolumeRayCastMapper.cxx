@@ -253,7 +253,7 @@ public:
       this->Table=0;
       this->Loaded=false;
       this->LastLinearInterpolation=false;
-      this->LastRange[0] = this->LastRange[1] = 0.0;
+//      this->LastRange[0] = this->LastRange[1] = 0.0;
     }
   virtual ~vtkTextureTable()
     {
