@@ -858,9 +858,10 @@ int main(int argc, char *argv[])
     }
 
   /* get the hierarchy info for accurate typing */
-  if (options->HierarchyFileName)
+  if (options->HierarchyFileNames)
     {
-    hierarchyInfo = vtkParseHierarchy_ReadFile(options->HierarchyFileName);
+    hierarchyInfo = vtkParseHierarchy_ReadFiles(
+      options->NumberOfHierarchyFileNames, options->HierarchyFileNames);
     }
 
   fprintf(fp,"// java wrapper for %s object\n//\n",data->Name);
