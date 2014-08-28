@@ -193,6 +193,7 @@ int vtkParseHierarchy_ReadFile(HierarchyInfo* info, const char *filename)
   size_t i, j, n, m;
   unsigned int bits, pointers;
   static const char *delims = ">,=";
+  int success = 1;
 
   fp = fopen(filename, "r");
 
@@ -538,7 +539,6 @@ int vtkParseHierarchy_ReadFile(HierarchyInfo* info, const char *filename)
       }
     }
 
-  int success = 1;
   if (!feof(fp))
     {
     success = 0;
