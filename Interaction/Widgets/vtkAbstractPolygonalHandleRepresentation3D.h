@@ -201,8 +201,9 @@ protected:
   int                          WaitCount;
   int                          HandleVisibility;
 
-  // Register internal Pickers within PickingManager
+  // Register and Unregister internal Pickers within PickingManager
   void RegisterPickers() VTK_OVERRIDE;
+  virtual void UnRegisterPickers();
 
   // Methods to manipulate the cursor
   virtual void Translate(double *p1, double *p2);

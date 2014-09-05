@@ -141,6 +141,14 @@ public:
    */
   vtkPropCollection *GetPickList() {return this->PickList;}
 
+
+  // Description:
+  // Enable or disable picking for this picker (needed for vtkPickingManager)
+  // WIP: http://na-mic.org/Bug/view.php?id=3808
+  vtkSetMacro(Enabled,int);
+  vtkGetMacro(Enabled,int);
+  vtkBooleanMacro(Enabled,int);
+
 protected:
   vtkAbstractPicker();
   ~vtkAbstractPicker() VTK_OVERRIDE;
@@ -154,6 +162,8 @@ protected:
   // use the following to control picking from a list
   int PickFromList;
   vtkPropCollection *PickList;
+
+  int Enabled;
 private:
   vtkAbstractPicker(const vtkAbstractPicker&) VTK_DELETE_FUNCTION;
   void operator=(const vtkAbstractPicker&) VTK_DELETE_FUNCTION;
