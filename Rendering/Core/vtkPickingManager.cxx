@@ -265,6 +265,7 @@ ComputePickerSelection(double X, double Y, double Z, vtkRenderer* renderer)
   double* camPos = renderer->GetActiveCamera()->GetPosition();
   double smallestDistance2 = std::numeric_limits<double>::max();
 
+  int enabledPickerCount = 0;
   for(PickerObjectsType::iterator it = this->Pickers.begin();
       it != this->Pickers.end(); ++it)
   {
@@ -273,15 +274,34 @@ ComputePickerSelection(double X, double Y, double Z, vtkRenderer* renderer)
 
     if(pickResult > 0) // Keep closest object picked.
     {
-      double distance2 = vtkMath::Distance2BetweenPoints(camPos, pPos);
-
-      if(smallestDistance2 > distance2)
+      if (it->first->GetEnabled())
       {
-        smallestDistance2 = distance2;
-        closestPicker = it->first;
+        enabledPickerCount++;
+        int pickResult = it->first->Pick(X, Y, Z, renderer);
+        double* pPos = it->first->GetPickPosition();
+
+        if(pickResult > 0) // Keep closest object picked.
+        {
+          double distance2 = vtkMath::Distance2BetweenPoints(camPos, pPos);
+
+          if(smallestDistance2 > distance2)
+          {
+            smallestDistance2 = distance2;
+            closestPicker = it->first;
+          }
+        }
       }
     }
   }
+#ifdef NDEBUG
+  static vtkAbstractPicker* lastPicker = 0;
+  if (closestPicker != lastPicker)
+  {
+    vtkDebugMacro("ComputePickerSelection: "
+        << "using picker: " << closestPicker << " of " << enabledPickerCount);
+    lastPicker = closestPicker;
+  }
+#endif
 
   return closestPicker;
 }
@@ -466,6 +486,7 @@ bool vtkPickingManager::Pick(vtkAbstractPicker* picker, vtkObject* obj)
 bool vtkPickingManager::Pick(vtkObject* obj)
 {
   vtkAbstractPicker* picker = this->Internal->SelectPicker();
+  std::cerr << "Using picker: " << picker << "\n";
   if(!picker)
   {
     return false;
@@ -537,6 +558,8 @@ void vtkPickingManager::PrintSelf(ostream& os, vtkIndent indent)
   this->Superclass::PrintSelf(os, indent);
 
   os << indent << "RenderWindowInteractor: " << this->Interactor << "\n";
+  os << indent << "Enabled: " << this->Enabled << "\n";
+  os << indent << "OptimizeOnInteractorEvents: " << this->OptimizeOnInteractorEvents << "\n";
   os << indent << "NumberOfPickers: " << this->Internal->Pickers.size() << "\n";
 
   vtkPickingManager::vtkInternal::PickerObjectsType::iterator it =
