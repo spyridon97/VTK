@@ -52,6 +52,12 @@ public:
   void PrintSelf(ostream& os, vtkIndent indent) override;
   //@}
 
+  // Description:
+  // Implement the virtual functions to manage internal pickers
+  // WIP: http://na-mic.org/Bug/view.php?id=3808
+  virtual void EnablePicking() VTK_OVERRIDE;
+  virtual void DisablePicking() VTK_OVERRIDE;
+
 protected:
   vtkOrientedPolygonalHandleRepresentation3D();
   ~vtkOrientedPolygonalHandleRepresentation3D() override;
