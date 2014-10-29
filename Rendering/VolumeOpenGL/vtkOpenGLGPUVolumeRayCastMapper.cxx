@@ -35,6 +35,7 @@
 
 #include <math.h>
 
+#include <algorithm> // For std::max
 #include <string>
 #include <map>
 #include <vector>
