@@ -62,4 +62,8 @@ add_custom_command(OUTPUT "${vtkRenderingVolumeOpenGL2_BINARY_DIR}/shaders"
                    "${CMAKE_BINARY_DIR}/shaders")
 add_custom_target(copy_shaders ALL DEPENDS
   "${vtkRenderingVolumeOpenGL2_BINARY_DIR}/shaders")
-add_dependencies(vtkRenderingVolumeOpenGL2 copy_shaders)
+if(NOT VTK_ENABLE_KITS)
+  add_dependencies(vtkRenderingVolumeOpenGL2 copy_shaders)
+else()
+  add_dependencies(vtkRendering copy_shaders)
+endif()
