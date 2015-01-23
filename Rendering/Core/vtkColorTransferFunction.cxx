@@ -875,9 +875,9 @@ void vtkColorTransferFunction::GetTable( double xStart, double xEnd,
       }
     else if (idx == 0 && std::fabs(x - xStart) < 1e-6)
       {
-      tptr[0] = this->Internal->Nodes[0]->R;
-      tptr[1] = this->Internal->Nodes[0]->G;
-      tptr[2] = this->Internal->Nodes[0]->B;
+      tptr[0] = ( this->Internal->Nodes.size() > 0 ? this->Internal->Nodes[0]->R : (0.0));
+      tptr[1] = ( this->Internal->Nodes.size() > 0 ? this->Internal->Nodes[0]->G : (0.0));
+      tptr[2] = ( this->Internal->Nodes.size() > 0 ? this->Internal->Nodes[0]->B : (0.0));
       }
     // Otherwise, we are between two nodes - interpolate
     else
