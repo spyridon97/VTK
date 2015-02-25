@@ -22,7 +22,6 @@ vtk_add_test_cxx(${vtk-module}CxxTests tests
   TestColorByPointDataStringArray.cxx
   TestColorByStringArrayDefaultLookupTable.cxx
   TestColorByStringArrayDefaultLookupTable2D.cxx
-  TestColorTransferFunction.cxx,NO_VALID
   TestColorTransferFunctionStringArray.cxx,NO_VALID
   TestDirectScalarsToColors.cxx
   TestDiscretizableColorTransferFunction.cxx,NO_VALID
