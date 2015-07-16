@@ -4144,6 +4144,7 @@ SystemTools::DetectFileType(const char *filename,
   fclose(fp);
   if (read_length == 0)
     {
+    delete [] buffer;
     return SystemTools::FileTypeUnknown;
     }
 
