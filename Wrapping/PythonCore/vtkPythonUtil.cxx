@@ -431,6 +431,11 @@ PyObject *vtkPythonUtil::GetObjectFromPointer(vtkObjectBase *ptr)
 {
   PyObject *obj = NULL;
 
+  if (vtkPythonMap == NULL)
+    {
+    return Py_None;
+    }
+
   if (ptr)
     {
     vtkPythonObjectMap::iterator i =
@@ -570,6 +575,11 @@ PyObject *vtkPythonUtil::FindNearestBaseClass(vtkObjectBase *ptr)
   PyObject *nearestbase = NULL;
   int maxdepth = 0;
   int depth;
+
+  if (vtkPythonMap == NULL)
+    {
+    return Py_None;
+    }
 
   for(vtkPythonClassMap::iterator classes =
         vtkPythonMap->ClassMap->begin();
