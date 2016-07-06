@@ -24,12 +24,17 @@ PURPOSE.  See the above copyright notice for more information.
 
 #include <AvailabilityMacros.h>
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED < 1070
-  #error VTK requires the Mac OS X 10.7 SDK or later
+#if MAC_OS_X_VERSION_MAX_ALLOWED < 1060
+  #error VTK requires the Mac OS X 10.6 SDK or later
 #endif
 
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 1070
-  #error VTK requires a deployment target of Mac OS X 10.7 or later
+#if MAC_OS_X_VERSION_MIN_REQUIRED < 1060
+  #error VTK requires a deployment target of Mac OS X 10.6 or later
+#endif
+
+// __has_feature is new in the 10.7 SDK, define it here if it's not yet defined.
+#ifndef __has_feature
+  #define __has_feature(x) 0
 #endif
 
 #if (MAC_OS_X_VERSION_MAX_ALLOWED < 101200) && !defined(VTK_DONT_MAP_10_12_ENUMS)
