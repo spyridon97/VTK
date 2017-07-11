@@ -678,8 +678,12 @@ function(vtk_module_library name)
   endforeach()
 
   # Optionally link the module to the python library
-  if(NOT _vtk_build_as_kit AND ${${vtk-module}_OPTIONAL_PYTHON_LINK})
-    vtk_target_link_libraries_with_dynamic_lookup(${vtk-module} LINK_PUBLIC ${vtkPython_LIBRARIES})
+  if(${${vtk-module}_OPTIONAL_PYTHON_LINK})
+    if(_vtk_build_as_kit)
+      vtk_module_link_libraries(${vtk-module} LINK_PUBLIC ${vtkPython_LIBRARIES})
+    else()
+      vtk_target_link_libraries_with_dynamic_lookup(${vtk-module} LINK_PUBLIC ${vtkPython_LIBRARIES})
+    endif()
   endif()
 
   # Handle the private dependencies, setting up link/include directories.
