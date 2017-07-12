@@ -170,7 +170,7 @@ void vtkGenericOpenGLRenderWindow::SetParentInfo(char*)
 
 int* vtkGenericOpenGLRenderWindow::GetScreenSize()
 {
-  return NULL;
+  return this->Size;
 }
 
 void vtkGenericOpenGLRenderWindow::Start()
