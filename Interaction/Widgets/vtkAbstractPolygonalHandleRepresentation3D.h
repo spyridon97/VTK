@@ -203,7 +203,7 @@ protected:
 
   // Register and Unregister internal Pickers within PickingManager
   void RegisterPickers() VTK_OVERRIDE;
-  virtual void UnRegisterPickers();
+  void UnRegisterPickers() VTK_OVERRIDE;
 
   // Methods to manipulate the cursor
   virtual void Translate(double *p1, double *p2);
