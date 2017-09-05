@@ -189,26 +189,26 @@ void vtkAppendVBOWorker<destType>::operator() (
   }
 
   destType *VBOit =
-    reinterpret_cast<destType *>(&this->VBO->GetPackedVBO()[this->Offset]);
+    reinterpret_cast<destType *>(&this->VBO->PackedVBO[this->Offset]);
 
   ValueType *input = src->Begin();
-  unsigned int numComps = this->VBO->GetNumberOfComponents();
+  unsigned int numComps = this->VBO->NumberOfComponents;
   unsigned int numTuples = src->GetNumberOfTuples();
 
   // compute extra padding required
   int bytesNeeded =
-    this->VBO->GetDataTypeSize()*this->VBO->GetNumberOfComponents();
+    this->VBO->DataTypeSize*this->VBO->NumberOfComponents;
   int extraComponents =
-    ((4 - (bytesNeeded % 4)) % 4)/this->VBO->GetDataTypeSize();
+    ((4 - (bytesNeeded % 4)) % 4)/this->VBO->DataTypeSize;
 
   // If not shift & scale
   if(!this->VBO->GetCoordShiftAndScaleEnabled())
   {
     // if no padding and no type conversion then memcpy
     if (extraComponents == 0 &&
-        src->GetDataType() == this->VBO->GetDataType())
+        src->GetDataType() == this->VBO->DataType)
     {
-      memcpy(VBOit, input, this->VBO->GetDataTypeSize()*numComps*numTuples);
+      memcpy(VBOit, input, this->VBO->DataTypeSize*numComps*numTuples);
     }
     else
     {
@@ -286,18 +286,45 @@ void vtkAppendVBOWorker<destType>::operator() (DataArray *array)
 
 } // end anon namespace
 
-void vtkOpenGLVertexBufferObject::SetDataType(int v)
+// ----------------------------------------------------------------------------
+bool vtkOpenGLVertexBufferObject::DoesArrayConformToVBO(vtkDataArray * array)
 {
-  if (this->DataType == v)
+  if (array == nullptr || array->GetNumberOfTuples() == 0)
   {
+    vtkErrorMacro( << "No array given.");
+    return false;
+  }
+  if (this->NumberOfComponents !=
+      static_cast<unsigned int>(array->GetNumberOfComponents()))
+  {
+    return false;
+  }
+  return true;
+}
+
+// ----------------------------------------------------------------------------
+void vtkOpenGLVertexBufferObject::InitVBO(
+  vtkDataArray * array,
+  int destType)
+{
+  this->NumberOfTuples = 0;
+
+  if (array == nullptr || array->GetNumberOfTuples() == 0)
+  {
+    vtkErrorMacro( << "No array given.");
+    this->NumberOfComponents = 0;
     return;
   }
 
-  this->DataType = v;
-  this->DataTypeSize =
-    vtkAbstractArray::GetDataTypeSize(this->DataType);
+  this->NumberOfComponents = array->GetNumberOfComponents();
+  this->DataType = destType;
+  this->DataTypeSize = vtkAbstractArray::GetDataTypeSize(this->DataType);
 
-  this->Modified();
+  // Set stride (size of a tuple in bytes on the VBO) based on the data
+  int bytesNeeded = this->NumberOfComponents*this->DataTypeSize;
+  int extraComponents = (this->DataTypeSize > 0) ?
+    ((4 - (bytesNeeded % 4)) % 4)/this->DataTypeSize : 0;
+  this->Stride = (this->NumberOfComponents + extraComponents) * this->DataTypeSize;
 }
 
 void vtkOpenGLVertexBufferObject::UploadDataArray(vtkDataArray *array)
@@ -307,18 +334,10 @@ void vtkOpenGLVertexBufferObject::UploadDataArray(vtkDataArray *array)
     return;
   }
 
-  this->NumberOfComponents = array->GetNumberOfComponents();
-
-  // Set stride (size of a tuple in bytes on the VBO) based on the data
-  int bytesNeeded = this->NumberOfComponents*this->DataTypeSize;
-  int extraComponents = (this->DataTypeSize > 0) ?
-    ((4 - (bytesNeeded % 4)) % 4)/this->DataTypeSize : 0;
-  this->Stride = (this->NumberOfComponents + extraComponents) * this->DataTypeSize;
-
-  // Can we use the fast path?
   if (!this->GetCoordShiftAndScaleEnabled() &&
       this->DataType == array->GetDataType() &&
-      extraComponents == 0)
+      this->Stride ==
+        static_cast<unsigned int>(array->GetDataTypeSize()*array->GetNumberOfComponents()))
   {
     this->NumberOfTuples = array->GetNumberOfTuples();
     this->PackedVBO.resize(0);
@@ -329,7 +348,6 @@ void vtkOpenGLVertexBufferObject::UploadDataArray(vtkDataArray *array)
   }
   else
   {
-    this->NumberOfTuples = 0;
     this->AppendDataArray(array);
     this->UploadVBO();
   }
@@ -341,22 +359,6 @@ void vtkOpenGLVertexBufferObject::AppendDataArray(
   if (array == nullptr || array->GetNumberOfTuples() == 0)
   {
     return;
-  }
-
-  if (this->NumberOfTuples == 0)
-  {
-    // Set stride (size of a tuple in bytes on the VBO) based on the data
-    this->NumberOfComponents = array->GetNumberOfComponents();
-    int bytesNeeded = this->NumberOfComponents*this->DataTypeSize;
-    int extraComponents = (this->DataTypeSize > 0) ?
-      ((4 - (bytesNeeded % 4)) % 4)/this->DataTypeSize : 0;
-    this->Stride = (this->NumberOfComponents + extraComponents) * this->DataTypeSize;
-  }
-  else if (static_cast<int>(this->NumberOfComponents)
-    != array->GetNumberOfComponents())
-  {
-    vtkErrorMacro(
-      "Attempt to append an array to a VBO with a different number of components");
   }
 
   int offset = this->NumberOfTuples * this->Stride/sizeof(float);

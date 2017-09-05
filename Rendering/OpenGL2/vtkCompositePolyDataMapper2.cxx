@@ -500,6 +500,7 @@ void vtkCompositeMapperHelper2::BuildBufferObjects(
   dataIter iter;
   unsigned int voffset = 0;
   this->VBOs->ClearAllVBOs();
+  this->VBOs->ClearAllDataArrays();
 
   if (this->Data.begin() == this->Data.end())
   {

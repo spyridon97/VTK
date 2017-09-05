@@ -52,7 +52,20 @@ public:
   // copies the data from the data array
   void AppendDataArray(vtkDataArray *array);
 
-  // Get the mtime when this VBO was loaded
+  /**
+   * Checks that array attributes conform to VBO
+   * attributes, like data type, number of components,
+   * number of tuples.
+   */
+  bool DoesArrayConformToVBO(vtkDataArray * array);
+
+  /**
+   * Initialize the VBO attributes based on the given
+   * array attributes.
+   */
+  void InitVBO(vtkDataArray * array, int destType);
+
+  void UploadVBO();
   vtkGetMacro(UploadTime,vtkTimeStamp);
 
   /**\brief Methods for VBO coordinate shift+scale-computation.
@@ -117,31 +130,13 @@ public:
   virtual const std::vector<double>& GetShift();
   virtual const std::vector<double>& GetScale();
 
-  // Set/Get the DataType to use for the VBO
-  // As a side effect sets the DataTypeSize
-  void SetDataType(int v);
-  vtkGetMacro(DataType, int);
-
-  // Get the size in bytes of the data type
-  vtkGetMacro(DataTypeSize, unsigned int);
-
-  // How many tuples in the VBO
-  vtkGetMacro(NumberOfTuples, unsigned int);
-
-  // How many components in the VBO
-  vtkGetMacro(NumberOfComponents, unsigned int);
-
-  // Set/Get the VBO stride in bytes
-  vtkSetMacro(Stride, unsigned int);
-  vtkGetMacro(Stride, unsigned int);
-
-  // Get the underlying VBO array
-  std::vector<float> &GetPackedVBO() {
-    return this->PackedVBO; }
-
-  // upload the current PackedVBO
-  // only used by mappers that skip the VBOGroup support
-  void UploadVBO();
+  std::vector<float> PackedVBO; // the data
+  vtkTimeStamp UploadTime;
+  unsigned int Stride;             // The size of a complete tuple
+  unsigned int NumberOfComponents;
+  unsigned int NumberOfTuples;
+  int DataType;
+  unsigned int DataTypeSize;
 
   // VBOs may hold onto the cache, never the other way around
   void SetCache(vtkOpenGLVertexBufferObjectCache *cache);
@@ -149,16 +144,6 @@ public:
 protected:
   vtkOpenGLVertexBufferObject();
   ~vtkOpenGLVertexBufferObject() VTK_OVERRIDE;
-
-  std::vector<float> PackedVBO; // the data
-
-  vtkTimeStamp UploadTime;
-
-  unsigned int Stride;             // The size of a complete tuple
-  unsigned int NumberOfComponents;
-  unsigned int NumberOfTuples;
-  int DataType;
-  unsigned int DataTypeSize;
 
   ShiftScaleMethod CoordShiftAndScaleMethod;
   bool CoordShiftAndScaleEnabled;

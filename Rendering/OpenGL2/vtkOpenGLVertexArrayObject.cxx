@@ -263,9 +263,7 @@ bool vtkOpenGLVertexArrayObject::AddAttributeArray(
 {
   return this->AddAttributeArrayWithDivisor(
     program, buffer, name, offset,
-    buffer->GetStride(),
-    buffer->GetDataType(),
-    buffer->GetNumberOfComponents(),
+    buffer->Stride, buffer->DataType, buffer->NumberOfComponents,
     normalize, 0, false);
 }
 
