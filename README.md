@@ -25,6 +25,43 @@ where:
 For more details, see https://www.slicer.org/wiki/Documentation/Nightly/Developers/ProjectForks
 
 
+How to update the version of VTK ?
+----------------------------------
+
+1. Clone this repository and add a remote to the official project
+
+```
+git clone git://github.com/Slicer/VTK
+cd VTK
+git remote add upstream git://github.com/kitware/VTK
+git fetch upstream
+```
+
+2. Create a new branch following the convention
+
+```
+XYZ=X.Y.Z # Read it from https://github.com/Kitware/VTK/blob/master/CMake/vtkVersion.cmake
+
+DATE=$(git show -s --format=%ci upstream/master | cut -d" " -f1)
+
+SHA=$(git show -s --format=%h upstream/master)
+
+git checkout -b slicer-v${XYZ}-${DATE}-${SHA} ${SHA}
+```
+
+3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
+
+4. Publish the branch. (directly in this repo if you have push rights, or on a fork)
+
+5. Update Slicer VTK external project and submit a pull request.
+
+
+How to be granted push rights ?
+-------------------------------
+
+Ask on https://discourse.slicer.org/
+
+
 Questions
 ---------
 
