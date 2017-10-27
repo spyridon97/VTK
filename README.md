@@ -40,13 +40,20 @@ git fetch upstream
 2. Create a new branch following the convention
 
 ```
-XYZ=X.Y.Z # Read it from https://github.com/Kitware/VTK/blob/master/CMake/vtkVersion.cmake
+# Extract version from https://github.com/Kitware/VTK/blob/master/CMake/vtkVersion.cmake
+XYZ=$(cat CMake/vtkVersion.cmake | grep VERSION | sed -re "s/set\(VTK_[A-Z]+_VERSION (.+)\)/\\1/" | perl -pe 'chomp if eof' | tr '\n' '.')
+echo "XYZ [${XYZ}]"
 
 DATE=$(git show -s --format=%ci upstream/master | cut -d" " -f1)
+echo "DATE [${DATE}]"
 
 SHA=$(git show -s --format=%h upstream/master)
+echo "SHA [${SHA}]"
 
-git checkout -b slicer-v${XYZ}-${DATE}-${SHA} ${SHA}
+BRANCH_NAME=slicer-v${XYZ}-${DATE}-${SHA}
+echo "BRANCH_NAME [${BRANCH_NAME}]"
+
+git checkout -b ${BRANCH_NAME} ${SHA}
 ```
 
 3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
