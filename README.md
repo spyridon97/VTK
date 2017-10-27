@@ -51,9 +51,11 @@ git checkout -b slicer-v${XYZ}-${DATE}-${SHA} ${SHA}
 
 3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
 
-4. Publish the branch. (directly in this repo if you have push rights, or on a fork)
+4. To **test the changes**, locally rebuild VTK, CTK and Slicer.
 
-5. Update Slicer VTK external project and submit a pull request.
+5. Publish the branch. (directly in this repo if you have push rights, or on a fork)
+
+6. Update Slicer VTK external project and submit a pull request.
 
 
 How to be granted push rights ?
