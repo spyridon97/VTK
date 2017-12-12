@@ -108,7 +108,7 @@ public:
 
   // Description:
   // Map one value through the lookup table.
-  virtual unsigned char *MapValue(double v);
+  virtual const unsigned char *MapValue(double v);
 
   // Description:
   // Returns min and max position of all function points.

@@ -121,7 +121,7 @@ public:
   // Description:
   // Map one value through the lookup table and return a color defined
   // as a RGBA unsigned char tuple (4 bytes).
-  virtual unsigned char *MapValue(double v);
+  virtual const unsigned char *MapValue(double v);
 
   // Description:
   // Map one value through the lookup table and return the color as

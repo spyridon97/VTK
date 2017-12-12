@@ -349,7 +349,7 @@ void vtkLookupTable::BuildSpecialColors()
 // get the color for a scalar value
 void vtkLookupTable::GetColor(double v, double rgb[3])
 {
-  unsigned char *rgb8 = this->MapValue(v);
+  const unsigned char *rgb8 = this->MapValue(v);
 
   rgb[0] = rgb8[0]/255.0;
   rgb[1] = rgb8[1]/255.0;
@@ -360,7 +360,7 @@ void vtkLookupTable::GetColor(double v, double rgb[3])
 // get the opacity (alpha) for a scalar value
 double vtkLookupTable::GetOpacity(double v)
 {
-  unsigned char *rgb8 = this->MapValue(v);
+  const unsigned char *rgb8 = this->MapValue(v);
 
   return rgb8[3]/255.0;
 }
@@ -702,7 +702,7 @@ unsigned char* vtkLookupTable::GetNanColorAsUnsignedChars()
 
 //----------------------------------------------------------------------------
 // Given a scalar value v, return an rgba color value from lookup table.
-unsigned char* vtkLookupTable::MapValue(double v)
+const unsigned char* vtkLookupTable::MapValue(double v)
 {
   vtkIdType index = this->GetIndex(v);
   if (index < 0)

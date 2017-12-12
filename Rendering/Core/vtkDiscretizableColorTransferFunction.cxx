@@ -292,7 +292,7 @@ void vtkDiscretizableColorTransferFunction::SetNanColor(double r, double g, doub
 }
 
 //-----------------------------------------------------------------------------
-unsigned char* vtkDiscretizableColorTransferFunction::MapValue(double v)
+const unsigned char* vtkDiscretizableColorTransferFunction::MapValue(double v)
 {
   this->Build();
   if (this->Discretize || this->IndexedLookup)

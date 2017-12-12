@@ -208,7 +208,7 @@ public:
 
   // Description:
   // Map one value through the lookup table.
-  unsigned char* MapValue(double v) VTK_OVERRIDE;
+  const unsigned char* MapValue(double v) VTK_OVERRIDE;
 
   // Description:
   // Map one value through the lookup table and return the color as
