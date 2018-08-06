@@ -47,16 +47,22 @@ echo "XYZ [${XYZ}]"
 DATE=$(git show -s --format=%ci upstream/master | cut -d" " -f1)
 echo "DATE [${DATE}]"
 
-SHA=$(git show -s --format=%h upstream/master)
-echo "SHA [${SHA}]"
+vtkSHA=$(git show -s --format=%h upstream/master)
+echo "vtkSHA: [${SHA}]"
 
-BRANCH_NAME=slicer-v${XYZ}-${DATE}-${SHA}
+BRANCH_NAME=slicer-v${XYZ}-${DATE}-${vtkSHA}
 echo "BRANCH_NAME [${BRANCH_NAME}]"
 
-git checkout -b ${BRANCH_NAME} ${SHA}
+git checkout -b ${BRANCH_NAME} ${vtkSHA}
 ```
 
 3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
+
+   - the commit hash included in each branch name is the VTK *upstream* hash, so
+     Slicer specific commits may be viewed with the git range (`..`) operation:
+```          
+          git log --pretty=format:"%h" {vtkSHA}..slicer-xyz-{vtkSHA}
+```
 
 4. To **test the changes**, locally rebuild VTK, CTK and Slicer.
 
