@@ -101,13 +101,13 @@ void vtkSplineWidget2::SelectAction(vtkAbstractWidget *w)
     reinterpret_cast<vtkSplineRepresentation*>(self->WidgetRep)->
       SetInteractionState(vtkSplineRepresentation::Inserting);
   }
-  else if (interactionState == vtkSplineRepresentation::OnHandle &&
-    self->Interactor->GetShiftKey())
-  {
-    // remove point.
-    reinterpret_cast<vtkSplineRepresentation*>(self->WidgetRep)->
-      SetInteractionState(vtkSplineRepresentation::Erasing);
-  }
+//  else if (interactionState == vtkSplineRepresentation::OnHandle &&
+//    self->Interactor->GetShiftKey())
+//  {
+//    // remove point.
+//    reinterpret_cast<vtkSplineRepresentation*>(self->WidgetRep)->
+//      SetInteractionState(vtkSplineRepresentation::Erasing);
+//  }
   else
   {
     reinterpret_cast<vtkSplineRepresentation*>(self->WidgetRep)->
