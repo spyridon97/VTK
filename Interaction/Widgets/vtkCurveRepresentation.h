@@ -136,6 +136,14 @@ public:
 
   //@{
   /**
+   * Get/Set index of the handle currently selected.
+   */
+  virtual void SetCurrentHandleIndex(int index);
+  vtkGetMacro(CurrentHandleIndex, int);
+  //@}
+
+  //@{
+  /**
    * Set/Get the line properties. The properties of the line when selected
    * and unselected can be manipulated.
    */

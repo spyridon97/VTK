@@ -934,6 +934,21 @@ void vtkCurveRepresentation::EndWidgetInteraction(double[2])
 }
 
 //----------------------------------------------------------------------------
+void vtkCurveRepresentation::SetCurrentHandleIndex(int index)
+{
+  if (index < 0 || index >= this->NumberOfHandles)
+    {
+    return;
+    }
+  if (this->CurrentHandleIndex == index)
+    {
+    return;
+    }
+  this->CurrentHandleIndex = index;
+  this->HighlightHandle(this->Handle[index]);
+}
+
+//----------------------------------------------------------------------------
 double* vtkCurveRepresentation::GetBounds()
 {
   this->BuildRepresentation();
