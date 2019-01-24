@@ -106,13 +106,13 @@ void vtkPolyLineWidget::SelectAction(vtkAbstractWidget *w)
     reinterpret_cast<vtkPolyLineRepresentation*>(self->WidgetRep)->
       SetInteractionState(vtkPolyLineRepresentation::Inserting);
   }
-  else if (interactionState == vtkPolyLineRepresentation::OnHandle &&
-    self->Interactor->GetShiftKey())
-  {
-    // remove point.
-    reinterpret_cast<vtkPolyLineRepresentation*>(self->WidgetRep)->
-      SetInteractionState(vtkPolyLineRepresentation::Erasing);
-  }
+//  else if (interactionState == vtkPolyLineRepresentation::OnHandle &&
+//    self->Interactor->GetShiftKey())
+//  {
+//    // remove point.
+//    reinterpret_cast<vtkPolyLineRepresentation*>(self->WidgetRep)->
+//      SetInteractionState(vtkPolyLineRepresentation::Erasing);
+//  }
   else
   {
     reinterpret_cast<vtkPolyLineRepresentation*>(self->WidgetRep)->
