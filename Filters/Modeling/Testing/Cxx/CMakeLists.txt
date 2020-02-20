@@ -1,5 +1,6 @@
 vtk_add_test_cxx(vtkFiltersModelingCxxTests tests
   TestButterflyScalars.cxx
+  TestDijkstraGraphGeodesicPath.cxx,NO_DATA,NO_VALID,NO_OUTPUT
   TestNamedColorsIntegration.cxx
   TestPolyDataPointSampler.cxx
   TestQuadRotationalExtrusion.cxx
