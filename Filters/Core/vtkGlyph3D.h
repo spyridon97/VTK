@@ -95,6 +95,7 @@
 #define VTK_USE_VECTOR 0
 #define VTK_USE_NORMAL 1
 #define VTK_VECTOR_ROTATION_OFF 2
+#define VTK_FOLLOW_CAMERA_DIRECTION 3
 
 #define VTK_INDEXING_OFF 0
 #define VTK_INDEXING_BY_SCALAR 1
@@ -236,7 +237,24 @@ public:
   void SetVectorModeToUseNormal() {this->SetVectorMode(VTK_USE_NORMAL);};
   void SetVectorModeToVectorRotationOff()
     {this->SetVectorMode(VTK_VECTOR_ROTATION_OFF);};
+  void SetVectorModeToFollowCameraDirection()
+    {this->SetVectorMode(VTK_FOLLOW_CAMERA_DIRECTION);};
   const char *GetVectorModeAsString();
+  //@}
+
+  /**
+   * Set/Get point position glyphs will face towards. Used if vector mode is
+   * VTK_FOLLOW_CAMERA_DIRECTION.
+   */
+  vtkSetVectorMacro(FollowedCameraPosition, double, 3);
+  vtkGetVectorMacro(FollowedCameraPosition, double, 3);
+  //@}
+
+  /**
+   * Set/Get glyphs up direction. Used if vector mode is VTK_FOLLOW_CAMERA_DIRECTION.
+   */
+  vtkSetVectorMacro(FollowedCameraViewUp, double, 3);
+  vtkGetVectorMacro(FollowedCameraViewUp, double, 3);
   //@}
 
   //@{
@@ -352,6 +370,8 @@ protected:
   double Range[2]; // Range to use to perform scalar scaling
   int Orient; // boolean controls whether to "orient" data
   int VectorMode; // Orient/scale via normal or via vector data
+  double FollowedCameraPosition[3]; // glyphs face towards this point in VTK_FOLLOW_CAMERA_DIRECTION mode
+  double FollowedCameraViewUp[3]; // glyph up direction in VTK_FOLLOW_CAMERA_DIRECTION mode
   vtkTypeBool Clamping; // whether to clamp scale factor
   int IndexMode; // what to use to index into glyph table
   vtkTypeBool GeneratePointIds; // produce input points ids for each output point
@@ -420,6 +440,10 @@ inline const char *vtkGlyph3D::GetVectorModeAsString(void)
   else if ( this->VectorMode == VTK_USE_NORMAL)
   {
     return "UseNormal";
+  }
+  else if ( this->VectorMode == VTK_FOLLOW_CAMERA_DIRECTION)
+  {
+    return "FollowCameraDirection";
   }
   else
   {

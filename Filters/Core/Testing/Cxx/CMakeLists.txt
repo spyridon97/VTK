@@ -25,6 +25,7 @@ vtk_add_test_cxx(vtkFiltersCoreCxxTests tests
   TestFeatureEdges.cxx,NO_VALID
   TestFlyingEdges.cxx
   TestGlyph3D.cxx
+  TestGlyph3DFollowCamera.cxx,NO_VALID
   TestHedgeHog.cxx,NO_VALID
   TestImplicitPolyDataDistance.cxx
   TestMaskPoints.cxx,NO_VALID
