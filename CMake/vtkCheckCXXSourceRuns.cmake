@@ -1,8 +1,9 @@
-# - Check if the source code provided in the SOURCE argument compiles.
-# CHECK_CXX_SOURCE_COMPILES(SOURCE VAR)
+# - Check if the source code provided in the SOURCE argument compiles and runs.
+# VTK_CHECK_CXX_SOURCE_RUNS(SOURCE VAR COMMENT)
 # - macro which checks if the source code compiles\
 #  SOURCE - source code to try to compile
 #  VAR    - variable to store size if the type exists.
+#  COMMENT- info to display when performing the test.
 #
 # The following variables may be set before calling this macro to
 # modify the way the check is run:
@@ -12,7 +13,7 @@
 #  CMAKE_REQUIRED_INCLUDES = list of include directories
 #  CMAKE_REQUIRED_LIBRARIES = list of libraries to link
 
-MACRO(CHECK_CXX_SOURCE_RUNS SOURCE VAR COMMENT)
+MACRO(VTK_CHECK_CXX_SOURCE_RUNS SOURCE VAR COMMENT)
   IF(NOT DEFINED "HAVE_${VAR}")
     SET(MACRO_CHECK_FUNCTION_DEFINITIONS
       "-D${VAR} ${CMAKE_REQUIRED_FLAGS}")

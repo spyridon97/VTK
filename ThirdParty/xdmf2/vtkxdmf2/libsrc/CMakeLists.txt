@@ -3,7 +3,7 @@
 include(${CMAKE_CURRENT_SOURCE_DIR}/vtkXDMFCheckCXXSourceRuns.cmake)
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/vtkRequireLargeFilesSupport.cxx"
   XDMF_REQUIRE_LARGE_FILE_SUPPORT_FILE)
-check_cxx_source_runs("${XDMF_REQUIRE_LARGE_FILE_SUPPORT_FILE}"
+vtk_xdmf_check_cxx_source_runs("${XDMF_REQUIRE_LARGE_FILE_SUPPORT_FILE}"
   CMAKE_REQUIRE_LARGE_FILE_SUPPORT "Xdmf support for 64 bit file systems")
 set(XDMF_REQUIRE_LARGE_FILE_SUPPORT ${CMAKE_REQUIRE_LARGE_FILE_SUPPORT})
 

@@ -1,8 +1,9 @@
-# - Check if the source code provided in the SOURCE argument compiles.
-# CHECK_CXX_SOURCE_COMPILES(SOURCE VAR)
+# - Check if the source code provided in the SOURCE argument compiles and runs.
+# VTK_XDMF_CHECK_CXX_SOURCE_COMPILES(SOURCE VAR)
 # - macro which checks if the source code compiles\
 #  SOURCE - source code to try to compile
 #  VAR    - variable to store size if the type exists.
+#  COMMENT- info to display when performing the test.
 #
 # The following variables may be set before calling this macro to
 # modify the way the check is run:
