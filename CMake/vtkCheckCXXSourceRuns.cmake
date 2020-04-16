@@ -14,7 +14,7 @@
 
 MACRO(CHECK_CXX_SOURCE_RUNS SOURCE VAR COMMENT)
   IF(NOT DEFINED "HAVE_${VAR}")
-    SET(MACRO_CHECK_FUNCTION_DEFINITIONS 
+    SET(MACRO_CHECK_FUNCTION_DEFINITIONS
       "-D${VAR} ${CMAKE_REQUIRED_FLAGS}")
     IF(CMAKE_REQUIRED_LIBRARIES)
       SET(CHECK_CXX_SOURCE_COMPILES_ADD_LIBRARIES
@@ -29,7 +29,7 @@ MACRO(CHECK_CXX_SOURCE_RUNS SOURCE VAR COMMENT)
       SET(CHECK_CXX_SOURCE_COMPILES_ADD_INCLUDES)
     ENDIF()
     SET(CMAKE_EMPTY_INPUT_FILE_CONTENT "${SOURCE}")
-    CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/CMakeEmptyInputFile.in"
+    CONFIGURE_FILE("${VTK_SOURCE_DIR}/CMake/CMakeEmptyInputFile.in"
       "${CMAKE_BINARY_DIR}/CMakeFiles/CMakeTmp/src.cxx")
 
     MESSAGE(STATUS "Performing Test ${COMMENT}")
@@ -44,19 +44,17 @@ MACRO(CHECK_CXX_SOURCE_RUNS SOURCE VAR COMMENT)
     IF(HAVE_${VAR})
       SET(${VAR} 1 CACHE INTERNAL "Test ${COMMENT}")
       MESSAGE(STATUS "Performing Test ${COMMENT} - Success")
-      FILE(APPEND ${CMAKE_BINARY_DIR}/CMakeFiles/CMakeOutput.log 
-        "Performing C++ SOURCE FILE Test ${COMMENT} succeded with the following output:\n"
+      FILE(APPEND ${CMAKE_BINARY_DIR}/CMakeFiles/CMakeOutput.log
+        "Performing C++ SOURCE FILE Test ${COMMENT} succeeded with the following output:\n"
         "${OUTPUT}\n"
         "Source file was:\n${SOURCE}\n")
     ELSE()
       MESSAGE(STATUS "Performing Test ${COMMENT} - Failed")
       SET(${VAR} "" CACHE INTERNAL "Test ${COMMENT}")
-      FILE(APPEND ${CMAKE_BINARY_DIR}/CMakeFiles/CMakeError.log 
+      FILE(APPEND ${CMAKE_BINARY_DIR}/CMakeFiles/CMakeError.log
         "Performing C++ SOURCE FILE Test ${COMMENT} failed with the following output:\n"
         "${OUTPUT}\n"
         "Source file was:\n${SOURCE}\n")
     ENDIF()
   ENDIF()
 ENDMACRO()
-
-

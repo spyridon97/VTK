@@ -64,7 +64,7 @@ add_subdirectory(Remote)
 
 #-----------------------------------------------------------------------------
 # Does VTK require support for 64 bit file systems
-include(CheckCXXSourceRuns)
+include(vtkCheckCXXSourceRuns)
 file(READ "${VTK_CMAKE_DIR}/vtkRequireLargeFilesSupport.cxx"
   VTK_REQUIRE_LARGE_FILE_SUPPORT_FILE)
 check_cxx_source_runs("${VTK_REQUIRE_LARGE_FILE_SUPPORT_FILE}"

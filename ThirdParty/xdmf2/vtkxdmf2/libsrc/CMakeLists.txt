@@ -1,6 +1,6 @@
 #-----------------------------------------------------------------------------
 # Does Xdmf require support for 64 bit file systems
-include(${CMAKE_CURRENT_SOURCE_DIR}/CheckCXXSourceRuns.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/vtkXDMFCheckCXXSourceRuns.cmake)
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/vtkRequireLargeFilesSupport.cxx"
   XDMF_REQUIRE_LARGE_FILE_SUPPORT_FILE)
 check_cxx_source_runs("${XDMF_REQUIRE_LARGE_FILE_SUPPORT_FILE}"
