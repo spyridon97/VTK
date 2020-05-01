@@ -344,8 +344,13 @@ void vtkImageHistogramExecuteRange(
         {
           T x = *inPtr;
 
-          xmin = (xmin < x ? xmin : x);
-          xmax = (xmax > x ? xmax : x);
+          // x may be NaN but we don't want xmin and xmax
+          // to be ever end up being set to NaN.
+          // Therefore x must be used as a second operand
+          // of the ternary operator (because result of comparing
+          // NaN to any other value is always false).
+          xmin = (xmin >= x ? x : xmin);
+          xmax = (xmax <= x ? x : xmax);
 
           inPtr += nc;
         }
@@ -405,6 +410,11 @@ void vtkImageHistogramExecute(
           x += xshift;
           x *= xscale;
 
+          // x may be NaN but we don't want xmin and xmax
+          // to be ever end up being set to NaN.
+          // Therefore x must be used as a second operand
+          // of the ternary operator (because result of comparing
+          // NaN to any other value is always false).
           x = (x > xmin ? x : xmin);
           x = (x < xmax ? x : xmax);
 
@@ -901,12 +911,12 @@ void vtkImageHistogram::ThreadedRequestData(
   double scale = 1.0/binSpacing;
   double minBinRange = (scalarRange[0] - binOrigin)*scale;
   double maxBinRange = (scalarRange[1] - binOrigin)*scale;
-  if (minBinRange < 0)
+  if (minBinRange < 0 || vtkMath::IsNan(minBinRange))
   {
     minBinRange = 0;
     useFastExecute = false;
   }
-  if (maxBinRange > maxBin)
+  if (maxBinRange > maxBin || vtkMath::IsNan(maxBinRange))
   {
     maxBinRange = maxBin;
     useFastExecute = false;
