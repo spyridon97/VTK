@@ -25,6 +25,33 @@ where:
 For more details, see https://www.slicer.org/wiki/Documentation/Nightly/Developers/ProjectForks
 
 
+How to backport changes to a specific branch ?
+----------------------------------------------
+
+1. Fork `Slicer/VTK`
+
+2. Checkout the relevant `slicer-vX.Y.Z-YYYY-MM-DD-SHA{7}` branch
+
+3. Add the remote from which to cherry-pick commit from
+
+4. Cherry-pick the commit(s)
+
+5. Amend the commit updating title and message to include `[backport MR-1234]` and `Cherry-picked commit ...` information:
+
+```
+[backport MR-6941] Fix infinite loop in vtkContourTriangulator 
+
+Cherry-picked commit a93fff6 from main VTK repository.
+
+...
+```
+
+6. Finally, share your updated branch with the Slicer development team on discourse
+
+
+_Note: If you have push access to the `Slicer/VTK` fork, you could directly push commit to the relevant branch_
+
+
 How to update the version of VTK ?
 ----------------------------------
 
