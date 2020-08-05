@@ -230,6 +230,8 @@ public:
   virtual void OnRightButtonUp() {}
   virtual void OnMouseWheelForward() {}
   virtual void OnMouseWheelBackward() {}
+  virtual void OnMouseWheelLeft() {}
+  virtual void OnMouseWheelRight() {}
   virtual void OnFourthButtonDown() {}
   virtual void OnFourthButtonUp() {}
   virtual void OnFifthButtonDown() {}

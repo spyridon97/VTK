@@ -1158,6 +1158,26 @@ void vtkRenderWindowInteractor::MouseWheelBackwardEvent()
 }
 
 //------------------------------------------------------------------
+void vtkRenderWindowInteractor::MouseWheelLeftEvent()
+{
+  if (!this->Enabled)
+  {
+    return;
+  }
+  this->InvokeEvent(vtkCommand::MouseWheelLeftEvent, nullptr);
+}
+
+//------------------------------------------------------------------
+void vtkRenderWindowInteractor::MouseWheelRightEvent()
+{
+  if (!this->Enabled)
+  {
+    return;
+  }
+  this->InvokeEvent(vtkCommand::MouseWheelRightEvent, nullptr);
+}
+
+//------------------------------------------------------------------
 void vtkRenderWindowInteractor::ExposeEvent()
 {
   if (!this->Enabled)
