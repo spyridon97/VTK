@@ -116,7 +116,6 @@ set(vtk_cmake_patch_files
   patches/99/FindHDF5.cmake
   patches/99/FindJPEG.cmake
   patches/99/FindLibArchive.cmake
-  patches/99/FindOpenGL.cmake
   patches/99/FindSQLite3.cmake
   patches/99/FindX11.cmake)
 
