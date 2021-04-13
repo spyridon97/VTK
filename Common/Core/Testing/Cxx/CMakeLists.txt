@@ -153,8 +153,6 @@ vtk_add_test_cxx(vtkCommonCoreCxxTests tests
   TestSystemInformation.cxx
   TestTemplateMacro.cxx
   TestTimePointUtility.cxx
-  TestUnicodeStringAPI.cxx
-  TestUnicodeStringArrayAPI.cxx
   TestVariant.cxx
   TestVariantComparison.cxx
   TestWeakPointer.cxx
