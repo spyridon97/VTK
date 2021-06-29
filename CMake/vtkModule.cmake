@@ -2429,9 +2429,26 @@ function (vtk_module_build)
 
     get_filename_component(_vtk_build_module_dir "${_vtk_build_module_file}" DIRECTORY)
     file(RELATIVE_PATH _vtk_build_module_subdir "${CMAKE_SOURCE_DIR}" "${_vtk_build_module_dir}")
+
+    get_filename_component(_vtk_build_module_absolute_source_dir "${CMAKE_SOURCE_DIR}/${_vtk_build_module_subdir}" ABSOLUTE)
+    get_filename_component(_vtk_build_module_absolute_binary_dir "${CMAKE_BINARY_DIR}/${_vtk_build_module_subdir}" ABSOLUTE)
+
+    # VTK modules can be built in the following scenarios:
+    # 
+    # (1) Module sources and generated buildsystem are respectively in VTK source and build trees (aka built-in case)
+    # (2) Module sources are external and module generated buildsystem is in VTK build tree (aka built-in case for a VTK remote module)
+    # (3) Module sources and module generated buildsystem are both external
+    # (4) Module sources are in VTK source tree and module generated buildsystem is external
+    #
+    # The following logic ensures files are not generated in VTK source for case (3) and (4):
+    set(_vtk_build_module_binary_dir ${_vtk_build_module_absolute_binary_dir})
+    if ("${_vtk_build_module_absolute_source_dir}" STREQUAL "${_vtk_build_module_absolute_binary_dir}")
+      set(_vtk_build_module_binary_dir "${CMAKE_BINARY_DIR}-external")
+    endif()
+
     add_subdirectory(
-      "${CMAKE_SOURCE_DIR}/${_vtk_build_module_subdir}"
-      "${CMAKE_BINARY_DIR}/${_vtk_build_module_subdir}")
+      "${_vtk_build_module_absolute_source_dir}"
+      "${_vtk_build_module_binary_dir}")
 
     if (NOT TARGET "${_vtk_build_module}")
       message(FATAL_ERROR
