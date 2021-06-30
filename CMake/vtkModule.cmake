@@ -2441,10 +2441,10 @@ function (vtk_module_build)
     # (4) Module sources are in VTK source tree and module generated buildsystem is external
     #
     # The following logic ensures files are not generated in VTK source for case (3) and (4):
-    set(_vtk_build_module_binary_dir ${_vtk_build_module_absolute_binary_dir})
-    if ("${_vtk_build_module_absolute_source_dir}" STREQUAL "${_vtk_build_module_absolute_binary_dir}")
+    set(_vtk_build_module_binary_dir "${_vtk_build_module_absolute_binary_dir}")
+    if (_vtk_build_module_absolute_source_dir STREQUAL _vtk_build_module_absolute_binary_dir)
       set(_vtk_build_module_binary_dir "${CMAKE_BINARY_DIR}-external")
-    endif()
+    endif ()
 
     add_subdirectory(
       "${_vtk_build_module_absolute_source_dir}"
