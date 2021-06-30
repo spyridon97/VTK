@@ -2443,7 +2443,9 @@ function (vtk_module_build)
     # The following logic ensures files are not generated in VTK source for case (3) and (4):
     set(_vtk_build_module_binary_dir "${_vtk_build_module_absolute_binary_dir}")
     if (_vtk_build_module_absolute_source_dir STREQUAL _vtk_build_module_absolute_binary_dir)
-      set(_vtk_build_module_binary_dir "${CMAKE_BINARY_DIR}-external")
+      get_property(_vtk_module_library_name GLOBAL
+        PROPERTY  "_vtk_module_${_vtk_build_module}_library_name")
+      set(_vtk_build_module_binary_dir "${CMAKE_BINARY_DIR}/externals/${_vtk_module_library_name}")
     endif ()
 
     add_subdirectory(
