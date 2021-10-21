@@ -676,14 +676,14 @@ void vtkViewport::ComputeAspect()
     }
     double* vport = this->GetViewport();
 
-    if (!std::equal(size, size + 1, this->LastComputeAspectSize.begin()) ||
-      !std::equal(vport, vport + 3, this->LastComputeAspectVPort.begin()) ||
-      !std::equal(std::begin(this->PixelAspect), std::end(this->PixelAspect),
+    if (!std::equal(size, size + 2, this->LastComputeAspectSize.begin()) ||
+      !std::equal(vport, vport + 4, this->LastComputeAspectVPort.begin()) ||
+      !std::equal(this->PixelAspect, this->PixelAspect + 2,
         this->LastComputeAspectPixelAspect.begin()))
     {
-      std::copy(size, size + 1, this->LastComputeAspectSize.begin());
-      std::copy(vport, vport + 3, this->LastComputeAspectVPort.begin());
-      std::copy(std::begin(this->PixelAspect), std::end(this->PixelAspect),
+      std::copy(size, size + 2, this->LastComputeAspectSize.begin());
+      std::copy(vport, vport + 4, this->LastComputeAspectVPort.begin());
+      std::copy(this->PixelAspect, this->PixelAspect + 2,
         this->LastComputeAspectPixelAspect.begin());
 
       int lowerLeft[2], upperRight[2];
