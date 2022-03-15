@@ -110,6 +110,26 @@ mark_as_advanced(VTK_LEGACY_REMOVE VTK_LEGACY_SILENT)
 
 # Tell VTK source files they are being built inside VTK.
 add_definitions(-DVTK_IN_VTK)
+string(REPLACE "." "_" compiler_version_safe "${CMAKE_COMPILER_VERSION}")
+set(VTK_ABI_NAMESPACE_NAME
+  "vtk${VTK_MAJOR_VERSION}"
+  CACHE STRING "Inline namespace name for mangling VTK builds.")
+mark_as_advanced(VTK_ABI_NAMESPACE_NAME)
+if (VTK_ABI_NAMESPACE_NAME)
+  set(_open_abi_namespace "inline namesapce ${VTK_ABI_NAMESPACE_NAME} {")
+  set(_close_abi_namespace "} // inline namespace ${VTK_ABI_NAMESPACE_NAME}")
+  add_compile_definitions(
+    VTK_ABI_NAMESPACE_BEGIN=${_open_abi_namespace}
+    VTK_ABI_NAMESPACE_END=${_close_abi_namespace})
+else ()
+  add_definitions(
+    -DVTK_ABI_NAMESPACE_BEGIN=
+    -DVTK_ABI_NAMESPACE_END=
+endif ()
+configure_file(
+  "${vtk_cmake_dir}/vtkABINamespace.h.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/vtkABINamespace.h")
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 include(CheckTypeSize)
 
