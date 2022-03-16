@@ -15,6 +15,7 @@
 #ifndef vtkX3D_h
 #define vtkX3D_h
 
+VTK_ABI_NAMESPACE_BEGIN
 extern const char* x3dElementString[];
 extern const char* x3dAttributeString[];
 
@@ -546,6 +547,7 @@ enum X3DAttribute
 };
 };
 
+VTK_ABI_NAMESPACE_END
 #endif
 
 // VTK-HeaderTest-Exclude: vtkX3D.h

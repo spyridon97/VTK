@@ -38,6 +38,7 @@
 #include "vtkIOImageModule.h" // For export macro
 #include "vtkImageReader2.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkNIFTIImageHeader;
 class vtkMatrix4x4;
 
@@ -258,4 +259,5 @@ private:
   void operator=(const vtkNIFTIImageReader&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkNIFTIImageReader_h

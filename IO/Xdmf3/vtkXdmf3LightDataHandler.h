@@ -38,6 +38,7 @@
 
 #include <set>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkXdmf3SILBuilder;
 class vtkXdmf3ArraySelection;
 class XdmfItem;
@@ -131,5 +132,6 @@ private:
   std::set<double> times; // relying on implicit sort from set<double>
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkXdmf3LightDataHandler_h
 // VTK-HeaderTest-Exclude: vtkXdmf3LightDataHandler.h

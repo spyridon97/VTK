@@ -26,6 +26,7 @@
 #include "vtkImageData.h"
 #include "vtkPointData.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace
 {
 
@@ -170,3 +171,4 @@ bool Convert(const vtkm::cont::DataSet& voutput, vtkImageData* output, vtkDataSe
 }
 
 } // fromvtkm
+VTK_ABI_NAMESPACE_END

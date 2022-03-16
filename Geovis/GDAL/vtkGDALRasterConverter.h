@@ -29,6 +29,7 @@
 #include "vtkObject.h"
 
 // Forward declarations
+VTK_ABI_NAMESPACE_BEGIN
 class GDALDataset;
 class vtkImageData;
 class vtkUniformGrid;
@@ -124,4 +125,5 @@ private:
   void operator=(const vtkGDALRasterConverter&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkGDALRasterConverter_h

@@ -29,6 +29,7 @@
 
 #include <type_traits> // for std::underlying_type
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkPoints;
 
@@ -133,4 +134,5 @@ inline tovtkm::FieldsFlag operator|(const tovtkm::FieldsFlag& a, const tovtkm::F
   return static_cast<tovtkm::FieldsFlag>(static_cast<T>(a) | static_cast<T>(b));
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_ArrayConverters_h

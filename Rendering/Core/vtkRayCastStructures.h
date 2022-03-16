@@ -27,6 +27,7 @@
 #ifndef vtkRayCastStructures_h
 #define vtkRayCastStructures_h
 
+VTK_ABI_NAMESPACE_BEGIN
 struct vtkRayCastRayInfo_t
 {
   // These are the input values that define the ray. Depending on
@@ -78,5 +79,6 @@ struct vtkRayCastRayInfo_t
 };
 using vtkRayCastRayInfo = struct vtkRayCastRayInfo_t;
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkRayCastStructures.h

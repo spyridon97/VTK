@@ -22,6 +22,7 @@
 #include <vtksys/FStream.hxx>
 
 // Forward declarations
+VTK_ABI_NAMESPACE_BEGIN
 class vtkStructuredGrid;
 class vtkImageData;
 class vtkSegYTraceReader;
@@ -64,5 +65,6 @@ private:
   int SampleCountPerTrace;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkSegYReaderInternal_h
 // VTK-HeaderTest-Exclude: vtkSegYReaderInternal.h

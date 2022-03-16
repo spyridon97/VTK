@@ -25,6 +25,7 @@
 
 #include <vtkm/cont/DataSet.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkUnstructuredGrid;
 class vtkDataSet;
 
@@ -41,4 +42,5 @@ namespace fromvtkm
 VTKACCELERATORSVTKMDATAMODEL_EXPORT
 bool Convert(const vtkm::cont::DataSet& voutput, vtkUnstructuredGrid* output, vtkDataSet* input);
 }
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_UnstructuredGridConverter_h

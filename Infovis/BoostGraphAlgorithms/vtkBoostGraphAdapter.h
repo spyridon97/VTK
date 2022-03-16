@@ -48,6 +48,7 @@
 
 #include <boost/version.hpp>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace boost
 {
 //===========================================================================
@@ -134,6 +135,7 @@ using ::boost::put;
 #endif
 }
 
+VTK_ABI_NAMESPACE_END
 #include <utility> // STL Header
 
 #include <boost/config.hpp>
@@ -153,6 +155,7 @@ using ::boost::put;
 // treat a vtkDirectedGraph or vtkUndirectedGraph object
 // as a boost graph "as is".
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace boost
 {
 
@@ -1309,6 +1312,7 @@ struct property_map<vtkUndirectedGraph* const, edge_index_t>
 } // namespace boost
 
 #if BOOST_VERSION > 104000
+VTK_ABI_NAMESPACE_END
 #include <boost/property_map/vector_property_map.hpp>
 #else
 #include <boost/vector_property_map.hpp>

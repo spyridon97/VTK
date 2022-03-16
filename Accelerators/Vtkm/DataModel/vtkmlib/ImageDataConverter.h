@@ -23,6 +23,7 @@
 
 #include <vtkm/cont/DataSet.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkImageData;
 class vtkDataSet;
 
@@ -45,4 +46,5 @@ bool Convert(
   const vtkm::cont::DataSet& voutput, int extents[6], vtkImageData* output, vtkDataSet* input);
 
 }
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_ImageDataConverter_h

@@ -39,6 +39,7 @@
 
 // The export macro below makes no sense, but is necessary for older compilers
 // when we export instantiations of this class from vtkCommonCore.
+VTK_ABI_NAMESPACE_BEGIN
 template <class ValueTypeT>
 class VTKCOMMONCORE_EXPORT vtkAOSDataArrayTemplate
   : public vtkGenericDataArray<vtkAOSDataArrayTemplate<ValueTypeT>, ValueTypeT>
@@ -319,6 +320,7 @@ vtkArrayDownCast_TemplateFastCastMacro(vtkAOSDataArrayTemplate);
   void SetArray(VTK_ZEROCOPY T* array, vtkIdType size, int save);                                  \
   void SetArray(VTK_ZEROCOPY T* array, vtkIdType size, int save, int deleteMethod)
 
+VTK_ABI_NAMESPACE_END
 #endif // header guard
 
 // This portion must be OUTSIDE the include blockers. This is used to tell
@@ -342,10 +344,12 @@ vtkArrayDownCast_TemplateFastCastMacro(vtkAOSDataArrayTemplate);
 // dllexport and is used from another class in vtkCommonCore
 #pragma warning(disable : 4910) // extern and dllexport incompatible
 #endif
+VTK_ABI_NAMESPACE_BEGIN
 vtkExternTemplateMacro(extern template class VTKCOMMONCORE_EXPORT vtkAOSDataArrayTemplate);
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
+VTK_ABI_NAMESPACE_END
 #endif // VTK_AOS_DATA_ARRAY_TEMPLATE_EXTERN
 
 // The following clause is only for MSVC
@@ -373,10 +377,12 @@ vtkExternTemplateMacro(extern template class VTKCOMMONCORE_EXPORT vtkAOSDataArra
 
 // Use an "extern explicit instantiation" to give the class a DLL
 // interface.  This is a compiler-specific extension.
+VTK_ABI_NAMESPACE_BEGIN
 vtkInstantiateTemplateMacro(extern template class VTKCOMMONCORE_EXPORT vtkAOSDataArrayTemplate);
 
 #pragma warning(pop)
 
+VTK_ABI_NAMESPACE_END
 #endif
 
 // VTK-HeaderTest-Exclude: vtkAOSDataArrayTemplate.h

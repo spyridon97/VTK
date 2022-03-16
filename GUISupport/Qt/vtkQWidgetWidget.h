@@ -29,6 +29,7 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QPointF>                 // for ivar
 
+VTK_ABI_NAMESPACE_BEGIN
 class QWidget;
 class vtkQWidgetRepresentation;
 
@@ -109,4 +110,5 @@ private:
   void operator=(const vtkQWidgetWidget&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -37,6 +37,7 @@
 //
 
 // used to hold the VRML DEF names and assoc vtkObjects
+VTK_ABI_NAMESPACE_BEGIN
 class vtkVRMLUseStruct {
 public:
   vtkVRMLUseStruct( char *n, vtkObject *o) { defName = n; defObject = o; }
@@ -604,6 +605,7 @@ const VrmlNodeType* vtkVRMLYaccData::find(const char *_name)
 
 #define YYDEBUG 1
 
+VTK_ABI_NAMESPACE_END
 #include <stdlib.h>
 
 
@@ -647,6 +649,7 @@ const VrmlNodeType* vtkVRMLYaccData::find(const char *_name)
 
 #define YYTRANSLATE(x) ((unsigned)(x) <= 289 ? yytranslate[x] : 68)
 
+VTK_ABI_NAMESPACE_BEGIN
 static const char yytranslate[] = {     0,
                                         2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
                                         2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -871,6 +874,7 @@ static const short yycheck[] = {    66,
 //extern int yylex(vtkVRMLImporter* self);
 //extern void yyerror();
 
+VTK_ABI_NAMESPACE_END
 #include <list>
 //
 // This file was originally generated from a yacc grammar source
@@ -887,6 +891,7 @@ static const short yycheck[] = {    66,
 // file was imported; in the real world, I think alloca was very
 // rarely called here.
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkVRMLYaccData::FakeAlloca
 {
 public:
@@ -1703,6 +1708,7 @@ void vtkVRMLYaccData::expect(int type)
 #define FLEX_SCANNER
 
 #ifdef _WIN32
+VTK_ABI_NAMESPACE_END
 #include <io.h>
 #else
 #include <unistd.h>
@@ -1752,11 +1758,15 @@ void vtkVRMLYaccData::expect(int type)
 //extern FILE *yyin, *yyout;
 
 #ifdef __cplusplus
+VTK_ABI_NAMESPACE_BEGIN
 extern "C" {
+VTK_ABI_NAMESPACE_END
 #endif
   //extern int yywrap YY_PROTO(( void ));
 #ifdef __cplusplus
+VTK_ABI_NAMESPACE_BEGIN
 }
+VTK_ABI_NAMESPACE_END
 #endif
 
 #define EOB_ACT_CONTINUE_SCAN 0
@@ -1923,6 +1933,7 @@ extern "C" {
         yy_c_buf_p = yy_cp;
 
 #define YY_END_OF_BUFFER 50
+VTK_ABI_NAMESPACE_BEGIN
 static const short int yy_accept[949] =
 {   0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -4052,6 +4063,7 @@ static const short int yy_rule_linenum[49] =
  *                Daniel Woods (first port)
  **************************************************
  */
+VTK_ABI_NAMESPACE_END
 //#include "tokens.h"
 #include <string.h>
 
@@ -4081,6 +4093,7 @@ static const short int yy_rule_linenum[49] =
 #ifdef __cplusplus
 //extern "C"
 #endif
+VTK_ABI_NAMESPACE_BEGIN
 int vtkVRMLYaccData::yywrap() { BEGIN INITIAL; return 1; }
 
 /* Normal state:  parsing nodes.  The initial start state is used */
@@ -4107,6 +4120,7 @@ YY_MALLOC_DECL
 #else
 #if __STDC__
 #ifndef __cplusplus
+VTK_ABI_NAMESPACE_END
 #include <stdlib.h>
 #endif
 #else
@@ -4185,6 +4199,7 @@ YY_MALLOC_DECL
 #endif
 
 
+VTK_ABI_NAMESPACE_BEGIN
 int vtkVRMLYaccData::yylex ( vtkVRMLImporter* self )
 {
   yy_state_type yy_current_state;
@@ -5185,5 +5200,6 @@ void vtkVRMLYaccData::defyyInput(char *buf, int &result, int max_size,
 }
 
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkVRMLImporter_Yacc.h

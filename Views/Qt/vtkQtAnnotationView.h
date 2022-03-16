@@ -36,6 +36,7 @@
 
 #include <QPointer> // Needed to hold the view
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkQtAnnotationLayersModelAdapter;
 
 class QItemSelection;
@@ -80,4 +81,5 @@ private:
   void operator=(const vtkQtAnnotationView&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

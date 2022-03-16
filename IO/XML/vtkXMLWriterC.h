@@ -19,8 +19,10 @@
 #include "vtkType.h"        /* For scalar and vtkDataObject type enumerations.  */
 
 #ifdef __cplusplus
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #endif /*cplusplus*/
 
   /**
@@ -33,6 +35,7 @@ extern "C"
    * Create a new instance of vtkXMLWriterC.  Returns the object or nullptr
    * on failure.
    */
+  VTK_ABI_NAMESPACE_BEGIN
   VTKIOXML_EXPORT
   vtkXMLWriterC* vtkXMLWriterC_New(void);
 
@@ -258,5 +261,6 @@ extern "C"
 } /* extern "C" */
 #endif /*cplusplus*/
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkXMLWriterC.h

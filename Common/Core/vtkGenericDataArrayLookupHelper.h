@@ -29,6 +29,7 @@
 #include <unordered_map>
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
 template <typename T, bool>
@@ -158,5 +159,6 @@ private:
   std::vector<vtkIdType> NanIndices;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkGenericDataArrayLookupHelper.h

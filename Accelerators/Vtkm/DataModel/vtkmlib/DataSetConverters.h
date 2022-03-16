@@ -25,6 +25,7 @@
 
 #include <vtkm/cont/DataSet.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataSet;
 class vtkDataSetAttributes;
 class vtkImageData;
@@ -62,4 +63,5 @@ bool Convert(const vtkm::cont::DataSet& vtkmOut, vtkStructuredGrid* output, vtkD
 
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_DataSetConverters_h

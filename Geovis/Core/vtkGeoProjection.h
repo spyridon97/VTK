@@ -32,6 +32,7 @@
 #include "vtkGeovisCoreModule.h" // For export macro
 #include "vtkObject.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 struct PJconsts;
 typedef struct PJconsts PJ;
 typedef PJ* projPJ;
@@ -173,4 +174,5 @@ private:
   vtkInternals* Internals;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkGeoProjection_h

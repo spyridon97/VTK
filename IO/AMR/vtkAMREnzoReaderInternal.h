@@ -31,6 +31,7 @@
 #include <string>  // for STL string
 #include <vector>  // for STL vector
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkDataSet;
 
@@ -153,5 +154,6 @@ public:
 //                     Class  vtkEnzoReaderInternal ( end )
 // ----------------------------------------------------------------------------
 
+VTK_ABI_NAMESPACE_END
 #endif /* vtkAMREnzoReaderInternal_h */
 // VTK-HeaderTest-Exclude: vtkAMREnzoReaderInternal.h

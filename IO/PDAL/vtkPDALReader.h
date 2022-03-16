@@ -33,6 +33,7 @@
 
 #include <vtkPolyDataAlgorithm.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace pdal
 {
 class Stage;
@@ -71,4 +72,5 @@ protected:
   char* FileName;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkPDALReader_h

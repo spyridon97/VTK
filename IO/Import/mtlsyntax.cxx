@@ -27,6 +27,7 @@
 
 #line 20 "..\\vtk3\\vtk\\io\\import\\mtlsyntax.c"
 static const char _simple_lexer_actions[] = {
+VTK_ABI_NAMESPACE_BEGIN
   0, 1, 0, 1, 1, 1, 3, 1,
   4, 1, 8, 1, 9, 1, 10, 1,
   11, 1, 12, 1, 13, 1, 14, 1,
@@ -376,3 +377,4 @@ _again:
 
   return res;
 }
+VTK_ABI_NAMESPACE_END

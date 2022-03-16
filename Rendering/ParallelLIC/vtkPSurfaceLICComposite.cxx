@@ -67,12 +67,14 @@ using std::vector;
 using std::ostringstream;
 using std::string;
 //------------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 static string mpifn(int rank, const char* fn)
 {
   ostringstream oss;
   oss << rank << "_" << fn;
   return oss.str();
 }
+VTK_ABI_NAMESPACE_END
 #endif
 
 // use PBO's for MPI communication.
@@ -86,6 +88,7 @@ static string mpifn(int rank, const char* fn)
 #define DUPLICATE_COMMUNICATOR 0
 
 // ***************************************************************************
+VTK_ABI_NAMESPACE_BEGIN
 static int maxNumPasses()
 {
   return 100;
@@ -1706,3 +1709,4 @@ ostream& operator<<(ostream& os, vtkPSurfaceLICComposite& ss)
   }
   return os;
 }
+VTK_ABI_NAMESPACE_END

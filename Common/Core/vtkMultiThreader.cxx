@@ -17,6 +17,7 @@
 #include "vtkObjectFactory.h"
 #include "vtkWindows.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 vtkStandardNewMacro(vtkMultiThreader);
 
 // Need to define "vtkExternCThreadFunctionType" to avoid warning on some
@@ -24,7 +25,9 @@ vtkStandardNewMacro(vtkMultiThreader);
 // extern "C" function.  Placing the typedef of the function pointer type
 // inside an extern "C" block solves this problem.
 #if defined(VTK_USE_PTHREADS)
+VTK_ABI_NAMESPACE_END
 #include <pthread.h>
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
   typedef void* (*vtkExternCThreadFunctionType)(void*);
@@ -34,11 +37,13 @@ typedef vtkThreadFunctionType vtkExternCThreadFunctionType;
 #endif
 
 #ifdef __APPLE__
+VTK_ABI_NAMESPACE_END
 #include <sys/sysctl.h>
 #include <sys/types.h>
 #endif
 
 // Initialize static member that controls global maximum number of threads
+VTK_ABI_NAMESPACE_BEGIN
 static int vtkMultiThreaderGlobalMaximumNumberOfThreads = 0;
 
 void vtkMultiThreader::SetGlobalMaximumNumberOfThreads(int val)
@@ -642,3 +647,4 @@ void vtkMultiThreader::PrintSelf(ostream& os, vtkIndent indent)
 #endif
      << endl;
 }
+VTK_ABI_NAMESPACE_END

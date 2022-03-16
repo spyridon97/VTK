@@ -35,6 +35,7 @@
 
 #include <vtkPolyDataAlgorithm.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace liblas
 {
 class Header;
@@ -74,4 +75,5 @@ protected:
   char* FileName;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkLASReader_h

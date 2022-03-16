@@ -39,6 +39,7 @@
 #include <deque>
 
 //------------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 namespace
 {
 // Given a triangle with two vector fields (v0, v1, v2) and (w0, w1, w2) defined
@@ -854,3 +855,4 @@ void vtkParallelVectors::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "SecondVectorFieldName:"
      << (this->SecondVectorFieldName ? this->SecondVectorFieldName : "(undefined)") << endl;
 }
+VTK_ABI_NAMESPACE_END

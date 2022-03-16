@@ -25,6 +25,7 @@
 
 #include <vtkm/cont/DataSet.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkPolyData;
 class vtkDataSet;
 
@@ -40,4 +41,5 @@ namespace fromvtkm
 VTKACCELERATORSVTKMDATAMODEL_EXPORT
 bool Convert(const vtkm::cont::DataSet& voutput, vtkPolyData* output, vtkDataSet* input);
 }
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_PolyDataConverter_h

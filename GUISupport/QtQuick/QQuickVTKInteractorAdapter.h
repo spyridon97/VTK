@@ -24,6 +24,7 @@
 #include <QPointer> // for QPointer
 
 // Forward declarations
+VTK_ABI_NAMESPACE_BEGIN
 class QEnterEvent;
 class QEvent;
 class QFocusEvent;
@@ -89,4 +90,5 @@ private:
   Q_DISABLE_COPY(QQuickVTKInteractorAdapter)
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // QQuickVTKInteractorAdapter_h

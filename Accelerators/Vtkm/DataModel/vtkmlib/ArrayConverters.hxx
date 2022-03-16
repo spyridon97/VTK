@@ -25,6 +25,7 @@
 #include "vtkDataArray.h"
 #include "vtkDataObject.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -90,4 +91,5 @@ VTK_EXPORT_ARRAY_CONVERSION_TO_VTKM(vtkSOADataArrayTemplate)
 #endif // !defined(ArrayConverterExport_cxx)
 
 } // tovtkm
+VTK_ABI_NAMESPACE_END
 #endif

@@ -40,6 +40,7 @@
 // unsigned char array. Therefore, the maximum encoding number for a cell type
 // is 255.
 
+VTK_ABI_NAMESPACE_BEGIN
 typedef enum
 {
   // Linear cells
@@ -127,5 +128,6 @@ typedef enum
   VTK_NUMBER_OF_CELL_TYPES
 } VTKCellType;
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkCellType.h

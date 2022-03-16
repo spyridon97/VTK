@@ -21,11 +21,14 @@
 #include "vtkAcceleratorsVTKmCoreModule.h"
 #include "vtkmConfigCore.h" //required for general vtkm setup
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkPoints;
 
+VTK_ABI_NAMESPACE_END
 #include <vtkm/cont/internal/IteratorFromArrayPortal.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -119,7 +122,9 @@ private:
 }
 
 #ifndef vtkmlib_Portals_cxx
+VTK_ABI_NAMESPACE_END
 #include <vtkm/cont/internal/ArrayPortalFromIterators.h>
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 // T extern template instantiations
@@ -135,5 +140,6 @@ extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT
 
 #endif // defined vtkmlib_Portals_cxx
 
+VTK_ABI_NAMESPACE_END
 #include "Portals.hxx"
 #endif // vtkmlib_Portals_h

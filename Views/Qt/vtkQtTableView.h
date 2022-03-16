@@ -38,6 +38,7 @@
 #include "vtkSmartPointer.h" // Needed for member variables
 #include <QPointer>          // Needed to hold the view
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkAddMembershipArray;
 class vtkApplyColors;
 class vtkDataObjectToTable;
@@ -250,4 +251,5 @@ private:
   void operator=(const vtkQtTableView&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

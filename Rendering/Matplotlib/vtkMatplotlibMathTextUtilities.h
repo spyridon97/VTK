@@ -51,6 +51,7 @@
 
 #include <vector> // for std::vector
 
+VTK_ABI_NAMESPACE_BEGIN
 struct _object;
 typedef struct _object PyObject;
 class vtkSmartPyObject;
@@ -270,4 +271,5 @@ private:
   bool DrawInteriorLines(vtkImageData* image, int bbox[4]);
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

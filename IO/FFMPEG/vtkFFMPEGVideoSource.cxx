@@ -20,14 +20,18 @@
 #include "vtkUnsignedCharArray.h"
 #include "vtksys/SystemTools.hxx"
 
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
 #include <libavutil/stereo3d.h>
 #include <libswscale/swscale.h>
+  VTK_ABI_NAMESPACE_BEGIN
 }
 
+VTK_ABI_NAMESPACE_END
 #include <cctype>
 #include <condition_variable>
 #include <mutex>
@@ -65,6 +69,7 @@ extern "C"
 //
 /////////////////////////////////////////////////////////////////////////
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkFFMPEGVideoSourceInternal
 {
 public:
@@ -954,3 +959,4 @@ void vtkFFMPEGVideoSource::SetOutputFormat(int format)
 
   this->Modified();
 }
+VTK_ABI_NAMESPACE_END

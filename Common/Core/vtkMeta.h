@@ -26,6 +26,7 @@
  */
 
 // Forward decs for StripPointers:
+VTK_ABI_NAMESPACE_BEGIN
 template <typename ArrayType>
 class vtkNew;
 template <typename ArrayType>
@@ -89,6 +90,7 @@ public:
 }
 } // end namespace vtk::detail
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkMeta_h
 
 // VTK-HeaderTest-Exclude: vtkMeta.h

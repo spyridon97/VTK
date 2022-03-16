@@ -48,6 +48,7 @@
 #include "vtkLabeledDataMapper.h"
 #include "vtkRenderingQtModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 class QImage;
 
 class vtkQImageToImageSource;
@@ -171,4 +172,5 @@ private:
   void operator=(const vtkQtTreeRingLabelMapper&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

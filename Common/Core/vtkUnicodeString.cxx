@@ -33,6 +33,7 @@
 ///////////////////////////////////////////////////////////////////////////
 // vtkUnicodeString::const_iterator
 
+VTK_ABI_NAMESPACE_BEGIN
 vtkUnicodeString::const_iterator::const_iterator() = default;
 
 vtkUnicodeString::const_iterator::const_iterator(std::string::const_iterator position)
@@ -354,8 +355,10 @@ vtkUnicodeString vtkUnicodeString::fold_case() const
   static map_t map;
   if (map.empty())
   {
+    VTK_ABI_NAMESPACE_END
 #include "vtkUnicodeCaseFoldData.h"
 
+    VTK_ABI_NAMESPACE_BEGIN
     for (value_type* i = &vtkUnicodeCaseFoldData[0]; *i; ++i)
     {
       const value_type code = *i;
@@ -440,3 +443,4 @@ bool operator>(const vtkUnicodeString& lhs, const vtkUnicodeString& rhs)
 {
   return lhs.compare(rhs) > 0;
 }
+VTK_ABI_NAMESPACE_END

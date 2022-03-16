@@ -30,6 +30,7 @@
 #include <QVBoxLayout>
 
 //------------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 class vtkQtDebugLeaksView::qInternal
 {
 public:
@@ -247,3 +248,4 @@ void vtkQtDebugLeaksView::onClassNameDoubleClicked(const QString& className)
 {
   Q_UNUSED(className);
 }
+VTK_ABI_NAMESPACE_END

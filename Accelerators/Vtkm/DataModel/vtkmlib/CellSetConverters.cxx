@@ -44,6 +44,7 @@
 #define FUNC_SCOPE
 #endif
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -286,3 +287,4 @@ bool Convert(const vtkm::cont::DynamicCellSet& toConvert, vtkCellArray* cells,
 }
 
 } // namespace fromvtkm
+VTK_ABI_NAMESPACE_END

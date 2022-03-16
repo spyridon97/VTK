@@ -23,6 +23,7 @@
 
 #include "vtkDataArray.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -71,4 +72,5 @@ vtkm::cont::Field ConvertCellField(DataArrayType* input)
 }
 
 } // tovtkm
+VTK_ABI_NAMESPACE_END
 #endif

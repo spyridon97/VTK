@@ -30,6 +30,7 @@
 #include "vtkPointData.h"
 #include "vtkPoints.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 void ProcessFields(vtkDataSet* input, vtkm::cont::DataSet& dataset, tovtkm::FieldsFlag fields)
@@ -158,3 +159,4 @@ bool ConvertArrays(const vtkm::cont::DataSet& input, vtkDataSet* output)
   return true;
 }
 } // namespace fromvtkm
+VTK_ABI_NAMESPACE_END

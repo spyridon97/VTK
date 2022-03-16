@@ -65,6 +65,7 @@
 #include "vtkIOImageModule.h" // For export macro
 #include "vtkImageWriter.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtkmetaio
 {
 class MetaImage;
@@ -117,4 +118,5 @@ private:
   vtkmetaio::MetaImage* MetaImagePtr;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -12,6 +12,7 @@
 #define amrNode 1
 #define amrLeaf 2
 #define amrFullLeaf 3
+VTK_ABI_NAMESPACE_BEGIN
 vtkAMRVelodyneReaderInternal::vtkAMRVelodyneReaderInternal()
 {
   this->Init();

@@ -26,6 +26,7 @@
 #include "vtkDataArray.h"
 #include "vtkPoints.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace fromvtkm
 {
 
@@ -213,3 +214,4 @@ vtkPoints* Convert(const vtkm::cont::CoordinateSystem& input)
 }
 
 }
+VTK_ABI_NAMESPACE_END

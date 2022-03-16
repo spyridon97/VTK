@@ -45,6 +45,7 @@
 #include <vtkm/cont/CellSetStructured.h>
 #include <vtkm/cont/Field.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -307,3 +308,4 @@ bool Convert(const vtkm::cont::DataSet& vtkmOut, vtkStructuredGrid* output, vtkD
 }
 
 } // namespace fromvtkm
+VTK_ABI_NAMESPACE_END

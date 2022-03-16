@@ -40,6 +40,7 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QtCore/QObject>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkRenderWindowInteractor;
 class QEvent;
 
@@ -75,4 +76,5 @@ protected:
   static const double DevicePixelRatioTolerance;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

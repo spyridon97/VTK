@@ -72,6 +72,7 @@ typedef XdmfInt32 vtkXdmfIdType;
 
 using namespace xdmf2;
 
+VTK_ABI_NAMESPACE_BEGIN
 struct _xmlNode;
 typedef _xmlNode* XdmfXmlNode;
 struct vtkXW2NodeHelp
@@ -1354,3 +1355,4 @@ void vtkXdmfWriter::ConvertVToXArray(vtkDataArray* vda, XdmfArray* xda, vtkIdTyp
       vda->GetNumberOfTuples() * vda->GetNumberOfComponents() * vda->GetElementComponentSize());
   }
 }
+VTK_ABI_NAMESPACE_END

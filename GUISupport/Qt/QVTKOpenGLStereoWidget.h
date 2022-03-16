@@ -22,6 +22,7 @@
 #include <QPointer>           // needed for ivar
 
 // Forward Qt class declarations
+VTK_ABI_NAMESPACE_BEGIN
 class QSurfaceFormat;
 class QOpenGLContext;
 
@@ -194,4 +195,5 @@ private:
   QPointer<QVTKOpenGLWindow> VTKOpenGLWindow;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

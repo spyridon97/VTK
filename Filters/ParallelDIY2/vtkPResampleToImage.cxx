@@ -52,6 +52,7 @@
 #include <algorithm>
 #include <iterator>
 
+VTK_ABI_NAMESPACE_BEGIN
 vtkStandardNewMacro(vtkPResampleToImage);
 
 vtkCxxSetObjectMacro(vtkPResampleToImage, Controller, vtkMultiProcessController);
@@ -580,3 +581,4 @@ struct Serialization<FieldMetaData>
 };
 
 } // namespace diy
+VTK_ABI_NAMESPACE_END

@@ -39,6 +39,7 @@
 #include VTK_DIY2(diy/types.hpp)
 // clang-format on
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkBoundingBox;
 class vtkDataObject;
@@ -214,6 +215,7 @@ private:
 };
 static vtkDIYUtilitiesCleanup vtkDIYUtilitiesCleanupInstance;
 
+VTK_ABI_NAMESPACE_END
 #include "vtkDIYUtilities.txx" // for template implementations
 
 #endif

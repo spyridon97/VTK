@@ -69,6 +69,7 @@
 #include "vtkObject.h"
 #include "vtkVariant.h" // for variant arguments
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkArrayIterator;
 class vtkDataArray;
 class vtkIdList;
@@ -789,4 +790,5 @@ ArrayT* vtkArrayDownCast(vtkAbstractArray* array)
   }
 ///@}
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -30,6 +30,7 @@
 
 #include <type_traits> // for std::underlying_type
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkDataSet;
 class vtkPoints;
@@ -61,4 +62,5 @@ VTKACCELERATORSVTKMDATAMODEL_EXPORT
 bool ConvertArrays(const vtkm::cont::DataSet& input, vtkDataSet* output);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_ArrayConverters_h

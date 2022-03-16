@@ -40,6 +40,7 @@
 #include <QCursor>        // for ivar
 #include <QScopedPointer> // for ivar
 
+VTK_ABI_NAMESPACE_BEGIN
 class QOpenGLContext;
 class QSurfaceFormat;
 class QWidget;
@@ -193,4 +194,5 @@ private:
   QCursor DefaultCursor;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

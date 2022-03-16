@@ -63,6 +63,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 const int MAX_DIM = 3;
 const int MAX_CHILD = 8;
 
@@ -141,4 +142,5 @@ private:
   std::vector<BHNode*> bhNode;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

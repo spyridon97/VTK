@@ -33,6 +33,7 @@
 #include <string> // Needed for private members
 #include <vector> //
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkExecutive;
 
 class vtkCompositeDataSet;
@@ -214,4 +215,5 @@ private:
   void operator=(const vtkXdmfWriter&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif /* vtkXdmfWriter_h */

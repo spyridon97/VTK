@@ -24,6 +24,7 @@
 
 #include <vtkm/ImplicitFunction.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -142,3 +143,4 @@ const vtkm::ImplicitFunctionGeneral& ImplicitFunctionConverter::Get()
 }
 
 } // tovtkm
+VTK_ABI_NAMESPACE_END

@@ -49,6 +49,7 @@
 #include "vtkObject.h"
 #include <QtCore/QObject> // for version info
 
+VTK_ABI_NAMESPACE_BEGIN
 class QObject;
 class vtkQtConnections;
 class vtkQtConnection;
@@ -103,4 +104,5 @@ private:
   void operator=(const vtkEventQtSlotConnect&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

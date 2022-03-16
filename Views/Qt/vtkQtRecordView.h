@@ -39,6 +39,7 @@
 #include "vtkViewsQtModule.h" // For export macro
 #include <QPointer>           // Needed for the text widget member
 
+VTK_ABI_NAMESPACE_BEGIN
 class QTextEdit;
 class vtkDataObjectToTable;
 
@@ -110,4 +111,5 @@ private:
   vtkMTimeType LastMTime;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

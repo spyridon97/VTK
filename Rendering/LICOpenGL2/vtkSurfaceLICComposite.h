@@ -31,6 +31,7 @@
 #include <deque>                          // for deque
 #include <vector>                         // for vector
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkFloatArray;
 class vtkOpenGLRenderWindow;
 class vtkTextureObject;
@@ -261,4 +262,5 @@ private:
 
 ostream& operator<<(ostream& os, vtkSurfaceLICComposite& ss);
 
+VTK_ABI_NAMESPACE_END
 #endif

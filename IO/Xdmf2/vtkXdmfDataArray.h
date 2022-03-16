@@ -26,6 +26,7 @@
 #include "vtkIOXdmf2Module.h" // For export macro
 #include "vtkObject.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 namespace xdmf2
 {
@@ -66,4 +67,5 @@ private:
   void operator=(const vtkXdmfDataArray&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif /* vtkXdmfDataArray_h */

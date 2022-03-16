@@ -26,6 +26,7 @@
 // hence only the top-level grids are made accessible.
 #define MAX_COLLECTABLE_NUMBER_OF_GRIDS 1000
 
+VTK_ABI_NAMESPACE_BEGIN
 template <class T>
 T vtkMAX(T a, T b)
 {

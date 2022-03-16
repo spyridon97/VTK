@@ -35,6 +35,7 @@
 #include <QtCore/QObject>
 
 #include <map>
+VTK_ABI_NAMESPACE_BEGIN
 class QVTKInteractor;
 class QSignalMapper;
 class QTimer;
@@ -56,4 +57,5 @@ public:
   QVTKInteractor* Parent;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -31,6 +31,7 @@
 #include <QMap>
 #include <QString>
 
+VTK_ABI_NAMESPACE_BEGIN
 class QPainter;
 
 struct vtkQtLabelMapEntry
@@ -72,5 +73,6 @@ public:
   }
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkQtLabelRenderStrategyInternals_h
 // VTK-HeaderTest-Exclude: vtkQtLabelRenderStrategyInternals.h

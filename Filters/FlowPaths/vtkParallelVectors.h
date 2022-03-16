@@ -38,6 +38,7 @@
 
 #include "vtkNew.h" // for vtkNew
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
 template <typename VArrayType, typename WArrayType>
@@ -113,4 +114,5 @@ private:
   void operator=(const vtkParallelVectors&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

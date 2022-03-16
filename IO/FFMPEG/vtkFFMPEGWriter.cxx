@@ -19,16 +19,21 @@
 #include "vtkImageData.h"
 #include "vtkObjectFactory.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
+  VTK_ABI_NAMESPACE_BEGIN
 }
 
 #if defined(LIBAVFORMAT_VERSION_MAJOR) && LIBAVFORMAT_VERSION_MAJOR >= 57
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #include <libavutil/imgutils.h>
+  VTK_ABI_NAMESPACE_BEGIN
 }
 #endif
 
@@ -785,3 +790,4 @@ void vtkFFMPEGWriter::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "BitRate: " << this->BitRate << endl;
   os << indent << "BitRateTolerance: " << this->BitRateTolerance << endl;
 }
+VTK_ABI_NAMESPACE_END

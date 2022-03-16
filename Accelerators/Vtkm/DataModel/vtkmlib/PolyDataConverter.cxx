@@ -38,6 +38,7 @@
 #include <vtkm/cont/DataSetBuilderUniform.h>
 #include <vtkm/cont/Field.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace
 {
 struct build_type_array
@@ -215,3 +216,4 @@ bool Convert(const vtkm::cont::DataSet& voutput, vtkPolyData* output, vtkDataSet
 }
 
 } // namespace fromvtkm
+VTK_ABI_NAMESPACE_END

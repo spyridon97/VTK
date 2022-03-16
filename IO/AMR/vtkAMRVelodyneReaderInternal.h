@@ -48,6 +48,7 @@
 //================================================================================
 //                          INTERNAL VELODYNE READER
 //================================================================================
+VTK_ABI_NAMESPACE_BEGIN
 typedef struct tagVelodyneSimParameters
 {
   double Time;
@@ -102,5 +103,6 @@ private:
   std::unordered_map<std::string, int> typeMap;
   std::unordered_map<std::string, int> arrayMap;
 };
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkAMRVelodyneReaderInternal.h

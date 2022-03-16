@@ -25,6 +25,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include "vtkImageAlgorithm.h"
 #include "vtkRenderingQtModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 class QImage;
 
 class VTKRENDERINGQT_EXPORT vtkQImageToImageSource : public vtkImageAlgorithm
@@ -60,4 +61,5 @@ private:
   void operator=(const vtkQImageToImageSource&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

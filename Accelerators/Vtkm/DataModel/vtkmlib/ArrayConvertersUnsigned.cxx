@@ -17,6 +17,7 @@
 #define vtkmlib_ArrayConverterExport_cxx
 #include "ArrayConverters.hxx"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -24,3 +25,4 @@ VTK_EXPORT_UNSIGNED_ARRAY_CONVERSION_TO_VTKM(vtkAOSDataArrayTemplate)
 VTK_EXPORT_UNSIGNED_ARRAY_CONVERSION_TO_VTKM(vtkSOADataArrayTemplate)
 
 } // tovtkm
+VTK_ABI_NAMESPACE_END

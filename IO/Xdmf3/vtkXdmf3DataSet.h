@@ -36,6 +36,7 @@
 
 #include <string> //Needed only for XdmfArray::getName :(
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkXdmf3ArraySelection;
 class vtkXdmf3ArrayKeeper;
 class XdmfArray;
@@ -249,5 +250,6 @@ public:
     vtkXdmf3ArrayKeeper* keeper = nullptr);
 };
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkXdmf3DataSet.h

@@ -38,6 +38,7 @@
 #include <sstream>
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 vtkInformationKeyMacro(vtkOTDensityMap, DENSITY, Double);
 vtkStandardNewMacro(vtkOTDensityMap);
 
@@ -536,3 +537,4 @@ vtkMTimeType vtkOTDensityMap::GetMTime()
 {
   return vtkMath::Max(this->Superclass::GetMTime(), this->ContourValues->GetMTime());
 }
+VTK_ABI_NAMESPACE_END

@@ -36,6 +36,7 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QSortFilterProxyModel>
 
+VTK_ABI_NAMESPACE_BEGIN
 class QModelIndex;
 
 class VTKGUISUPPORTQT_EXPORT QFilterTreeProxyModel : public QSortFilterProxyModel
@@ -58,4 +59,5 @@ private:
   int TreeLevel;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

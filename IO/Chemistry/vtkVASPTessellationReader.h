@@ -27,6 +27,7 @@
 #include "vtkIOChemistryModule.h" // For export macro
 #include "vtkMoleculeAlgorithm.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtksys
 {
 class RegularExpression;
@@ -90,4 +91,5 @@ private:
   void operator=(const vtkVASPTessellationReader&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkVASPTessellationReader_h

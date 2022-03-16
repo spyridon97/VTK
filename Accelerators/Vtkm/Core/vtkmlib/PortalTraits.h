@@ -24,6 +24,7 @@
 
 #include <type_traits>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -144,4 +145,5 @@ struct vtkPortalTraits<const vtkm::Vec<vtkm::Vec<T, N>, M>>
 
 } // namespace vtkmlib
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_PortalsTraits_h

@@ -23,6 +23,7 @@
 #include <QTimer>
 
 //------------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 class vtkQtDebugLeaksModel::qObserver : public vtkDebugLeaksObserver
 {
 public:
@@ -295,3 +296,4 @@ Qt::ItemFlags ReferenceCountModel::flags(const QModelIndex& modelIndex) const
   Q_UNUSED(modelIndex);
   return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 }
+VTK_ABI_NAMESPACE_END

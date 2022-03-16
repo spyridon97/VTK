@@ -43,6 +43,7 @@
 #include <string>
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 vtkStandardNewMacro(vtkWebGLPolyData);
 //*****************************************************************************
 class vtkWebGLPolyData::vtkInternal

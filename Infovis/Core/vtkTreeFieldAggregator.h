@@ -35,12 +35,15 @@
 #ifndef vtkTreeFieldAggregator_h
 #define vtkTreeFieldAggregator_h
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkPoints;
 class vtkTree;
 
+VTK_ABI_NAMESPACE_END
 #include "vtkInfovisCoreModule.h" // For export macro
 #include "vtkTreeAlgorithm.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKINFOVISCORE_EXPORT vtkTreeFieldAggregator : public vtkTreeAlgorithm
 {
 public:
@@ -101,4 +104,5 @@ private:
   static void SetDoubleValue(vtkAbstractArray* arr, vtkIdType id, double value);
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

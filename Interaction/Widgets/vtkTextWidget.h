@@ -31,12 +31,15 @@
 #ifndef vtkTextWidget_h
 #define vtkTextWidget_h
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkTextRepresentation;
 class vtkTextActor;
 
+VTK_ABI_NAMESPACE_END
 #include "vtkBorderWidget.h"
 #include "vtkInteractionWidgetsModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKINTERACTIONWIDGETS_EXPORT vtkTextWidget : public vtkBorderWidget
 {
 public:
@@ -85,4 +88,5 @@ private:
   void operator=(const vtkTextWidget&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

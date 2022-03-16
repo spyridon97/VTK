@@ -23,6 +23,7 @@
 #include <vtkType.h>
 #include <vtkm/cont/DynamicCellSet.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkCellArray;
 class vtkUnsignedCharArray;
 class vtkIdTypeArray;
@@ -46,4 +47,5 @@ bool Convert(const vtkm::cont::DynamicCellSet& toConvert, vtkCellArray* cells,
   vtkUnsignedCharArray* types = nullptr);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_CellSetConverters_h

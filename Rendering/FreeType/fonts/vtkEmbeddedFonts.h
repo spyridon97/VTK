@@ -23,6 +23,7 @@
 // Gothic L Book
 // Contributed by URW
 
+VTK_ABI_NAMESPACE_BEGIN
 extern size_t face_arial_buffer_length;
 extern unsigned char face_arial_buffer[];
 
@@ -105,4 +106,5 @@ extern unsigned char face_times_bold_italic_buffer[];
 extern size_t face_times_italic_buffer_length;
 extern unsigned char face_times_italic_buffer[];
 
+VTK_ABI_NAMESPACE_END
 #endif

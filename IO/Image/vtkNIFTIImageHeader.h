@@ -39,6 +39,7 @@
 #include "vtkIOImageModule.h" // For export macro
 #include "vtkObject.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 struct nifti_1_header;
 struct nifti_2_header;
 
@@ -446,4 +447,5 @@ private:
   void operator=(const vtkNIFTIImageHeader&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkNIFTIImageHeader_h

@@ -25,6 +25,7 @@
 #include <vtkm/cont/internal/IteratorFromArrayPortal.h>
 #include <vtkm/internal/Assume.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace
 {
 
@@ -138,4 +139,5 @@ VTKM_EXEC void vtkPointsPortal<Type>::Set(vtkm::Id index, const ValueType& value
 }
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_Portals_hxx

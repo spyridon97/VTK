@@ -25,6 +25,7 @@
 #include "vtkFiltersOpenTURNSModule.h" // For export macro
 #include "vtkOTFilter.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace OT
 {
 class KernelSmoothing;
@@ -102,4 +103,5 @@ private:
   vtkOTKernelSmoothing(const vtkOTKernelSmoothing&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

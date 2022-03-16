@@ -42,6 +42,7 @@
 #include <string>
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace
 {
 struct ClearInvalidElementsWorker

@@ -32,6 +32,7 @@
 
 // @note: This piece of code is modification of algorithm from boost graph
 // library. This modified version allows the user to pass edge weight map
+VTK_ABI_NAMESPACE_BEGIN
 namespace boost
 {
 // Graph clustering based on edge betweenness centrality.
@@ -377,3 +378,4 @@ int vtkBoostBetweennessClustering::FillOutputPortInformation(int port, vtkInform
   }
   return 1;
 }
+VTK_ABI_NAMESPACE_END

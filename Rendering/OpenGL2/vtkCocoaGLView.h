@@ -57,18 +57,21 @@
 // To achieve this, we use the neat technique below:
 #ifdef __cplusplus
 // Forward declarations
+VTK_ABI_NAMESPACE_BEGIN
 class vtkCocoaRenderWindow;
 class vtkCocoaRenderWindowInteractor;
 
 // Type declarations
 typedef vtkCocoaRenderWindow* vtkCocoaRenderWindowRef;
 typedef vtkCocoaRenderWindowInteractor* vtkCocoaRenderWindowInteractorRef;
+VTK_ABI_NAMESPACE_END
 #else
 // Type declarations
 typedef void* vtkCocoaRenderWindowRef;
 typedef void* vtkCocoaRenderWindowInteractorRef;
 #endif
 
+VTK_ABI_NAMESPACE_BEGIN
 VTKRENDERINGOPENGL2_EXPORT
 @interface vtkCocoaGLView : NSView<NSDraggingDestination>
 {
@@ -84,5 +87,6 @@ VTKRENDERINGOPENGL2_EXPORT
 
 @end
 
+VTK_ABI_NAMESPACE_END
 #endif /* vtkCocoaGLView_h */
 // VTK-HeaderTest-Exclude: vtkCocoaGLView.h

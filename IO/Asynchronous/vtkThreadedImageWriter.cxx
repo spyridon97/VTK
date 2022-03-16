@@ -152,6 +152,7 @@ public:
       /*strict_ordering=*/true,
       /*buffer_size=*/-1,
       /*max_concurrent_tasks=*/static_cast<int>(numberOfThreads)));
+    VTK_ABI_NAMESPACE_BEGIN
   }
 
   void PushImageToQueue(vtkSmartPointer<vtkImageData>&& data, std::string&& filename)
@@ -226,3 +227,4 @@ void vtkThreadedImageWriter::Finalize()
 {
   this->Internals->TerminateAllWorkers();
 }
+VTK_ABI_NAMESPACE_END

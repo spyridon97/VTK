@@ -22,10 +22,13 @@
 #include "vtkUnsignedCharArray.h"
 #include <vtksys/SystemTools.hxx>
 
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #include "vtk_jpeg.h"
 #include <csetjmp>
+  VTK_ABI_NAMESPACE_BEGIN
 }
 
 vtkStandardNewMacro(vtkJPEGWriter);
@@ -360,3 +363,4 @@ void vtkJPEGWriter::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "Progressive: " << (this->Progressive ? "On" : "Off") << "\n";
   os << indent << "Result: " << this->Result << "\n";
 }
+VTK_ABI_NAMESPACE_END

@@ -19,6 +19,7 @@
 
 #include <memory> // for std::unique_ptr
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArraySelection;
 class vtkPartitionedDataSetCollection;
 
@@ -52,4 +53,5 @@ private:
 
 } // end namespace omf
 
+VTK_ABI_NAMESPACE_END
 #endif

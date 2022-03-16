@@ -35,16 +35,23 @@
 
 #include "vtkTDxConfigure.h" // defines VTK_USE_TDX
 #if defined(VTK_USE_TDX) && defined(Q_OS_WIN)
+VTK_ABI_NAMESPACE_BEGIN
 class vtkTDxWinDevice;
+VTK_ABI_NAMESPACE_END
 #endif
 #if defined(VTK_USE_TDX) && defined(Q_OS_MAC)
+VTK_ABI_NAMESPACE_BEGIN
 class vtkTDxMacDevice;
+VTK_ABI_NAMESPACE_END
 #endif
 #if defined(VTK_USE_TDX) && (defined(Q_WS_X11) || defined(Q_OS_LINUX))
+VTK_ABI_NAMESPACE_BEGIN
 class vtkTDxDevice;
 class vtkTDxUnixDevice;
+VTK_ABI_NAMESPACE_END
 #endif
 
+VTK_ABI_NAMESPACE_BEGIN
 class QVTKInteractorInternal;
 
 /**
@@ -134,4 +141,5 @@ private:
   void operator=(const QVTKInteractor&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

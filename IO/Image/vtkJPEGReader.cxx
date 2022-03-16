@@ -22,10 +22,13 @@
 
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #include "vtk_jpeg.h"
 #include <csetjmp>
+  VTK_ABI_NAMESPACE_BEGIN
 }
 
 vtkStandardNewMacro(vtkJPEGReader);
@@ -466,3 +469,4 @@ void vtkJPEGReader::PrintSelf(ostream& os, vtkIndent indent)
 {
   this->Superclass::PrintSelf(os, indent);
 }
+VTK_ABI_NAMESPACE_END

@@ -18,6 +18,7 @@
 
 #include <ctype.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkLight;
 class vtkCamera;
 class vtkProperty;
@@ -184,5 +185,6 @@ struct vtk3DSColour_t_24
 };
 using vtk3DSColour_24 = struct vtk3DSColour_t_24;
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtk3DS.h

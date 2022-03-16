@@ -28,6 +28,7 @@
 #include "vtkMoleculeAlgorithm.h"
 #include "vtkVector.h" // For vtkVector3f
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtksys
 {
 class RegularExpression;
@@ -87,4 +88,5 @@ private:
   void operator=(const vtkVASPAnimationReader&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkVASPAnimationReader_h

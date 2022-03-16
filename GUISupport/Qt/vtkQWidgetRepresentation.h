@@ -29,6 +29,7 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include "vtkWidgetRepresentation.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 class QWidget;
 class vtkActor;
 class vtkCellPicker;
@@ -156,4 +157,5 @@ private:
   void operator=(const vtkQWidgetRepresentation&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

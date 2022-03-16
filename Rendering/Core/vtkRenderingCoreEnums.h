@@ -17,6 +17,7 @@
 #define vtkRenderingCoreEnums_h
 
 // Marker shapes for plotting
+VTK_ABI_NAMESPACE_BEGIN
 enum
 {
   VTK_MARKER_NONE = 0,
@@ -29,5 +30,6 @@ enum
   VTK_MARKER_UNKNOWN // Must be last.
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkRenderingCoreEnums_h
 // VTK-HeaderTest-Exclude: vtkRenderingCoreEnums.h

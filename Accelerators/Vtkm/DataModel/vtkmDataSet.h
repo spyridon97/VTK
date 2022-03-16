@@ -25,6 +25,7 @@
 
 #include <memory> // for std::shared_ptr
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtkm
 {
 namespace cont
@@ -192,4 +193,5 @@ private:
   std::shared_ptr<DataMembers> Internals;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmDataSet_h

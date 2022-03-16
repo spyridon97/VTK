@@ -28,6 +28,7 @@ with additional system information.
 
 #include <GL/gl.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 class CheckOpenGLVersion
 {
 public:
@@ -174,3 +175,4 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE /*hPrevInstance*/,
 
   return (result ? 0 : 1);
 }
+VTK_ABI_NAMESPACE_END

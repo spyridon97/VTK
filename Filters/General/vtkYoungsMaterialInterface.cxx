@@ -57,6 +57,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include <cassert>
 #include <cmath>
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkYoungsMaterialInterfaceCellCut
 {
 public:
@@ -1753,6 +1754,7 @@ struct uchar3
 };
 
 #else
+VTK_ABI_NAMESPACE_END
 #include <vector_functions.h>
 #include <vector_types.h>
 #endif
@@ -1766,6 +1768,7 @@ struct uchar3
 /* -------------------------------------------------------- */
 #if REAL_PRECISION <= 32
 
+VTK_ABI_NAMESPACE_BEGIN
 FUNC_DECL float3 operator*(float3 a, float3 b)
 {
   return make_float3(a.x * b.x, a.y * b.y, a.z * b.z);
@@ -1888,6 +1891,7 @@ FUNC_DECL float3 cross(float3 A, float3 B)
   return make_float3(A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif /* REAL_PRECISION <= 32 */
 
 #ifndef __CUDACC__
@@ -1897,6 +1901,7 @@ FUNC_DECL float3 cross(float3 A, float3 B)
 /* -------------------------------------------------------- */
 #if REAL_PRECISION == 64
 
+VTK_ABI_NAMESPACE_BEGIN
 struct double3
 {
   double x, y, z;
@@ -1998,6 +2003,7 @@ FUNC_DECL double3 cross(double3 A, double3 B)
 {
   return make_double3(A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x);
 }
+VTK_ABI_NAMESPACE_END
 #endif /* REAL_PRECISION == 64 */
 
 /* -------------------------------------------------------- */
@@ -2005,6 +2011,7 @@ FUNC_DECL double3 cross(double3 A, double3 B)
 /* -------------------------------------------------------- */
 #if REAL_PRECISION > 64
 
+VTK_ABI_NAMESPACE_BEGIN
 struct ldouble2
 {
   long double x, y;
@@ -2158,6 +2165,7 @@ FUNC_DECL ldouble3 cross(ldouble3 A, ldouble3 B)
 {
   return make_ldouble3(A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x);
 }
+VTK_ABI_NAMESPACE_END
 #endif /* REAL_PRECISION > 64 */
 
 #endif /* __CUDACC__ */
@@ -2229,6 +2237,7 @@ FUNC_DECL ldouble3 cross(ldouble3 A, ldouble3 B)
 /*
   Formula from VTK in vtkTriangle.cxx, method TriangleArea
 */
+VTK_ABI_NAMESPACE_BEGIN
 FUNC_DECL
 REAL triangleSurf(REAL3 p1, REAL3 p2, REAL3 p3)
 {
@@ -3480,3 +3489,4 @@ double vtkYoungsMaterialInterfaceCellCut::findTriangleSetCuttingPlane(const doub
 
   return -d;
 }
+VTK_ABI_NAMESPACE_END

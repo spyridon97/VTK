@@ -30,6 +30,7 @@
 #include <string>
 #include <vector>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
 /**
@@ -827,3 +828,4 @@ void vtkDataSetAttributesFieldList::PrintSelf(ostream& os, vtkIndent indent)
     pair.second.PrintSelf(os, indent.GetNextIndent());
   }
 }
+VTK_ABI_NAMESPACE_END

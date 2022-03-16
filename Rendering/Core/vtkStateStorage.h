@@ -55,6 +55,7 @@
 //#define USE_STATE_DEBUGGING 1
 #ifdef USE_STATE_DEBUGGING
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkStateStorage
 {
 public:
@@ -124,8 +125,10 @@ inline void vtkStateStorage::Append(const T& value, const char* name)
   this->Storage.insert(this->Storage.end(), start, start + sizeof(T));
 }
 
-#else // normal implementation
+VTK_ABI_NAMESPACE_END
+#else  // normal implementation
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkStateStorage
 {
 public:
@@ -156,6 +159,7 @@ inline void vtkStateStorage::Append(const T& value, const char*)
   this->Storage.insert(this->Storage.end(), start, start + sizeof(T));
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // normal implementation
 
 #endif // vtkStateStorage_h

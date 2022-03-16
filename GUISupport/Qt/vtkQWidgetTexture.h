@@ -20,6 +20,7 @@
 #include <array>      // for ivar
 #include <functional> // for ivar
 
+VTK_ABI_NAMESPACE_BEGIN
 class QGraphicsScene;
 class QWidget;
 
@@ -83,4 +84,5 @@ private:
   void operator=(const vtkQWidgetTexture&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -23,8 +23,10 @@
 
 /*=================*/
 #ifdef __cplusplus
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
+  VTK_ABI_NAMESPACE_END
 #endif
   /*=================*/
 
@@ -34,6 +36,7 @@ extern "C"
              NIFTI-1 header file.
    */
   /*************************/ /************/
+  VTK_ABI_NAMESPACE_BEGIN
   struct nifti_1_header
   { /* NIFTI-1 usage         */ /*  offset  */
     /*************************/ /************/
@@ -270,5 +273,6 @@ extern "C"
 #endif
 /*=================*/
 
+VTK_ABI_NAMESPACE_END
 #endif /* vtkNIFTIImagePrivate_h */
 // VTK-HeaderTest-Exclude: vtkNIFTIImagePrivate.h

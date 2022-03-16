@@ -50,6 +50,7 @@
 //----------------------------------------------------------------------------
 // vtkStdString serialization code
 //----------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 template <typename Archiver>
 void serialize(Archiver& ar, vtkStdString& str, const unsigned int vtkNotUsed(version))
 {
@@ -242,5 +243,6 @@ void load(Archiver& ar, vtkVariantArray& array, const unsigned int vtkNotUsed(ve
 
 BOOST_SERIALIZATION_SPLIT_FREE(vtkVariantArray)
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkVariantBoostSerialization.h

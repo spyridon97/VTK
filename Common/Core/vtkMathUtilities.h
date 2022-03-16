@@ -30,6 +30,7 @@
 #include <cmath>
 #include <limits>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtkMathUtilities
 {
 
@@ -81,5 +82,6 @@ bool NearlyEqual(A a, A b, A tol = std::numeric_limits<A>::epsilon())
 
 } // End vtkMathUtilities namespace.
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkMathUtilities_h
 // VTK-HeaderTest-Exclude: vtkMathUtilities.h

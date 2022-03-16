@@ -39,6 +39,7 @@
 #include <QList>             // Needed for member variables
 #include <QPointer>          // Needed for member variables
 
+VTK_ABI_NAMESPACE_BEGIN
 class QAbstractItemDelegate;
 class QAbstractItemView;
 class QFilterTreeProxyModel;
@@ -228,4 +229,5 @@ private:
   void operator=(const vtkQtTreeView&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

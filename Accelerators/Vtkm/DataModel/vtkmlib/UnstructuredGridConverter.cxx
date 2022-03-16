@@ -39,6 +39,7 @@
 #include <vtkm/cont/DataSetBuilderUniform.h>
 #include <vtkm/cont/Field.h>
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
 
@@ -120,3 +121,4 @@ bool Convert(const vtkm::cont::DataSet& voutput, vtkUnstructuredGrid* output, vt
 }
 
 } // namespace fromvtkm
+VTK_ABI_NAMESPACE_END

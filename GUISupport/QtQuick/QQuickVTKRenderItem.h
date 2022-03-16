@@ -141,6 +141,7 @@
 #include "vtkGUISupportQtQuickModule.h" // for export macro
 
 // Forward declarations
+VTK_ABI_NAMESPACE_BEGIN
 class QHoverEvent;
 class QKeyEvent;
 class QMouseEvent;
@@ -260,4 +261,5 @@ private:
   void operator=(const QQuickVTKRenderItem) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif // QQuickVTKRenderItem_h

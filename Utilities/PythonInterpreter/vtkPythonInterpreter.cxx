@@ -50,120 +50,121 @@
   vtkVLog(vtkLogger::ConvertToVerbosity(vtkPythonInterpreter::GetLogVerbosity() + 1), x)
 
 #if defined(_WIN32) && !defined(__CYGWIN__) && defined(VTK_BUILD_SHARED_LIBS) &&                   \
-  PY_VERSION_HEX >= 0x03080000
+  VTK_ABI_NAMESPACE_BEGIN
+PY_VERSION_HEX >= 0x03080000
 #define vtkPythonInterpreter_USE_DIRECTORY_COOKIE
+  VTK_ABI_NAMESPACE_END
 #endif
 
-namespace
+    VTK_ABI_NAMESPACE_BEGIN namespace
 {
 
-template <class T>
-void strFree(T* foo)
-{
-  delete[] foo;
-}
-
-template <class T>
-class PoolT
-{
-  std::vector<T*> Strings;
-
-public:
-  ~PoolT()
+  template <class T>
+  void strFree(T * foo)
   {
-    for (T* astring : this->Strings)
+    delete[] foo;
+  }
+
+  template <class T>
+  class PoolT
+  {
+    std::vector<T*> Strings;
+
+  public:
+    ~PoolT()
     {
-      strFree(astring);
+      for (T* astring : this->Strings)
+      {
+        strFree(astring);
+      }
     }
-  }
 
-  T* push_back(T* val)
-  {
-    this->Strings.push_back(val);
-    return val;
-  }
-};
+    T* push_back(T* val)
+    {
+      this->Strings.push_back(val);
+      return val;
+    }
+  };
 
-using StringPool = PoolT<char>;
+  using StringPool = PoolT<char>;
 #if PY_VERSION_HEX >= 0x03000000
-template <>
-void strFree(wchar_t* foo)
-{
+  template <>
+  void strFree(wchar_t * foo)
+  {
 #if PY_VERSION_HEX >= 0x03050000
-  PyMem_RawFree(foo);
+    PyMem_RawFree(foo);
 #else
-  PyMem_Free(foo);
+    PyMem_Free(foo);
 #endif
-}
-using WCharStringPool = PoolT<wchar_t>;
+  }
+  using WCharStringPool = PoolT<wchar_t>;
 #endif
 
 #if PY_VERSION_HEX >= 0x03000000
-wchar_t* vtk_Py_UTF8ToWide(const char* arg)
-{
-  wchar_t* result = nullptr;
-  if (arg != nullptr)
+  wchar_t* vtk_Py_UTF8ToWide(const char* arg)
   {
-    size_t length = vtksysEncoding_mbstowcs(nullptr, arg, 0);
+    wchar_t* result = nullptr;
+    if (arg != nullptr)
+    {
+      size_t length = vtksysEncoding_mbstowcs(nullptr, arg, 0);
+      if (length > 0)
+      {
+        result = new wchar_t[length + 1];
+        vtksysEncoding_mbstowcs(result, arg, length + 1);
+      }
+    }
+
+    return result;
+  }
+
+  std::string vtk_Py_WideToUTF8(const wchar_t* arg)
+  {
+    std::string result;
+    size_t length = vtksysEncoding_wcstombs(nullptr, arg, 0);
     if (length > 0)
     {
-      result = new wchar_t[length + 1];
-      vtksysEncoding_mbstowcs(result, arg, length + 1);
+      std::vector<char> chars(length + 1);
+      vtksysEncoding_wcstombs(&chars[0], arg, length + 1);
+      result.assign(&chars[0], length);
     }
+
+    return result;
   }
-
-  return result;
-}
-
-std::string vtk_Py_WideToUTF8(const wchar_t* arg)
-{
-  std::string result;
-  size_t length = vtksysEncoding_wcstombs(nullptr, arg, 0);
-  if (length > 0)
-  {
-    std::vector<char> chars(length + 1);
-    vtksysEncoding_wcstombs(&chars[0], arg, length + 1);
-    result.assign(&chars[0], length);
-  }
-
-  return result;
-}
 #endif
 
-std::vector<vtkWeakPointer<vtkPythonInterpreter>>* GlobalInterpreters;
-std::vector<std::string> PythonPaths;
+  std::vector<vtkWeakPointer<vtkPythonInterpreter>>* GlobalInterpreters;
+  std::vector<std::string> PythonPaths;
 
-void NotifyInterpreters(unsigned long eventid, void* calldata = nullptr)
-{
-  std::vector<vtkWeakPointer<vtkPythonInterpreter>>::iterator iter;
-  for (iter = GlobalInterpreters->begin(); iter != GlobalInterpreters->end(); ++iter)
+  void NotifyInterpreters(unsigned long eventid, void* calldata = nullptr)
   {
-    if (iter->GetPointer())
+    std::vector<vtkWeakPointer<vtkPythonInterpreter>>::iterator iter;
+    for (iter = GlobalInterpreters->begin(); iter != GlobalInterpreters->end(); ++iter)
     {
-      iter->GetPointer()->InvokeEvent(eventid, calldata);
+      if (iter->GetPointer())
+      {
+        iter->GetPointer()->InvokeEvent(eventid, calldata);
+      }
     }
   }
-}
 
-inline void vtkPrependPythonPath(const char* pathtoadd)
-{
-  VTKPY_DEBUG_MESSAGE("adding module search path " << pathtoadd);
-  vtkPythonScopeGilEnsurer gilEnsurer;
-  PyObject* path = PySys_GetObject(const_cast<char*>("path"));
+  inline void vtkPrependPythonPath(const char* pathtoadd)
+  {
+    VTKPY_DEBUG_MESSAGE("adding module search path " << pathtoadd);
+    vtkPythonScopeGilEnsurer gilEnsurer;
+    PyObject* path = PySys_GetObject(const_cast<char*>("path"));
 #if PY_VERSION_HEX >= 0x03000000
-  PyObject* newpath = PyUnicode_FromString(pathtoadd);
+    PyObject* newpath = PyUnicode_FromString(pathtoadd);
 #else
-  PyObject* newpath = PyString_FromString(pathtoadd);
+    PyObject* newpath = PyString_FromString(pathtoadd);
 #endif
 
-  // avoid adding duplicate paths.
-  if (PySequence_Contains(path, newpath) == 0)
-  {
-    PyList_Insert(path, 0, newpath);
+    // avoid adding duplicate paths.
+    if (PySequence_Contains(path, newpath) == 0)
+    {
+      PyList_Insert(path, 0, newpath);
+    }
+    Py_DECREF(newpath);
   }
-  Py_DECREF(newpath);
-}
-
 }
 
 // Schwarz counter idiom for GlobalInterpreters object
@@ -909,3 +910,4 @@ vtkWideArgsConverter::~vtkWideArgsConverter()
   }
 }
 #endif
+VTK_ABI_NAMESPACE_END

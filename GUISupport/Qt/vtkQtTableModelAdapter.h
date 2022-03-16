@@ -36,6 +36,7 @@
 #include "vtkQtAbstractModelAdapter.h"
 #include <QImage> // Needed for icon support
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkSelection;
 class vtkTable;
 class vtkVariant;
@@ -152,5 +153,6 @@ private:
   void operator=(const vtkQtTableModelAdapter&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkQtTableModelAdapter.h

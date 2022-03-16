@@ -63,6 +63,7 @@
 #include "vtkIOImageModule.h" // For export macro
 #include "vtkImageReader2.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtkmetaio
 {
 class MetaImage;
@@ -198,4 +199,5 @@ private:
   char AnatomicalOrientation[255];
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

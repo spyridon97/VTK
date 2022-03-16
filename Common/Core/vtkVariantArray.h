@@ -35,6 +35,7 @@
 #include "vtkCommonCoreModule.h" // For export macro
 #include "vtkVariant.h"          // For variant type
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkVariantArrayLookup;
 
 /// Forward declaration required for Boost serialization
@@ -351,4 +352,5 @@ private:
   void UpdateLookup();
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

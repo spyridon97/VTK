@@ -31,6 +31,7 @@
 #include <string> // For string
 #include <vector> // For vector
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace vtkGLTFUtils
 {
 using ChunkInfoType = std::pair<std::string, uint32_t>;
@@ -122,6 +123,7 @@ bool GetBinaryBufferFromUri(const std::string& uri, const std::string& glTFFileN
 std::string GetDataUriMimeType(const std::string& uri);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif
 
 // VTK-HeaderTest-Exclude: vtkGLTFUtils.h

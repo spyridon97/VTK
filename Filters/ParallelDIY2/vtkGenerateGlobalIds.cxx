@@ -59,6 +59,7 @@
 #include VTK_DIY2(diy/algorithms.hpp)
 // clang-format on
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace impl
 {
 
@@ -749,3 +750,4 @@ void vtkGenerateGlobalIds::PrintSelf(ostream& os, vtkIndent indent)
   os << indent << "Controller: " << this->Controller << endl;
   os << indent << "Tolerance: " << this->Tolerance << endl;
 }
+VTK_ABI_NAMESPACE_END

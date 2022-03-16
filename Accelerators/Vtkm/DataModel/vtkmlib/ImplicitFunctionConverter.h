@@ -22,6 +22,7 @@
 
 #include "vtkm/ImplicitFunction.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkImplicitFunction;
 
 namespace tovtkm
@@ -43,4 +44,5 @@ private:
 
 }
 
+VTK_ABI_NAMESPACE_END
 #endif // vtkmlib_ImplicitFunctionConverter_h
