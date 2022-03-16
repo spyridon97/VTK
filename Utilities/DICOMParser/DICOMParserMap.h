@@ -31,7 +31,8 @@
 
 #include "DICOMConfig.h"
 
-VTK_ABI_NAMESPACE_BEGIN
+inline namespace VTK_ABI_NAMESPACE_NAME
+{
 class DICOMCallback;
 
 //
@@ -137,5 +138,5 @@ class DICOMImplicitTypeMap
 #pragma warning(pop)
 #endif
 
-VTK_ABI_NAMESPACE_END
+}
 #endif

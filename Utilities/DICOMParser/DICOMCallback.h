@@ -40,7 +40,8 @@
 // the group, element, type, data, and data length.
 //
 
-VTK_ABI_NAMESPACE_BEGIN
+inline namespace VTK_ABI_NAMESPACE_NAME
+{
 class DICOM_EXPORT DICOMCallback
 {
 public:
@@ -91,5 +92,5 @@ protected:
 #pragma warning(pop)
 #endif
 
-VTK_ABI_NAMESPACE_END
+}
 #endif

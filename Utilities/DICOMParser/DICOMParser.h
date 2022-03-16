@@ -35,7 +35,8 @@
 #include "DICOMParserMap.h"
 #include "DICOMTypes.h"
 
-VTK_ABI_NAMESPACE_BEGIN
+inline namespace VTK_ABI_NAMESPACE_NAME
+{
 class DICOMCallback;
 template <class T>
 class DICOMMemberCallback;
@@ -257,5 +258,5 @@ private:
 #pragma warning(pop)
 #endif
 
-VTK_ABI_NAMESPACE_END
+}
 #endif // __DICOMParser_h_

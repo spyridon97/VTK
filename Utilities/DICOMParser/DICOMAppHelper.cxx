@@ -39,7 +39,8 @@
 
 //#define DEBUG_DICOM_APP_HELPER
 
-VTK_ABI_NAMESPACE_BEGIN
+inline namespace VTK_ABI_NAMESPACE_NAME
+{
 class DICOMAppHelperImplementation
 {
 public:
@@ -1294,4 +1295,4 @@ void DICOMAppHelper::GantryAngleCallback(
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-VTK_ABI_NAMESPACE_END
+}
