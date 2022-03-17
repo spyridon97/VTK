@@ -1654,7 +1654,7 @@ static unsigned int add_indirection_to_array(unsigned int type)
 
 /* Expect 111 reduce/reduce conflicts, these can be cleared by removing
    either '<' or angle_brackets_sig from constant_expression_item. */
-%expect-rr 111
+%expect-rr 113
 
 /* The parser will shift/reduce values <str> or <integer>, where
    <str> is for IDs and <integer> is for types, modifiers, etc. */
@@ -1733,6 +1733,8 @@ static unsigned int add_indirection_to_array(unsigned int type)
 %token TYPENAME
 %token TYPEDEF
 %token NAMESPACE
+%token VTK_ABI_NAMESPACE_BEGIN
+%token VTK_ABI_NAMESPACE_END
 %token USING
 %token NEW
 %token DELETE
@@ -1854,6 +1856,8 @@ namespace_definition:
     NAMESPACE '{' ignored_items '}'
   | NAMESPACE identifier { pushNamespace($<str>2); }
     '{' opt_declaration_seq '}' { popNamespace(); }
+  | INLINE NAMESPACE identifier '{' opt_declaration_seq '}'
+  | VTK_ABI_NAMESPACE_BEGIN opt_declaration_seq VTK_ABI_NAMESPACE_END
 
 namespace_alias_definition:
     NAMESPACE identifier '=' qualified_id ';'
@@ -3266,6 +3270,8 @@ keyword:
   | EXTERN { $<str>$ = "extern"; }
   | USING { $<str>$ = "using"; }
   | NAMESPACE { $<str>$ = "namespace"; }
+  | VTK_ABI_NAMESPACE_BEGIN { $<str>$ = "VTK_ABI_NAMESPACE_BEGIN"; }
+  | VTK_ABI_NAMESPACE_END { $<str>$ = "VTK_ABI_NAMESPACE_END"; }
   | OPERATOR { $<str>$ = "operator"; }
   | ENUM { $<str>$ = "enum"; }
   | THROW { $<str>$ = "throw"; }
