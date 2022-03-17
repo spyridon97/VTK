@@ -3635,3 +3635,4 @@ void vtkMultiBlockPLOT3DReader::PrintSelf(ostream& os, vtkIndent indent)
      << "PreserveIntermediateFunctions: " << (this->PreserveIntermediateFunctions ? "on" : "off")
      << endl;
 }
+VTK_ABI_NAMESPACE_END

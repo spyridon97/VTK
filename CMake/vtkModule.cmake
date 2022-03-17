@@ -3836,6 +3836,13 @@ function (vtk_module_add_module name)
         "INTERFACE_vtk_module_implementable" 1)
   endif ()
 
+  # Include the ABI Namespace macros
+  string(APPEND _vtk_add_module_module_content
+    "
+/* Include ABI Namespace */
+#include \"vtkABINamespace.h\"
+")
+
   if (_vtk_add_module_implementable OR _vtk_add_module_implements)
     set_property(TARGET "${_vtk_add_module_real_target}"
       PROPERTY
@@ -3852,9 +3859,9 @@ function (vtk_module_add_module name)
 #endif
 #ifdef ${_vtk_add_module_library_name}_AUTOINIT
 ${_vtk_add_module_autoinit_include_header}
-inline namespace VTK_ABI_NAMESPACE {
+VTK_ABI_NAMESPACE_BEGIN
 VTK_MODULE_AUTOINIT(${_vtk_add_module_library_name})
-}
+VTK_ABI_NAMESPACE_END
 #endif
 ")
 

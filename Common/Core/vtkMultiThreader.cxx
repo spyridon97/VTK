@@ -19,15 +19,14 @@
 
 VTK_ABI_NAMESPACE_BEGIN
 vtkStandardNewMacro(vtkMultiThreader);
+VTK_ABI_NAMESPACE_END
 
 // Need to define "vtkExternCThreadFunctionType" to avoid warning on some
 // platforms about passing function pointer to an argument expecting an
 // extern "C" function.  Placing the typedef of the function pointer type
 // inside an extern "C" block solves this problem.
 #if defined(VTK_USE_PTHREADS)
-VTK_ABI_NAMESPACE_END
 #include <pthread.h>
-VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
   typedef void* (*vtkExternCThreadFunctionType)(void*);
@@ -37,7 +36,6 @@ typedef vtkThreadFunctionType vtkExternCThreadFunctionType;
 #endif
 
 #ifdef __APPLE__
-VTK_ABI_NAMESPACE_END
 #include <sys/sysctl.h>
 #include <sys/types.h>
 #endif

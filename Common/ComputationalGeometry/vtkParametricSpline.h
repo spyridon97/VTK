@@ -38,6 +38,8 @@
 #ifndef vtkParametricSpline_h
 #define vtkParametricSpline_h
 
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkSpline;
 class vtkPoints;

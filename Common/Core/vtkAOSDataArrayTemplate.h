@@ -299,6 +299,8 @@ private:
 // Declare vtkArrayDownCast implementations for AoS containers:
 vtkArrayDownCast_TemplateFastCastMacro(vtkAOSDataArrayTemplate);
 
+VTK_ABI_NAMESPACE_END
+
 // This macro is used by the subclasses to create dummy
 // declarations for these functions such that the wrapper
 // can see them. The wrappers ignore vtkAOSDataArrayTemplate.
@@ -320,7 +322,6 @@ vtkArrayDownCast_TemplateFastCastMacro(vtkAOSDataArrayTemplate);
   void SetArray(VTK_ZEROCOPY T* array, vtkIdType size, int save);                                  \
   void SetArray(VTK_ZEROCOPY T* array, vtkIdType size, int save, int deleteMethod)
 
-VTK_ABI_NAMESPACE_END
 #endif // header guard
 
 // This portion must be OUTSIDE the include blockers. This is used to tell
@@ -346,10 +347,10 @@ VTK_ABI_NAMESPACE_END
 #endif
 VTK_ABI_NAMESPACE_BEGIN
 vtkExternTemplateMacro(extern template class VTKCOMMONCORE_EXPORT vtkAOSDataArrayTemplate);
+VTK_ABI_NAMESPACE_END
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-VTK_ABI_NAMESPACE_END
 #endif // VTK_AOS_DATA_ARRAY_TEMPLATE_EXTERN
 
 // The following clause is only for MSVC
@@ -379,10 +380,10 @@ VTK_ABI_NAMESPACE_END
 // interface.  This is a compiler-specific extension.
 VTK_ABI_NAMESPACE_BEGIN
 vtkInstantiateTemplateMacro(extern template class VTKCOMMONCORE_EXPORT vtkAOSDataArrayTemplate);
+VTK_ABI_NAMESPACE_END
 
 #pragma warning(pop)
 
-VTK_ABI_NAMESPACE_END
 #endif
 
 // VTK-HeaderTest-Exclude: vtkAOSDataArrayTemplate.h

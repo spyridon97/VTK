@@ -21,13 +21,11 @@
 #ifndef vtkTIFFReaderInternal_h
 #define vtkTIFFReaderInternal_h
 
-VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
-  VTK_ABI_NAMESPACE_END
 #include "vtk_tiff.h"
-  VTK_ABI_NAMESPACE_BEGIN
 }
+VTK_ABI_NAMESPACE_BEGIN
 
 class vtkTIFFReader::vtkTIFFReaderInternal
 {

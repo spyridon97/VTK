@@ -63,6 +63,8 @@
 #ifndef vtkStaticEdgeLocatorTemplate_h
 #define vtkStaticEdgeLocatorTemplate_h
 
+#include "vtkABINamespace.h"
+
 #include <algorithm>
 #include <vector>
 

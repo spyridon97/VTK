@@ -29,6 +29,8 @@
 #ifndef vtkHyperTreeGridScales_h
 #define vtkHyperTreeGridScales_h
 
+#include "vtkABINamespace.h"
+
 #include <vector> // For std::vector
 
 VTK_ABI_NAMESPACE_BEGIN

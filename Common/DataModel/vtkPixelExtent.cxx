@@ -316,3 +316,4 @@ ostream& operator<<(ostream& os, const vtkPixelExtent& ext)
   }
   return os;
 }
+VTK_ABI_NAMESPACE_END

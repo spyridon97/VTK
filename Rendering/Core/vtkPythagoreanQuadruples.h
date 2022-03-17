@@ -9,6 +9,9 @@
  */
 #ifndef vtkPythagoreanQuadruples_h
 #define vtkPythagoreanQuadruples_h
+
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 const int vtkPythagoreanQuadruples[] = {
 /* R^2  i   j   k */

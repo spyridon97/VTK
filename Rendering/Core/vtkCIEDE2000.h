@@ -54,6 +54,8 @@ SOFTWARE.
 #ifndef vtkCIEDE2000_h
 #define vtkCIEDE2000_h
 
+#include "vtkABINamespace.h"
+
 #include <vector> // needed for std::vector
 
 VTK_ABI_NAMESPACE_BEGIN

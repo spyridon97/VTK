@@ -16,6 +16,8 @@
 #ifndef vtkSegYTraceReader_h
 #define vtkSegYTraceReader_h
 
+#include "vtkABINamespace.h"
+
 #include <fstream>
 #include <vector>
 

@@ -30,9 +30,7 @@
 #include "vtkCommonCoreModule.h"
 
 #ifndef VTK_SYSTEM_INCLUDES_INSIDE
-VTK_ABI_NAMESPACE_BEGIN
 Do_not_include_vtkOStreamWrapper_directly_vtkSystemIncludes_includes_it;
-VTK_ABI_NAMESPACE_END
 #endif
 
 VTK_ABI_NAMESPACE_BEGIN

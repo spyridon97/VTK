@@ -16,6 +16,8 @@
 #ifndef vtkRenderingCoreEnums_h
 #define vtkRenderingCoreEnums_h
 
+#include "vtkABINamespace.h"
+
 // Marker shapes for plotting
 VTK_ABI_NAMESPACE_BEGIN
 enum

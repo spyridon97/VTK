@@ -16,6 +16,8 @@
 #ifndef vtk3DS_h
 #define vtk3DS_h
 
+#include "vtkABINamespace.h"
+
 #include <ctype.h>
 
 VTK_ABI_NAMESPACE_BEGIN

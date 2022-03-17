@@ -32,6 +32,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "vtkABINamespace.h"
 #include "vtkByteSwap.h"
 #include "vtkCellData.h"
 #include "vtkDataArray.h"

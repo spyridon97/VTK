@@ -15,6 +15,7 @@
 #ifndef vtkType_h
 #define vtkType_h
 
+#include "vtkABINamespace.h"
 #include "vtkCompiler.h" // for VTK_USE_EXTERN_TEMPLATE
 #include "vtkLegacy.h"   // For VTK_LEGACY_REMOVE
 #include "vtkOptions.h"  // for VTK_USE_64BIT_IDS and VTK_USE_64BIT_TIMESTAMPS

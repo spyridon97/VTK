@@ -38,8 +38,7 @@
 // This should probably be cleaned up so that it
 // can be used to abstract a stream.
 //
-inline namespace VTK_ABI_NAMESPACE_NAME
-{
+VTK_ABI_NAMESPACE_BEGIN
 class DICOM_EXPORT DICOMFile
 {
 public:
@@ -240,5 +239,5 @@ private:
 #pragma warning(pop)
 #endif
 
-}
+VTK_ABI_NAMESPACE_END
 #endif // __DICOMFILE_H_

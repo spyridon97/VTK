@@ -51,9 +51,9 @@ const GLenum OpenGLBufferObjectAccess[2] = {
 
 // targets
 const GLenum OpenGLBufferObjectTarget[2] = { GL_PIXEL_UNPACK_BUFFER, GL_PIXEL_PACK_BUFFER };
+VTK_ABI_NAMESPACE_END
 
 #ifdef VTK_PBO_DEBUG
-VTK_ABI_NAMESPACE_END
 #include <pthread.h> // for debugging with MPI, pthread_self()
 #endif
 

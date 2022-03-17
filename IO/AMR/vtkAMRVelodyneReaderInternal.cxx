@@ -1040,3 +1040,4 @@ vtkDataArray* vtkAMRVelodyneReaderInternal::GetTypeAndArray(const int type, hid_
   }
   return dataArray;
 }
+VTK_ABI_NAMESPACE_END

@@ -45,6 +45,8 @@
 #ifndef vtkStaticCellLinksTemplate_h
 #define vtkStaticCellLinksTemplate_h
 
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkDataSet;
 class vtkPolyData;

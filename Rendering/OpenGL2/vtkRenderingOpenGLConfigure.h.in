@@ -56,12 +56,10 @@
 /* OGLR */
 /* OGLR is for GLX. It can be on Unix, Mac or Windows */
 #if ((defined(VTK_USE_OPENGL_LIBRARY) && defined(VTK_USE_X) && \
-VTK_ABI_NAMESPACE_BEGIN
       !defined(_WIN32)) ||                                     \
      (defined(VTK_USE_X) && defined(_WIN32))) && \
      !defined(VTK_USE_COCOA)
 # define VTK_USE_OGLR
-VTK_ABI_NAMESPACE_END
 #endif
 
 #endif

@@ -28,6 +28,8 @@
 #ifndef vtkBlockDistribution_h
 #define vtkBlockDistribution_h
 
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkBlockDistribution
 {

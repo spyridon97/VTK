@@ -26,6 +26,8 @@
 #ifndef vtkCellType_h
 #define vtkCellType_h
 
+#include "vtkABINamespace.h"
+
 // To add a new cell type, define a new integer type flag here, then
 // create a subclass of vtkCell to implement the proper behavior. You
 // may have to modify the following methods: vtkDataSet (and subclasses)

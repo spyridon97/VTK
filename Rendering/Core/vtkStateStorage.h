@@ -47,6 +47,8 @@
 #ifndef vtkStateStorage_h
 #define vtkStateStorage_h
 
+#include "vtkABINamespace.h"
+
 #include <algorithm>
 #include <string>
 #include <vector>

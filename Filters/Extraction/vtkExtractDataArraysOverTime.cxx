@@ -816,3 +816,4 @@ vtkSmartPointer<vtkOrderStatistics> vtkExtractDataArraysOverTime::NewOrderStatis
 {
   return vtkSmartPointer<vtkOrderStatistics>::New();
 }
+VTK_ABI_NAMESPACE_END

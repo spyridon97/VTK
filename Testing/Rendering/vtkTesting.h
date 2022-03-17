@@ -67,12 +67,14 @@
 #include <string>                      // STL Header used for argv
 #include <vector>                      // STL Header used for argv
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkAlgorithm;
 class vtkRenderWindow;
 class vtkImageData;
 class vtkDataArray;
 class vtkDataSet;
 class vtkRenderWindowInteractor;
+VTK_ABI_NAMESPACE_END
 
 /**
  * A unit test may return this value to tell ctest to skip the test. This can

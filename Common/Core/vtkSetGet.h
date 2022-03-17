@@ -40,10 +40,9 @@
 #error VTK requires MSVC++ 14.0 aka Visual Studio 2015 or newer
 #endif
 
-#if !defined(__clang__) && defined(__GNUC__) && VTK_ABI_NAMESPACE_BEGIN
-(__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 8))
+#if !defined(__clang__) && defined(__GNUC__) &&                                                    \
+  (__GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 8))
 #error VTK requires GCC 4.8 or newer
-  VTK_ABI_NAMESPACE_END
 #endif
 
 // Convert a macro representing a value to a string.
@@ -756,12 +755,13 @@
     }                                                                                              \
   }
 
-  // Use a global function which actually calls:
-  //  vtkOutputWindow::GetInstance()->DisplayText();
-  // This is to avoid vtkObject #include of vtkOutputWindow
-  // while vtkOutputWindow #includes vtkObject
+// Use a global function which actually calls:
+//  vtkOutputWindow::GetInstance()->DisplayText();
+// This is to avoid vtkObject #include of vtkOutputWindow
+// while vtkOutputWindow #includes vtkObject
 
-  VTK_ABI_NAMESPACE_BEGIN extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayText(const char*);
+VTK_ABI_NAMESPACE_BEGIN
+extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayText(const char*);
 extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayErrorText(const char*);
 extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayWarningText(const char*);
 extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayGenericWarningText(const char*);
@@ -778,6 +778,7 @@ extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayGenericWarningText(
   const char*, int, const char*);
 extern VTKCOMMONCORE_EXPORT void vtkOutputWindowDisplayDebugText(
   const char*, int, const char*, vtkObject* sourceObj);
+VTK_ABI_NAMESPACE_END
 
 //
 // This macro is used for any output that may not be in an instance method
@@ -1288,6 +1289,5 @@ public:
     return f1 = static_cast<EnumType>(static_cast<T>(f1) ^ static_cast<T>(f2));                    \
   }
 
-VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkSetGet.h

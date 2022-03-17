@@ -44,8 +44,7 @@
 
 #define DICOMPARSER_IGNORE_MAGIC_NUMBER
 
-inline namespace VTK_ABI_NAMESPACE_NAME
-{
+VTK_ABI_NAMESPACE_BEGIN
 static const char* DICOM_MAGIC = "DICM";
 static const int OPTIONAL_SKIP = 128;
 
@@ -777,4 +776,4 @@ void DICOMParser::operator=(const DICOMParser&)
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
-}
+VTK_ABI_NAMESPACE_END

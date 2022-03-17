@@ -27,6 +27,8 @@
 #ifndef vtkMatrixUtilities_h
 #define vtkMatrixUtilities_h
 
+#include "vtkABINamespace.h"
+
 #include <type_traits> // for type traits
 
 VTK_ABI_NAMESPACE_BEGIN

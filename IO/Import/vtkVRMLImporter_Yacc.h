@@ -649,7 +649,6 @@ VTK_ABI_NAMESPACE_END
 
 #define YYTRANSLATE(x) ((unsigned)(x) <= 289 ? yytranslate[x] : 68)
 
-VTK_ABI_NAMESPACE_BEGIN
 static const char yytranslate[] = {     0,
                                         2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
                                         2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -874,7 +873,6 @@ static const short yycheck[] = {    66,
 //extern int yylex(vtkVRMLImporter* self);
 //extern void yyerror();
 
-VTK_ABI_NAMESPACE_END
 #include <list>
 //
 // This file was originally generated from a yacc grammar source
@@ -1699,6 +1697,8 @@ void vtkVRMLYaccData::expect(int type)
   expectToken = type;
 }
 
+VTK_ABI_NAMESPACE_END
+
 // End of Auto-generated Parser Code
 // Begin of Auto-generated Lexer Code
 
@@ -1708,7 +1708,6 @@ void vtkVRMLYaccData::expect(int type)
 #define FLEX_SCANNER
 
 #ifdef _WIN32
-VTK_ABI_NAMESPACE_END
 #include <io.h>
 #else
 #include <unistd.h>
@@ -1758,15 +1757,11 @@ VTK_ABI_NAMESPACE_END
 //extern FILE *yyin, *yyout;
 
 #ifdef __cplusplus
-VTK_ABI_NAMESPACE_BEGIN
 extern "C" {
-VTK_ABI_NAMESPACE_END
 #endif
   //extern int yywrap YY_PROTO(( void ));
 #ifdef __cplusplus
-VTK_ABI_NAMESPACE_BEGIN
 }
-VTK_ABI_NAMESPACE_END
 #endif
 
 #define EOB_ACT_CONTINUE_SCAN 0
@@ -1933,7 +1928,6 @@ VTK_ABI_NAMESPACE_END
         yy_c_buf_p = yy_cp;
 
 #define YY_END_OF_BUFFER 50
-VTK_ABI_NAMESPACE_BEGIN
 static const short int yy_accept[949] =
 {   0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -4063,7 +4057,6 @@ static const short int yy_rule_linenum[49] =
  *                Daniel Woods (first port)
  **************************************************
  */
-VTK_ABI_NAMESPACE_END
 //#include "tokens.h"
 #include <string.h>
 
@@ -4095,6 +4088,7 @@ VTK_ABI_NAMESPACE_END
 #endif
 VTK_ABI_NAMESPACE_BEGIN
 int vtkVRMLYaccData::yywrap() { BEGIN INITIAL; return 1; }
+VTK_ABI_NAMESPACE_END
 
 /* Normal state:  parsing nodes.  The initial start state is used */
 /* only to recognize the VRML header. */
@@ -4120,7 +4114,6 @@ YY_MALLOC_DECL
 #else
 #if __STDC__
 #ifndef __cplusplus
-VTK_ABI_NAMESPACE_END
 #include <stdlib.h>
 #endif
 #else

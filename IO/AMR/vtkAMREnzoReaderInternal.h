@@ -25,6 +25,8 @@
 #ifndef vtkAMREnzoReaderInternal_h
 #define vtkAMREnzoReaderInternal_h
 
+#include "vtkABINamespace.h"
+
 #include "vtksys/SystemTools.hxx"
 
 #include <cassert> // for assert()

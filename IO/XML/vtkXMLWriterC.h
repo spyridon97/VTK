@@ -22,7 +22,6 @@
 VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
-  VTK_ABI_NAMESPACE_END
 #endif /*cplusplus*/
 
   /**
@@ -35,7 +34,6 @@ extern "C"
    * Create a new instance of vtkXMLWriterC.  Returns the object or nullptr
    * on failure.
    */
-  VTK_ABI_NAMESPACE_BEGIN
   VTKIOXML_EXPORT
   vtkXMLWriterC* vtkXMLWriterC_New(void);
 

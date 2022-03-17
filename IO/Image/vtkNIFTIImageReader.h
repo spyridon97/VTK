@@ -41,8 +41,11 @@
 VTK_ABI_NAMESPACE_BEGIN
 class vtkNIFTIImageHeader;
 class vtkMatrix4x4;
+VTK_ABI_NAMESPACE_END
 
 struct nifti_1_header;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 //----------------------------------------------------------------------------
 class VTKIOIMAGE_EXPORT vtkNIFTIImageReader : public vtkImageReader2

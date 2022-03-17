@@ -1,6 +1,8 @@
 #ifndef vtkVariantInlineOperators_h
 #define vtkVariantInlineOperators_h
 
+#include "vtkABINamespace.h"
+
 #include <climits>
 
 // ----------------------------------------------------------------------

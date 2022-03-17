@@ -26,6 +26,8 @@
 #ifndef vtkGLTFUtils_h
 #define vtkGLTFUtils_h
 
+#include "vtkABINamespace.h"
+
 #include "vtk_jsoncpp_fwd.h" // For Json forward declaration
 
 #include <string> // For string

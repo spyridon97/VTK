@@ -19,6 +19,7 @@ VTK_ABI_NAMESPACE_BEGIN
 VTK_AOS_DATA_ARRAY_TEMPLATE_INSTANTIATE(unsigned long long);
 
 VTK_ABI_NAMESPACE_END
+
 #include "vtkUnsignedLongLongArray.h"
 
 #include "vtkObjectFactory.h"

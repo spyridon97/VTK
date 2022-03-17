@@ -15,6 +15,8 @@
 #ifndef vtkX3D_h
 #define vtkX3D_h
 
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 extern const char* x3dElementString[];
 extern const char* x3dAttributeString[];

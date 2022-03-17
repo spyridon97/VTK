@@ -16,6 +16,8 @@
 #ifndef vtkSegYIOUtils_h
 #define vtkSegYIOUtils_h
 
+#include "vtkABINamespace.h"
+
 #include <fstream>
 
 VTK_ABI_NAMESPACE_BEGIN

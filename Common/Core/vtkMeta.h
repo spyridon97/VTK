@@ -16,6 +16,8 @@
 #ifndef vtkMeta_h
 #define vtkMeta_h
 
+#include "vtkABINamespace.h"
+
 #include <type_traits>
 #include <utility>
 

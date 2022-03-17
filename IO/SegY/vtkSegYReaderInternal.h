@@ -16,6 +16,8 @@
 #ifndef vtkSegYReaderInternal_h
 #define vtkSegYReaderInternal_h
 
+#include "vtkABINamespace.h"
+
 #include <fstream>
 #include <string>
 #include <vector>

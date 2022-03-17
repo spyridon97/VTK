@@ -27,6 +27,8 @@
 #ifndef vtkRayCastStructures_h
 #define vtkRayCastStructures_h
 
+#include "vtkABINamespace.h"
+
 VTK_ABI_NAMESPACE_BEGIN
 struct vtkRayCastRayInfo_t
 {

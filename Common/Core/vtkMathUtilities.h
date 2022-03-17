@@ -27,6 +27,8 @@
 #ifndef vtkMathUtilities_h
 #define vtkMathUtilities_h
 
+#include "vtkABINamespace.h"
+
 #include <cmath>
 #include <limits>
 

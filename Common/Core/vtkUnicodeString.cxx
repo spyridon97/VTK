@@ -355,10 +355,8 @@ vtkUnicodeString vtkUnicodeString::fold_case() const
   static map_t map;
   if (map.empty())
   {
-    VTK_ABI_NAMESPACE_END
 #include "vtkUnicodeCaseFoldData.h"
 
-    VTK_ABI_NAMESPACE_BEGIN
     for (value_type* i = &vtkUnicodeCaseFoldData[0]; *i; ++i)
     {
       const value_type code = *i;

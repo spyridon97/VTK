@@ -16,6 +16,8 @@
 #ifndef vtkEmbeddedFonts_h
 #define vtkEmbeddedFonts_h
 
+#include "vtkABINamespace.h"
+
 #include <stddef.h>
 
 // -----------------------------------------------------------------------
