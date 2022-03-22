@@ -20,6 +20,9 @@
 #ifndef vtkWebGLExporter_h
 #define vtkWebGLExporter_h
 
+#include "vtkObject.h"
+#include "vtkWebGLExporterModule.h" // needed for export macro
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkActor;
 class vtkActor2D;
@@ -34,8 +37,6 @@ class vtkWebGLObject;
 class vtkWebGLPolyData;
 
 VTK_ABI_NAMESPACE_END
-#include "vtkObject.h"
-#include "vtkWebGLExporterModule.h" // needed for export macro
 
 #include <string> // needed for internal structure
 

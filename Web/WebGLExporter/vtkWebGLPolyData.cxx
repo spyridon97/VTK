@@ -793,3 +793,4 @@ void vtkWebGLPolyData::GetColorsFromPointData(
     }
   }
 }
+VTK_ABI_NAMESPACE_END
