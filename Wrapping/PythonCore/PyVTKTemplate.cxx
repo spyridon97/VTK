@@ -22,6 +22,7 @@
 -----------------------------------------------------------------------*/
 
 #include "PyVTKTemplate.h"
+#include "vtkABINamespace.h"
 #include "vtkPythonUtil.h"
 
 #include <string>
@@ -35,6 +36,7 @@
 
 //------------------------------------------------------------------------------
 
+VTK_ABI_NAMESPACE_BEGIN
 static const char* PyVTKTemplate_Doc =
   "A container for instantiations of class and function templates.\n\n"
   "This is a dictionary for templates, provide the template args\n"
@@ -833,3 +835,4 @@ int PyVTKTemplate_AddItem(PyObject* self, PyObject* val)
 
   return 0;
 }
+VTK_ABI_NAMESPACE_END

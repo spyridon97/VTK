@@ -29,6 +29,7 @@ resulting in wrapper code that is faster and more compact.
 
 #include "vtkPythonArgs.h"
 #include "PyVTKReference.h"
+#include "vtkABINamespace.h"
 #include "vtkPythonUtil.h"
 
 //------------------------------------------------------------------------------
@@ -44,6 +45,7 @@ resulting in wrapper code that is faster and more compact.
     return false;                                                                                  \
   }
 
+VTK_ABI_NAMESPACE_BEGIN
 inline bool vtkPythonGetValue(PyObject* o, long& a)
 {
   VTK_PYTHON_FLOAT_CHECK();
@@ -1621,3 +1623,4 @@ vtkPythonArgs::Array<T>::Array(size_t n)
 
 // Instantiate the Array class template over all types:
 vtkPythonArgsTemplateMacro(template class VTKWRAPPINGPYTHONCORE_EXPORT vtkPythonArgs::Array);
+VTK_ABI_NAMESPACE_END

@@ -14,6 +14,7 @@
 =========================================================================*/
 
 #include "PyVTKEnum.h"
+#include "vtkABINamespace.h"
 #include "vtkPythonUtil.h"
 
 #include <cstddef>
@@ -23,6 +24,7 @@
 
 //------------------------------------------------------------------------------
 // Add a wrapped enum type
+VTK_ABI_NAMESPACE_BEGIN
 PyTypeObject* PyVTKEnum_Add(PyTypeObject* pytype, const char* name)
 {
   // do not allow direct instantiation
@@ -46,3 +48,4 @@ PyObject* PyVTKEnum_New(PyTypeObject* pytype, int val)
   return (PyObject*)self;
 #endif
 }
+VTK_ABI_NAMESPACE_END

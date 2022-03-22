@@ -20,6 +20,7 @@
 #ifndef PyVTKSpecialObject_h
 #define PyVTKSpecialObject_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
@@ -33,6 +34,7 @@ typedef void* (*vtkcopyfunc)(const void*);
 
 // Because the PyTypeObject can't hold all the typing information that we
 // need, we use this PyVTKSpecialType class to hold a bit of extra info.
+VTK_ABI_NAMESPACE_BEGIN
 class VTKWRAPPINGPYTHONCORE_EXPORT PyVTKSpecialType
 {
 public:
@@ -85,4 +87,5 @@ extern "C"
   PyObject* PyVTKSpecialObject_SequenceString(PyObject* self);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

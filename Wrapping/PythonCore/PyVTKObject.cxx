@@ -30,6 +30,7 @@
 
 #include "PyVTKObject.h"
 #include "PyVTKMethodDescriptor.h"
+#include "vtkABINamespace.h"
 #include "vtkDataArray.h"
 #include "vtkObjectBase.h"
 #include "vtkPythonCommand.h"
@@ -39,6 +40,7 @@
 #include <sstream>
 
 // This will be set to the python type struct for vtkObjectBase
+VTK_ABI_NAMESPACE_BEGIN
 static PyTypeObject* PyVTKObject_Type = nullptr;
 
 //------------------------------------------------------------------------------
@@ -757,3 +759,4 @@ void PyVTKObject_SetFlag(PyObject* obj, unsigned int flag, int val)
     ((PyVTKObject*)obj)->vtk_flags &= ~flag;
   }
 }
+VTK_ABI_NAMESPACE_END

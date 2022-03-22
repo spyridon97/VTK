@@ -31,6 +31,7 @@
 
 #include "PyVTKSpecialObject.h"
 #include "PyVTKMethodDescriptor.h"
+#include "vtkABINamespace.h"
 #include "vtkPythonUtil.h"
 
 #include <sstream>
@@ -43,6 +44,7 @@
 #endif
 
 //------------------------------------------------------------------------------
+VTK_ABI_NAMESPACE_BEGIN
 PyVTKSpecialType::PyVTKSpecialType(
   PyTypeObject* typeobj, PyMethodDef* cmethods, PyMethodDef* ccons, vtkcopyfunc copyfunc)
 {
@@ -259,3 +261,4 @@ PyTypeObject* PyVTKSpecialType_Add(
 
   return pytype;
 }
+VTK_ABI_NAMESPACE_END

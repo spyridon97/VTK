@@ -20,16 +20,20 @@
 #ifndef PyVTKObject_h
 #define PyVTKObject_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 class vtkObjectBase;
+VTK_ABI_NAMESPACE_END
 typedef vtkObjectBase* (*vtknewfunc)();
 
 // Flags for special properties or features
 #define VTK_PYTHON_IGNORE_UNREGISTER 1 // block Register/UnRegister calls
 
+VTK_ABI_NAMESPACE_BEGIN
 // This class is used for defining new VTK wrapped classes.
 // It contains information such as the methods and docstring, as well
 // as extra info that can't easily be stored in the PyTypeObject.
@@ -69,6 +73,7 @@ struct PyVTKObject
 
 extern VTKWRAPPINGPYTHONCORE_EXPORT PyGetSetDef PyVTKObject_GetSet[];
 extern VTKWRAPPINGPYTHONCORE_EXPORT PyBufferProcs PyVTKObject_AsBuffer;
+VTK_ABI_NAMESPACE_END
 
 extern "C"
 {

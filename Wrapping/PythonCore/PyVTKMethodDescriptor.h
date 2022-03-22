@@ -24,10 +24,12 @@
 #ifndef PyVTKMethodDescriptor_h
 #define PyVTKMethodDescriptor_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 extern PyTypeObject PyVTKMethodDescriptor_Type;
 
 #define PyVTKMethodDescriptor_Check(obj) (Py_TYPE(obj) == &PyVTKMethodDescriptor_Type)
@@ -38,4 +40,5 @@ extern "C"
   PyObject* PyVTKMethodDescriptor_New(PyTypeObject* cls, PyMethodDef* meth);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

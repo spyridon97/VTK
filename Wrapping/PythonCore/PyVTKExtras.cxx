@@ -15,6 +15,7 @@
 
 #include "PyVTKExtras.h"
 #include "PyVTKReference.h"
+#include "vtkABINamespace.h"
 #include "vtkPythonCompatibility.h"
 
 // Silence warning like
@@ -28,6 +29,7 @@
 // Helper function for the buffer_shared() check: get the pointer and
 // size (in bytes) of the buffer of the provided object.  A return
 // value of zero indicates that an exception was raised.
+VTK_ABI_NAMESPACE_BEGIN
 static void* buffer_pointer_and_size(PyObject* o, Py_ssize_t* size)
 {
   void* ptr = nullptr;
@@ -150,3 +152,4 @@ void PyVTKAddFile_PyVTKExtras(PyObject* dict)
     }
   }
 }
+VTK_ABI_NAMESPACE_END

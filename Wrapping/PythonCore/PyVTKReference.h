@@ -22,12 +22,14 @@
 #ifndef PyVTKReference_h
 #define PyVTKReference_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
 // The PyVTKReference is a wrapper around a PyObject of
 // type int or float.
+VTK_ABI_NAMESPACE_BEGIN
 struct PyVTKReference
 {
   PyObject_HEAD
@@ -53,4 +55,5 @@ extern "C"
   PyObject* PyVTKReference_GetValue(PyObject* self);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

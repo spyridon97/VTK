@@ -23,10 +23,12 @@
 #ifndef PyVTKTemplate_h
 #define PyVTKTemplate_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 extern VTKWRAPPINGPYTHONCORE_EXPORT PyTypeObject PyVTKTemplate_Type;
 
 #define PyVTKTemplate_Check(obj) (Py_TYPE(obj) == &PyVTKTemplate_Type)
@@ -40,4 +42,5 @@ extern "C"
   int PyVTKTemplate_AddItem(PyObject* self, PyObject* val);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

@@ -21,10 +21,12 @@
 #ifndef PyVTKNamespace_h
 #define PyVTKNamespace_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 extern VTKWRAPPINGPYTHONCORE_EXPORT PyTypeObject PyVTKNamespace_Type;
 
 #define PyVTKNamespace_Check(obj) (Py_TYPE(obj) == &PyVTKNamespace_Type)
@@ -41,4 +43,5 @@ extern "C"
   const char* PyVTKNamespace_GetName(PyObject* self);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

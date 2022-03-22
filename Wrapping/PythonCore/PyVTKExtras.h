@@ -23,15 +23,18 @@
 #ifndef PyVTKExtras_h
 #define PyVTKExtras_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
 //--------------------------------------------------------------------
 // This will add extras to the provided dict.  It is called during the
 // initialization of the vtkCommonCore python module.
+VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
   VTKWRAPPINGPYTHONCORE_EXPORT void PyVTKAddFile_PyVTKExtras(PyObject* dict);
 }
 
+VTK_ABI_NAMESPACE_END
 #endif

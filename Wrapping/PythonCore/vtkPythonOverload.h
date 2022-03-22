@@ -29,9 +29,11 @@
 #ifndef vtkPythonOverload_h
 #define vtkPythonOverload_h
 
+#include "vtkABINamespace.h"
 #include "vtkPython.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKWRAPPINGPYTHONCORE_EXPORT vtkPythonOverload
 {
 public:
@@ -59,5 +61,6 @@ public:
   ///@}
 };
 
+VTK_ABI_NAMESPACE_END
 #endif
 // VTK-HeaderTest-Exclude: vtkPythonOverload.h
