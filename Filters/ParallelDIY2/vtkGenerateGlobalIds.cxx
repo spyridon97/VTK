@@ -667,6 +667,8 @@ public:
 };
 }
 
+VTK_ABI_NAMESPACE_END
+
 namespace diy
 {
 template <>
@@ -690,6 +692,8 @@ struct Serialization<::CellTT>
   }
 };
 }
+
+VTK_ABI_NAMESPACE_BEGIN
 
 vtkStandardNewMacro(vtkGenerateGlobalIds);
 vtkCxxSetObjectMacro(vtkGenerateGlobalIds, Controller, vtkMultiProcessController);

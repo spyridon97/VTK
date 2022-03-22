@@ -12,6 +12,8 @@
 #include <QTimer>
 #include <memory>
 
+VTK_ABI_NAMESPACE_BEGIN
+
 namespace detail
 {
 enum class Type
@@ -35,3 +37,5 @@ void show(std::shared_ptr<QObject> widgetOrWindow, const QSize& size);
 QImage grab_framebuffer(std::shared_ptr<QObject> widgetOrWindow);
 
 }
+
+VTK_ABI_NAMESPACE_END

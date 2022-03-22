@@ -129,7 +129,7 @@ private:
     for (vtkIdType i = 0; i < num; ++i)
     {
       auto value = this->AssociatedArray->GetValue(i);
-      if (::detail::isnan(value))
+      if (detail::isnan(value))
       {
         NanIndices.push_back(i);
       }
@@ -142,7 +142,7 @@ private:
   std::vector<vtkIdType>* FindIndexVec(ValueType value)
   {
     std::vector<vtkIdType>* indices{ nullptr };
-    if (::detail::isnan(value) && !this->NanIndices.empty())
+    if (detail::isnan(value) && !this->NanIndices.empty())
     {
       indices = &this->NanIndices;
     }

@@ -50,6 +50,7 @@
 #ifndef vtkTypeList_h
 #define vtkTypeList_h
 
+#include "vtkABINamespace.h"
 #include "vtkTypeListMacros.h"
 
 VTK_ABI_NAMESPACE_BEGIN

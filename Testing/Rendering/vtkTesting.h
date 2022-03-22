@@ -74,7 +74,6 @@ class vtkImageData;
 class vtkDataArray;
 class vtkDataSet;
 class vtkRenderWindowInteractor;
-VTK_ABI_NAMESPACE_END
 
 /**
  * A unit test may return this value to tell ctest to skip the test. This can
@@ -343,4 +342,5 @@ private:
   void operator=(const vtkTesting&) = delete;
 };
 
+VTK_ABI_NAMESPACE_END
 #endif

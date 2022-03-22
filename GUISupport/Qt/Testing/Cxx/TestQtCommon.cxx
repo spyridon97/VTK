@@ -1,5 +1,6 @@
 #include "TestQtCommon.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
 
@@ -228,3 +229,4 @@ QImage grab_framebuffer(std::shared_ptr<QObject> widgetOrWindow)
   return QImage();
 }
 }
+VTK_ABI_NAMESPACE_END

@@ -536,6 +536,7 @@ int vtkPResampleToImage::RequestData(
 
   return 1;
 }
+VTK_ABI_NAMESPACE_END
 
 //------------------------------------------------------------------------------
 namespace diy
@@ -581,4 +582,3 @@ struct Serialization<FieldMetaData>
 };
 
 } // namespace diy
-VTK_ABI_NAMESPACE_END
