@@ -58,11 +58,14 @@ class vtkPath;
 class vtkStdString;
 class vtkUnicodeString;
 class vtkTextProperty;
+VTK_ABI_NAMESPACE_END
 
 namespace vtksys
 {
 class RegularExpression;
 }
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKRENDERINGCORE_EXPORT vtkTextRendererCleanup
 {
