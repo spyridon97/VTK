@@ -40,9 +40,10 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QtCore/QObject>
 
+class QEvent;
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkRenderWindowInteractor;
-class QEvent;
 
 // .NAME QVTKInteractorAdapter - A QEvent translator.
 // .SECTION Description

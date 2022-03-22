@@ -29,8 +29,9 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QPointF>                 // for ivar
 
-VTK_ABI_NAMESPACE_BEGIN
 class QWidget;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkQWidgetRepresentation;
 
 class VTKGUISUPPORTQT_EXPORT vtkQWidgetWidget : public vtkAbstractWidget

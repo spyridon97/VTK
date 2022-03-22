@@ -39,8 +39,9 @@
 #include "vtkViewsQtModule.h" // For export macro
 #include <QPointer>           // Needed for the text widget member
 
-VTK_ABI_NAMESPACE_BEGIN
 class QTextEdit;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkDataObjectToTable;
 
 class VTKVIEWSQT_EXPORT vtkQtRecordView : public vtkQtView

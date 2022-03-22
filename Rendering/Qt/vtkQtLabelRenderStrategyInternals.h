@@ -31,8 +31,9 @@
 #include <QMap>
 #include <QString>
 
-VTK_ABI_NAMESPACE_BEGIN
 class QPainter;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 struct vtkQtLabelMapEntry
 {

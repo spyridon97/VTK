@@ -30,6 +30,9 @@
 #include <QVBoxLayout>
 
 //------------------------------------------------------------------------------
+Q_DECLARE_METATYPE(vtkObjectBase*);
+
+//------------------------------------------------------------------------------
 VTK_ABI_NAMESPACE_BEGIN
 class vtkQtDebugLeaksView::qInternal
 {
@@ -210,9 +213,6 @@ void vtkQtDebugLeaksView::setFilterText(const QString& text)
 {
   this->Internal->FilterLineEdit->setText(text);
 }
-
-//------------------------------------------------------------------------------
-Q_DECLARE_METATYPE(vtkObjectBase*);
 
 //------------------------------------------------------------------------------
 void vtkQtDebugLeaksView::onRowDoubleClicked(const QModelIndex& index)

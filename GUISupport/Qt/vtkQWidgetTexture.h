@@ -20,9 +20,10 @@
 #include <array>      // for ivar
 #include <functional> // for ivar
 
-VTK_ABI_NAMESPACE_BEGIN
 class QGraphicsScene;
 class QWidget;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 /**
  * @class vtkQWidgetTexture

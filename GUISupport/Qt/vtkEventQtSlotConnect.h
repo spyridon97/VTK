@@ -49,8 +49,9 @@
 #include "vtkObject.h"
 #include <QtCore/QObject> // for version info
 
-VTK_ABI_NAMESPACE_BEGIN
 class QObject;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkQtConnections;
 class vtkQtConnection;
 

@@ -38,14 +38,15 @@
 #include "vtkSmartPointer.h" // Needed for member variables
 #include <QPointer>          // Needed to hold the view
 
+class QItemSelection;
+class QSortFilterProxyModel;
+class QTableView;
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkAddMembershipArray;
 class vtkApplyColors;
 class vtkDataObjectToTable;
 class vtkIdTypeArray;
-class QItemSelection;
-class QSortFilterProxyModel;
-class QTableView;
 class vtkQtTableModelAdapter;
 
 class VTKVIEWSQT_EXPORT vtkQtTableView : public vtkQtView

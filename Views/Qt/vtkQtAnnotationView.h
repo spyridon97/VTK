@@ -36,11 +36,11 @@
 
 #include <QPointer> // Needed to hold the view
 
-VTK_ABI_NAMESPACE_BEGIN
-class vtkQtAnnotationLayersModelAdapter;
-
 class QItemSelection;
 class QTableView;
+
+VTK_ABI_NAMESPACE_BEGIN
+class vtkQtAnnotationLayersModelAdapter;
 
 class VTKVIEWSQT_EXPORT vtkQtAnnotationView : public vtkQtView
 {

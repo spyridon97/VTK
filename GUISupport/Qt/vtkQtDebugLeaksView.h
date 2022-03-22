@@ -29,8 +29,9 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include <QWidget>
 
-VTK_ABI_NAMESPACE_BEGIN
 class QModelIndex;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkObjectBase;
 class vtkQtDebugLeaksModel;
 

@@ -15,6 +15,8 @@
 #ifndef QQmlVTKPlugin_h
 #define QQmlVTKPlugin_h
 
+#include "vtkABINamespace.h"
+
 // Qt includes
 #include <QQmlExtensionPlugin>
 

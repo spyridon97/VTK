@@ -29,8 +29,9 @@
 #include "vtkGUISupportQtModule.h" // For export macro
 #include "vtkWidgetRepresentation.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 class QWidget;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkActor;
 class vtkCellPicker;
 class vtkOpenGLTexture;

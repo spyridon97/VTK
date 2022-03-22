@@ -48,8 +48,9 @@
 #include "vtkLabeledDataMapper.h"
 #include "vtkRenderingQtModule.h" // For export macro
 
-VTK_ABI_NAMESPACE_BEGIN
 class QImage;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class vtkQImageToImageSource;
 class vtkCoordinate;

@@ -35,8 +35,9 @@
 #include "vtkObject.h"
 #include "vtkRenderingQtModule.h" // For export macro
 
-VTK_ABI_NAMESPACE_BEGIN
 class QApplication;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKRENDERINGQT_EXPORT vtkQtInitialization : public vtkObject
 {

@@ -39,18 +39,19 @@
 #include <QList>             // Needed for member variables
 #include <QPointer>          // Needed for member variables
 
-VTK_ABI_NAMESPACE_BEGIN
 class QAbstractItemDelegate;
 class QAbstractItemView;
-class QFilterTreeProxyModel;
 class QColumnView;
 class QItemSelection;
 class QModelIndex;
 class QTreeView;
-class vtkApplyColors;
-class QVBoxLayout;
-class vtkQtTreeModelAdapter;
 class QItemSelectionModel;
+class QVBoxLayout;
+
+VTK_ABI_NAMESPACE_BEGIN
+class QFilterTreeProxyModel;
+class vtkApplyColors;
+class vtkQtTreeModelAdapter;
 
 class VTKVIEWSQT_EXPORT vtkQtTreeView : public vtkQtView
 {

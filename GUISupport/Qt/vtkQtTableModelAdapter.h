@@ -36,12 +36,12 @@
 #include "vtkQtAbstractModelAdapter.h"
 #include <QImage> // Needed for icon support
 
+class QMimeData;
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkSelection;
 class vtkTable;
 class vtkVariant;
-
-class QMimeData;
 
 class VTKGUISUPPORTQT_EXPORT vtkQtTableModelAdapter : public vtkQtAbstractModelAdapter
 {
