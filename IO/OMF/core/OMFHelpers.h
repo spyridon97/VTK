@@ -16,6 +16,8 @@
 #ifndef OMFHelpers_h
 #define OMFHelpers_h
 
+#include "vtkABINamespace.h"
+
 #include "vtk_jsoncpp_fwd.h" // For Json fwd declaration
 
 #include <string>

@@ -449,9 +449,12 @@ void vtkParallelVectors::Postfilter(
   }
 }
 
+VTK_ABI_NAMESPACE_END
+
 //------------------------------------------------------------------------------
 namespace detail
 {
+VTK_ABI_NAMESPACE_BEGIN
 /**
  * Struct to store the coordinates and the additional criteria of a surface triangle point
  */
@@ -638,8 +641,11 @@ struct CollectValidCellSurfacePointsWorker
     vtkSMPTools::For(0, input->GetNumberOfCells(), functor);
   }
 };
+
+VTK_ABI_NAMESPACE_END
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 //------------------------------------------------------------------------------
 int vtkParallelVectors::RequestData(
   vtkInformation* info, vtkInformationVector** inputVector, vtkInformationVector* outputVector)

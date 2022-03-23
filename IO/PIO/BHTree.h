@@ -61,6 +61,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef BHTree_h
 #define BHTree_h
 
+#include "vtkABINamespace.h"
+
 #include <vector>
 
 VTK_ABI_NAMESPACE_BEGIN

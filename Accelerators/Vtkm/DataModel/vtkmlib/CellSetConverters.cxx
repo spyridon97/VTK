@@ -44,9 +44,9 @@
 #define FUNC_SCOPE
 #endif
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 namespace
 {
@@ -229,10 +229,12 @@ vtkm::cont::DynamicCellSet Convert(
   return cells->Visit(BuildExplicitCellSetVisitor{}, ShapeConverter::Wrap(types), numberOfPoints);
 }
 
+VTK_ABI_NAMESPACE_END
 } // namespace tovtkm
 
 namespace fromvtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 bool Convert(const vtkm::cont::DynamicCellSet& toConvert, vtkCellArray* cells,
   vtkUnsignedCharArray* typesArray)
@@ -286,5 +288,5 @@ bool Convert(const vtkm::cont::DynamicCellSet& toConvert, vtkCellArray* cells,
   return true;
 }
 
-} // namespace fromvtkm
 VTK_ABI_NAMESPACE_END
+} // namespace fromvtkm

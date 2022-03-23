@@ -47,9 +47,10 @@
 #include <string> // for string
 #include <vector> // for vector
 
+struct H5PartFile;
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArraySelection;
-struct H5PartFile;
 class VTKIOH5PART_EXPORT vtkH5PartReader : public vtkPolyDataAlgorithm
 {
 public:

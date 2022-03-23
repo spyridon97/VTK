@@ -19,13 +19,13 @@
 
 #include <vtkm/cont/internal/ArrayPortalFromIterators.h>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 // T extern template instantiations
 template class VTKACCELERATORSVTKMCORE_EXPORT vtkPointsPortal<vtkm::Vec<vtkm::Float32, 3> const>;
 template class VTKACCELERATORSVTKMCORE_EXPORT vtkPointsPortal<vtkm::Vec<vtkm::Float64, 3> const>;
 template class VTKACCELERATORSVTKMCORE_EXPORT vtkPointsPortal<vtkm::Vec<vtkm::Float32, 3>>;
 template class VTKACCELERATORSVTKMCORE_EXPORT vtkPointsPortal<vtkm::Vec<vtkm::Float64, 3>>;
-}
 VTK_ABI_NAMESPACE_END
+}

@@ -51,9 +51,10 @@
 
 #include <vector> // for std::vector
 
-VTK_ABI_NAMESPACE_BEGIN
 struct _object;
 typedef struct _object PyObject;
+
+VTK_ABI_NAMESPACE_BEGIN
 class vtkSmartPyObject;
 class vtkImageData;
 class vtkPath;

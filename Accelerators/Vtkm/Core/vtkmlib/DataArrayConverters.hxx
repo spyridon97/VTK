@@ -23,9 +23,9 @@
 
 #include "vtkDataArray.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 template <typename DataArrayType>
 vtkm::cont::UnknownArrayHandle vtkDataArrayToUnknownArrayHandle(DataArrayType* input)
@@ -71,6 +71,6 @@ vtkm::cont::Field ConvertCellField(DataArrayType* input)
   return vtkm::cont::make_FieldCell(input->GetName(), vhandle);
 }
 
-} // tovtkm
 VTK_ABI_NAMESPACE_END
+} // tovtkm
 #endif

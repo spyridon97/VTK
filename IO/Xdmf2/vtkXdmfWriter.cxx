@@ -72,9 +72,10 @@ typedef XdmfInt32 vtkXdmfIdType;
 
 using namespace xdmf2;
 
-VTK_ABI_NAMESPACE_BEGIN
 struct _xmlNode;
 typedef _xmlNode* XdmfXmlNode;
+
+VTK_ABI_NAMESPACE_BEGIN
 struct vtkXW2NodeHelp
 {
   xdmf2::XdmfDOM* DOM;

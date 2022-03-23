@@ -1,6 +1,8 @@
 #if !defined(_PIODATA_H)
 #define _PIODATA_H
 
+#include "vtkABINamespace.h"
+
 #include <fstream>
 #include <iostream>
 #include <list>

@@ -36,30 +36,31 @@
 
 #include <string> //Needed only for XdmfArray::getName :(
 
+class XdmfArray;
+class XdmfAttribute;
+class XdmfGrid;
+class XdmfSet;
+class XdmfTopologyType;
+class XdmfRegularGrid;
+class XdmfRectilinearGrid;
+class XdmfCurvilinearGrid;
+class XdmfUnstructuredGrid;
+class XdmfGraph;
+class XdmfDomain;
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkXdmf3ArraySelection;
 class vtkXdmf3ArrayKeeper;
-class XdmfArray;
-class XdmfAttribute;
 class vtkDataArray;
-class XdmfGrid;
 class vtkDataObject;
-class XdmfSet;
 class vtkDataSet;
-class XdmfTopologyType;
-class XdmfRegularGrid;
 class vtkImageData;
-class XdmfRectilinearGrid;
 class vtkRectilinearGrid;
-class XdmfCurvilinearGrid;
 class vtkStructuredGrid;
-class XdmfUnstructuredGrid;
 class vtkUnstructuredGrid;
 class vtkPointSet;
-class XdmfGraph;
 class vtkMutableDirectedGraph;
 class vtkDirectedGraph;
-class XdmfDomain;
 
 class VTKIOXDMF3_EXPORT vtkXdmf3DataSet
 {

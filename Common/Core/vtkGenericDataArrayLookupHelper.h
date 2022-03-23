@@ -29,9 +29,9 @@
 #include <unordered_map>
 #include <vector>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
+VTK_ABI_NAMESPACE_BEGIN
 template <typename T, bool>
 struct has_NaN;
 
@@ -53,8 +53,10 @@ bool isnan(T x)
   // Select the correct partially specialized type.
   return has_NaN<T, std::numeric_limits<T>::has_quiet_NaN>::isnan(x);
 }
+VTK_ABI_NAMESPACE_END
 } // namespace detail
 
+VTK_ABI_NAMESPACE_BEGIN
 template <class ArrayTypeT>
 class vtkGenericDataArrayLookupHelper
 {

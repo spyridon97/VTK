@@ -65,12 +65,12 @@
 #include "vtkIOImageModule.h" // For export macro
 #include "vtkImageWriter.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace vtkmetaio
 {
 class MetaImage;
 } // forward declaration
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKIOIMAGE_EXPORT vtkMetaImageWriter : public vtkImageWriter
 {
 public:

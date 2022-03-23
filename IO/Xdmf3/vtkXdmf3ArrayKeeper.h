@@ -32,8 +32,9 @@
 #include "vtkIOXdmf3Module.h" // For export macro
 #include <map>
 
-VTK_ABI_NAMESPACE_BEGIN
 class XdmfArray;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 #ifdef _MSC_VER
 #pragma warning(push)           // save

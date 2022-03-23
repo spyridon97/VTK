@@ -48,7 +48,6 @@
 
 #include <boost/version.hpp>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace boost
 {
 //===========================================================================
@@ -126,6 +125,7 @@ inline void put(vtkAbstractArray* arr, vtkIdType key, const vtkVariant& value)
 {
   arr->InsertVariantValue(key, value);
 }
+
 #if defined(_MSC_VER)
 namespace detail
 {
@@ -135,7 +135,6 @@ using ::boost::put;
 #endif
 }
 
-VTK_ABI_NAMESPACE_END
 #include <utility> // STL Header
 
 #include <boost/config.hpp>
@@ -155,7 +154,6 @@ VTK_ABI_NAMESPACE_END
 // treat a vtkDirectedGraph or vtkUndirectedGraph object
 // as a boost graph "as is".
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace boost
 {
 
@@ -450,6 +448,7 @@ private:
 // VertexAndEdgeListGraphConcept
 // BidirectionalGraphConcept
 // AdjacencyGraphConcept
+VTK_ABI_NAMESPACE_BEGIN
 
 struct vtkGraph_traversal_category
   : public virtual bidirectional_graph_tag
@@ -458,6 +457,8 @@ struct vtkGraph_traversal_category
   , public virtual adjacency_graph_tag
 {
 };
+
+VTK_ABI_NAMESPACE_END
 
 template <>
 struct graph_traits<vtkGraph*>
@@ -1088,6 +1089,7 @@ inline std::pair<boost::graph_traits<vtkMutableUndirectedGraph*>::edge_descripto
 
 namespace boost
 {
+VTK_ABI_NAMESPACE_BEGIN
 //===========================================================================
 // An edge map for vtkGraph.
 // This is a common input needed for algorithms.
@@ -1095,6 +1097,8 @@ namespace boost
 struct vtkGraphEdgeMap
 {
 };
+
+VTK_ABI_NAMESPACE_END
 
 template <>
 struct property_traits<vtkGraphEdgeMap>
@@ -1115,6 +1119,7 @@ inline property_traits<vtkGraphEdgeMap>::reference get(
 // Helper for vtkGraph edge property maps
 // Automatically converts boost edge ids to vtkGraph edge ids.
 
+VTK_ABI_NAMESPACE_BEGIN
 template <typename PMap>
 class vtkGraphEdgePropertyMapHelper
 {
@@ -1131,6 +1136,7 @@ public:
 
   reference operator[](const key_type& key) const { return get(pmap, key.Id); }
 };
+VTK_ABI_NAMESPACE_END
 
 template <typename PMap>
 inline typename property_traits<PMap>::reference get(
@@ -1150,6 +1156,7 @@ inline void put(vtkGraphEdgePropertyMapHelper<PMap> helper, vtkEdgeType key,
 // Helper for vtkGraph vertex property maps
 // Automatically converts boost vertex ids to vtkGraph vertex ids.
 
+VTK_ABI_NAMESPACE_BEGIN
 template <typename PMap>
 class vtkGraphVertexPropertyMapHelper
 {
@@ -1166,6 +1173,7 @@ public:
 
   reference operator[](const key_type& key) const { return get(pmap, key); }
 };
+VTK_ABI_NAMESPACE_END
 
 template <typename PMap>
 inline typename property_traits<PMap>::reference get(
@@ -1185,9 +1193,11 @@ inline void put(vtkGraphVertexPropertyMapHelper<PMap> helper, vtkIdType key,
 // An index map for vtkGraph
 // This is a common input needed for algorithms
 
+VTK_ABI_NAMESPACE_BEGIN
 struct vtkGraphIndexMap
 {
 };
+VTK_ABI_NAMESPACE_END
 
 template <>
 struct property_traits<vtkGraphIndexMap>
@@ -1207,6 +1217,7 @@ inline property_traits<vtkGraphIndexMap>::reference get(
 //===========================================================================
 // Helper for vtkGraph property maps
 // Automatically multiplies the property value by some value (default 1)
+VTK_ABI_NAMESPACE_BEGIN
 template <typename PMap>
 class vtkGraphPropertyMapMultiplier
 {
@@ -1223,6 +1234,7 @@ public:
   typedef typename property_traits<PMap>::key_type key_type;
   typedef typename property_traits<PMap>::category category;
 };
+VTK_ABI_NAMESPACE_END
 
 template <typename PMap>
 inline typename property_traits<PMap>::reference get(
@@ -1312,7 +1324,6 @@ struct property_map<vtkUndirectedGraph* const, edge_index_t>
 } // namespace boost
 
 #if BOOST_VERSION > 104000
-VTK_ABI_NAMESPACE_END
 #include <boost/property_map/vector_property_map.hpp>
 #else
 #include <boost/vector_property_map.hpp>

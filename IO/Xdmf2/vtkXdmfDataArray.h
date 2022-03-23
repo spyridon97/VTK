@@ -26,12 +26,13 @@
 #include "vtkIOXdmf2Module.h" // For export macro
 #include "vtkObject.h"
 
-VTK_ABI_NAMESPACE_BEGIN
-class vtkDataArray;
 namespace xdmf2
 {
 class XdmfArray;
 }
+
+VTK_ABI_NAMESPACE_BEGIN
+class vtkDataArray;
 
 class VTKIOXDMF2_EXPORT vtkXdmfDataArray : public vtkObject
 {

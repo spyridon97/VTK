@@ -25,7 +25,6 @@
 
 #include <memory> // for std::shared_ptr
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace vtkm
 {
 namespace cont
@@ -35,6 +34,8 @@ class DataSet;
 
 }
 } // vtkm::cont
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class vtkPoints;
 class vtkCell;

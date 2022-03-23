@@ -24,13 +24,13 @@
 VTK_ABI_NAMESPACE_BEGIN
 class vtkDataArray;
 class vtkPoints;
-
 VTK_ABI_NAMESPACE_END
+
 #include <vtkm/cont/internal/IteratorFromArrayPortal.h>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 template <typename Type, typename VTKDataArrayType_>
 class VTKM_ALWAYS_EXPORT vtkArrayPortal
@@ -119,14 +119,14 @@ private:
   ComponentType* Array;
   vtkm::Id Size;
 };
+VTK_ABI_NAMESPACE_END
 }
 
 #ifndef vtkmlib_Portals_cxx
-VTK_ABI_NAMESPACE_END
 #include <vtkm/cont/internal/ArrayPortalFromIterators.h>
-VTK_ABI_NAMESPACE_BEGIN
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 // T extern template instantiations
 extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT
   vtkPointsPortal<vtkm::Vec<vtkm::Float32, 3> const>;
@@ -136,10 +136,10 @@ extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT
   vtkPointsPortal<vtkm::Vec<vtkm::Float32, 3>>;
 extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT
   vtkPointsPortal<vtkm::Vec<vtkm::Float64, 3>>;
+VTK_ABI_NAMESPACE_END
 }
 
 #endif // defined vtkmlib_Portals_cxx
 
-VTK_ABI_NAMESPACE_END
 #include "Portals.hxx"
 #endif // vtkmlib_Portals_h

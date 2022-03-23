@@ -33,6 +33,16 @@
 #include <string> // Needed for private members
 #include <vector> //
 
+namespace xdmf2
+{
+class XdmfArray;
+class XdmfDOM;
+class XdmfElement;
+class XdmfGrid;
+class XdmfGeometry;
+class XdmfTopology;
+}
+
 VTK_ABI_NAMESPACE_BEGIN
 class vtkExecutive;
 
@@ -44,16 +54,6 @@ class vtkFieldData;
 class vtkInformation;
 class vtkInformationVector;
 class vtkXdmfWriterDomainMemoryHandler;
-
-namespace xdmf2
-{
-class XdmfArray;
-class XdmfDOM;
-class XdmfElement;
-class XdmfGrid;
-class XdmfGeometry;
-class XdmfTopology;
-}
 
 class VTKIOXDMF2_EXPORT vtkXdmfWriter : public vtkDataObjectAlgorithm
 {

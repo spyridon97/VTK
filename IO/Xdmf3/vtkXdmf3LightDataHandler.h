@@ -38,12 +38,13 @@
 
 #include <set>
 
-VTK_ABI_NAMESPACE_BEGIN
-class vtkXdmf3SILBuilder;
-class vtkXdmf3ArraySelection;
 class XdmfItem;
 class XdmfGraph;
 class XdmfGrid;
+
+VTK_ABI_NAMESPACE_BEGIN
+class vtkXdmf3SILBuilder;
+class vtkXdmf3ArraySelection;
 
 class VTKIOXDMF3_EXPORT vtkXdmf3LightDataHandler
 {

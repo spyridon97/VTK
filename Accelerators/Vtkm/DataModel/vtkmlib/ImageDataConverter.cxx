@@ -71,9 +71,11 @@ struct SetGlobalPointIndexStart
 };
 
 } // anonymous namespace
+VTK_ABI_NAMESPACE_END
 
 namespace tovtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 //------------------------------------------------------------------------------
 // convert an image data type
@@ -108,10 +110,12 @@ vtkm::cont::DataSet Convert(vtkImageData* input, FieldsFlag fields)
   return dataset;
 }
 
+VTK_ABI_NAMESPACE_END
 } // tovtkm
 
 namespace fromvtkm
 {
+VTK_ABI_NAMESPACE_BEGIN
 
 bool Convert(
   const vtkm::cont::DataSet& voutput, int extents[6], vtkImageData* output, vtkDataSet* input)
@@ -170,5 +174,5 @@ bool Convert(const vtkm::cont::DataSet& voutput, vtkImageData* output, vtkDataSe
   return Convert(voutput, extents, output, input);
 }
 
-} // fromvtkm
 VTK_ABI_NAMESPACE_END
+} // fromvtkm

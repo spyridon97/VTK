@@ -38,13 +38,15 @@
 
 #include "vtkNew.h" // for vtkNew
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace detail
 {
+VTK_ABI_NAMESPACE_BEGIN
 template <typename VArrayType, typename WArrayType>
 class CollectValidCellSurfacePointsFunctor;
+VTK_ABI_NAMESPACE_END
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKFILTERSFLOWPATHS_EXPORT vtkParallelVectors : public vtkPolyDataAlgorithm
 {
   template <typename, typename>

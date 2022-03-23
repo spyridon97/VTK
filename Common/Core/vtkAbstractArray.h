@@ -759,6 +759,8 @@ ArrayT* vtkArrayDownCast(vtkAbstractArray* array)
   return vtkArrayDownCast_impl<ArrayT>()(array);
 }
 
+VTK_ABI_NAMESPACE_END
+
 ///@{
 /**
  * This macro is used to tell vtkArrayDownCast to use FastDownCast instead of
@@ -789,6 +791,4 @@ ArrayT* vtkArrayDownCast(vtkAbstractArray* array)
     }                                                                                              \
   }
 ///@}
-
-VTK_ABI_NAMESPACE_END
 #endif

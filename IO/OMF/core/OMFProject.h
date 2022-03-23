@@ -17,6 +17,8 @@
 #ifndef OMFProject_h
 #define OMFProject_h
 
+#include "vtkABINamespace.h"
+
 #include <memory> // for std::unique_ptr
 
 VTK_ABI_NAMESPACE_BEGIN
