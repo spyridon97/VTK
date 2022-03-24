@@ -38,11 +38,11 @@
 #include <sstream>
 #include <vector>
 
+using namespace OT;
+
 VTK_ABI_NAMESPACE_BEGIN
 vtkInformationKeyMacro(vtkOTDensityMap, DENSITY, Double);
 vtkStandardNewMacro(vtkOTDensityMap);
-
-using namespace OT;
 
 class vtkOTDensityMap::OTDistributionCache
 {

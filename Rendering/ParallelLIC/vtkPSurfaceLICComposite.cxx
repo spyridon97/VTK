@@ -67,14 +67,12 @@ using std::vector;
 using std::ostringstream;
 using std::string;
 //------------------------------------------------------------------------------
-VTK_ABI_NAMESPACE_BEGIN
 static string mpifn(int rank, const char* fn)
 {
   ostringstream oss;
   oss << rank << "_" << fn;
   return oss.str();
 }
-VTK_ABI_NAMESPACE_END
 #endif
 
 // use PBO's for MPI communication.
@@ -88,7 +86,6 @@ VTK_ABI_NAMESPACE_END
 #define DUPLICATE_COMMUNICATOR 0
 
 // ***************************************************************************
-VTK_ABI_NAMESPACE_BEGIN
 static int maxNumPasses()
 {
   return 100;
@@ -136,6 +133,7 @@ static void MPIAPI vtkPixelExtentUnion(void* in, void* out, int* len, MPI_Dataty
   }
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 // Description:
 // Container for our custom MPI_Op's
 class vtkPPixelExtentOps
@@ -197,6 +195,7 @@ void MPITypeFree(deque<MPI_Datatype>& types)
     MPI_Type_free(&types[i]);
   }
 }
+VTK_ABI_NAMESPACE_END
 
 // ****************************************************************************
 static size_t Size(deque<deque<vtkPixelExtent>> exts)
@@ -278,6 +277,7 @@ static int ScanMPIStatusForError(vector<MPI_Status>& stat)
 }
 #endif
 
+VTK_ABI_NAMESPACE_BEGIN
 //------------------------------------------------------------------------------
 vtkStandardNewMacro(vtkPSurfaceLICComposite);
 
@@ -1656,6 +1656,7 @@ void vtkPSurfaceLICComposite::PrintSelf(ostream& os, vtkIndent indent)
   Superclass::PrintSelf(os, indent);
   os << *this << endl;
 }
+VTK_ABI_NAMESPACE_END
 
 // ****************************************************************************
 ostream& operator<<(ostream& os, vtkPSurfaceLICComposite& ss)
@@ -1709,4 +1710,3 @@ ostream& operator<<(ostream& os, vtkPSurfaceLICComposite& ss)
   }
   return os;
 }
-VTK_ABI_NAMESPACE_END

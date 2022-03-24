@@ -28,11 +28,12 @@
 #include "vtkMoleculeAlgorithm.h"
 #include "vtkVector.h" // For vtkVector3f
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace vtksys
 {
 class RegularExpression;
 }
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKIOCHEMISTRY_EXPORT vtkVASPAnimationReader : public vtkMoleculeAlgorithm
 {

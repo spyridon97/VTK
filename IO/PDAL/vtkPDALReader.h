@@ -33,11 +33,12 @@
 
 #include <vtkPolyDataAlgorithm.h>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace pdal
 {
 class Stage;
 };
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKIOPDAL_EXPORT vtkPDALReader : public vtkPolyDataAlgorithm
 {

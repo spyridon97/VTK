@@ -35,12 +35,13 @@
 
 #include <vtkPolyDataAlgorithm.h>
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace liblas
 {
 class Header;
 class Reader;
 };
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKIOLAS_EXPORT vtkLASReader : public vtkPolyDataAlgorithm
 {

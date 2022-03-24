@@ -27,11 +27,12 @@
 #include "vtkIOChemistryModule.h" // For export macro
 #include "vtkMoleculeAlgorithm.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace vtksys
 {
 class RegularExpression;
 }
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class vtkUnstructuredGrid;
 

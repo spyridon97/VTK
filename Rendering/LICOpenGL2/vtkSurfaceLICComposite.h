@@ -259,8 +259,8 @@ private:
 
   friend ostream& operator<<(ostream& os, vtkSurfaceLICComposite& ss);
 };
+VTK_ABI_NAMESPACE_END
 
 ostream& operator<<(ostream& os, vtkSurfaceLICComposite& ss);
 
-VTK_ABI_NAMESPACE_END
 #endif

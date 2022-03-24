@@ -34,6 +34,8 @@
  *    to these libraries as the second argument to HandleOpenGL32Issues
  */
 
+#include "vtkABINamespace.h"
+
 #include <windows.h>
 
 // returns an int, zero indicates a problem though right now

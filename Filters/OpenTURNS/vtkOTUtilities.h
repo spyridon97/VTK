@@ -21,11 +21,14 @@
 #ifndef vtkOTUtilities_h
 #define vtkOTUtilities_h
 
-VTK_ABI_NAMESPACE_BEGIN
+#include "vtkABINamespace.h"
+
 namespace OT
 {
 class Sample;
 }
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class vtkDataArray;
 class vtkDataArrayCollection;

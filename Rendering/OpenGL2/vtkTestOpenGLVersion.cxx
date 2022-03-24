@@ -19,6 +19,8 @@ with additional system information.
 
 =========================================================================*/
 
+#include "vtkABINamespace.h"
+
 #include <iostream>
 #include <sstream>
 #include <string>
