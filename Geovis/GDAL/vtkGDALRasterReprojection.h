@@ -24,8 +24,9 @@
 #include "vtkGeovisGDALModule.h" // For export macro
 #include "vtkObject.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 class GDALDataset;
+
+VTK_ABI_NAMESPACE_BEGIN
 
 class VTKGEOVISGDAL_EXPORT vtkGDALRasterReprojection : public vtkObject
 {

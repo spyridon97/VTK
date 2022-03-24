@@ -31,14 +31,12 @@
 #include "vtkDomainsMicroscopyModule.h" // For export macro
 #include "vtkImageReader2.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
-  VTK_ABI_NAMESPACE_END
 #include "openslide/openslide.h" // For openslide support
-  VTK_ABI_NAMESPACE_BEGIN
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKDOMAINSMICROSCOPY_EXPORT vtkOpenSlideReader : public vtkImageReader2
 {
 public:

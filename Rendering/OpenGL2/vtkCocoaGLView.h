@@ -71,7 +71,6 @@ typedef void* vtkCocoaRenderWindowRef;
 typedef void* vtkCocoaRenderWindowInteractorRef;
 #endif
 
-VTK_ABI_NAMESPACE_BEGIN
 VTKRENDERINGOPENGL2_EXPORT
 @interface vtkCocoaGLView : NSView<NSDraggingDestination>
 {
@@ -87,6 +86,5 @@ VTKRENDERINGOPENGL2_EXPORT
 
 @end
 
-VTK_ABI_NAMESPACE_END
 #endif /* vtkCocoaGLView_h */
 // VTK-HeaderTest-Exclude: vtkCocoaGLView.h

@@ -28,9 +28,11 @@
 #include "vtkGeovisGDALModule.h" // For export macro
 #include "vtkObject.h"
 
-// Forward declarations
-VTK_ABI_NAMESPACE_BEGIN
+// GDAL Forward declarations
 class GDALDataset;
+
+VTK_ABI_NAMESPACE_BEGIN
+// VTK Forward declarations
 class vtkImageData;
 class vtkUniformGrid;
 
