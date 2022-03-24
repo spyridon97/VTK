@@ -40,9 +40,9 @@
 #include <sstream>
 
 // This will be set to the python type struct for vtkObjectBase
-VTK_ABI_NAMESPACE_BEGIN
 static PyTypeObject* PyVTKObject_Type = nullptr;
 
+VTK_ABI_NAMESPACE_BEGIN
 //------------------------------------------------------------------------------
 PyVTKClass::PyVTKClass(
   PyTypeObject* typeobj, PyMethodDef* methods, const char* classname, vtknewfunc constructor)
@@ -52,6 +52,7 @@ PyVTKClass::PyVTKClass(
   this->vtk_name = classname;
   this->vtk_new = constructor;
 }
+VTK_ABI_NAMESPACE_END
 
 //------------------------------------------------------------------------------
 // Create a Python "override" method
@@ -759,4 +760,3 @@ void PyVTKObject_SetFlag(PyObject* obj, unsigned int flag, int val)
     ((PyVTKObject*)obj)->vtk_flags &= ~flag;
   }
 }
-VTK_ABI_NAMESPACE_END

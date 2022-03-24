@@ -1009,7 +1009,7 @@ inline void vtkPythonArgs::DeleteVTKObject(void* v)
 {
   return static_cast<vtkObjectBase*>(v)->Delete();
 }
-
 VTK_ABI_NAMESPACE_END
+
 #endif
 // VTK-HeaderTest-Exclude: vtkPythonArgs.h

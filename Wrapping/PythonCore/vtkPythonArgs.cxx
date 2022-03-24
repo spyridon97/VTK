@@ -32,6 +32,7 @@ resulting in wrapper code that is faster and more compact.
 #include "vtkABINamespace.h"
 #include "vtkPythonUtil.h"
 
+VTK_ABI_NAMESPACE_BEGIN
 //------------------------------------------------------------------------------
 // Extract various C++ types from python objects.  The rules are
 // identical to PyArg_ParseTuple except that range checking is done
@@ -45,7 +46,6 @@ resulting in wrapper code that is faster and more compact.
     return false;                                                                                  \
   }
 
-VTK_ABI_NAMESPACE_BEGIN
 inline bool vtkPythonGetValue(PyObject* o, long& a)
 {
   VTK_PYTHON_FLOAT_CHECK();

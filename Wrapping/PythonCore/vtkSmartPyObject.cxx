@@ -22,8 +22,8 @@
 #pragma warning(disable : 4127)
 #endif
 
-//------------------------------------------------------------------------------
 VTK_ABI_NAMESPACE_BEGIN
+//------------------------------------------------------------------------------
 vtkSmartPyObject::vtkSmartPyObject(PyObject* obj)
   : Object(obj)
 {

@@ -99,7 +99,7 @@ public:
 private:
   PyObject* Object;
 };
-
 VTK_ABI_NAMESPACE_END
+
 #endif
 // VTK-HeaderTest-Exclude: vtkSmartPyObject.h

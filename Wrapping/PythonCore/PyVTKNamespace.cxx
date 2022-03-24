@@ -31,7 +31,6 @@
 
 //------------------------------------------------------------------------------
 
-VTK_ABI_NAMESPACE_BEGIN
 static const char* PyVTKNamespace_Doc = "A python module that wraps a C++ namespace.\n";
 
 //------------------------------------------------------------------------------
@@ -139,4 +138,3 @@ const char* PyVTKNamespace_GetName(PyObject* self)
 {
   return PyModule_GetName(self);
 }
-VTK_ABI_NAMESPACE_END

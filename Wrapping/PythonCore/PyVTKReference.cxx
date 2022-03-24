@@ -33,7 +33,6 @@
 
 //------------------------------------------------------------------------------
 
-VTK_ABI_NAMESPACE_BEGIN
 static const char* PyVTKReference_Doc =
   "reference(value:int) -> reference\n"
   "reference(value:float) -> reference\n"
@@ -1156,4 +1155,3 @@ PyTypeObject PyVTKTupleReference_Type = {
   nullptr,                             // tp_weaklist
   VTK_WRAP_PYTHON_SUPPRESS_UNINITIALIZED };
 // clang-format on
-VTK_ABI_NAMESPACE_END

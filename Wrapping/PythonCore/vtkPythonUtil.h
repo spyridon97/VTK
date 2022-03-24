@@ -32,7 +32,12 @@
 #pragma warning(disable : 4125)
 #endif
 
+extern "C" void vtkPythonUtilDelete();
+
 VTK_ABI_NAMESPACE_BEGIN
+class vtkStdString;
+class vtkUnicodeString;
+class vtkVariant;
 class vtkPythonClassMap;
 class vtkPythonCommand;
 class vtkPythonCommandList;
@@ -42,14 +47,7 @@ class vtkPythonSpecialTypeMap;
 class vtkPythonNamespaceMap;
 class vtkPythonEnumMap;
 class vtkPythonModuleList;
-class vtkStdString;
-class vtkUnicodeString;
-class vtkVariant;
-VTK_ABI_NAMESPACE_END
 
-extern "C" void vtkPythonUtilDelete();
-
-VTK_ABI_NAMESPACE_BEGIN
 class VTKWRAPPINGPYTHONCORE_EXPORT vtkPythonUtil
 {
 public:
@@ -275,5 +273,6 @@ extern VTKWRAPPINGPYTHONCORE_EXPORT void vtkPythonVoidFunc(void*);
 extern VTKWRAPPINGPYTHONCORE_EXPORT void vtkPythonVoidFuncArgDelete(void*);
 
 VTK_ABI_NAMESPACE_END
+
 #endif
 // VTK-HeaderTest-Exclude: vtkPythonUtil.h

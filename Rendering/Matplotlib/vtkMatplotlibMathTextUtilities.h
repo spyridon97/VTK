@@ -55,10 +55,10 @@ struct _object;
 typedef struct _object PyObject;
 
 VTK_ABI_NAMESPACE_BEGIN
-class vtkSmartPyObject;
 class vtkImageData;
 class vtkPath;
 class vtkPythonInterpreter;
+class vtkSmartPyObject;
 class vtkTextProperty;
 struct TextColors;
 

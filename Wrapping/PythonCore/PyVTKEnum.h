@@ -21,7 +21,6 @@
 #include "vtkSystemIncludes.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
-VTK_ABI_NAMESPACE_BEGIN
 extern "C"
 {
   VTKWRAPPINGPYTHONCORE_EXPORT
@@ -31,5 +30,4 @@ extern "C"
   PyObject* PyVTKEnum_New(PyTypeObject* pytype, int val);
 }
 
-VTK_ABI_NAMESPACE_END
 #endif

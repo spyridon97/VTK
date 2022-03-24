@@ -49,9 +49,9 @@
 #include <cstdint>
 #endif
 
+VTK_ABI_NAMESPACE_BEGIN
 //------------------------------------------------------------------------------
 // A ghost object, can be used to recreate a deleted PyVTKObject
-VTK_ABI_NAMESPACE_BEGIN
 class PyVTKObjectGhost
 {
 public:

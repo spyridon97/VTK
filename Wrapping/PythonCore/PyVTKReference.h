@@ -29,7 +29,6 @@
 
 // The PyVTKReference is a wrapper around a PyObject of
 // type int or float.
-VTK_ABI_NAMESPACE_BEGIN
 struct PyVTKReference
 {
   PyObject_HEAD
@@ -55,5 +54,4 @@ extern "C"
   PyObject* PyVTKReference_GetValue(PyObject* self);
 }
 
-VTK_ABI_NAMESPACE_END
 #endif

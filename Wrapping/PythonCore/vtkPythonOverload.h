@@ -60,7 +60,7 @@ public:
   static PyMethodDef* FindConversionMethod(PyMethodDef* methods, PyObject* arg);
   ///@}
 };
-
 VTK_ABI_NAMESPACE_END
+
 #endif
 // VTK-HeaderTest-Exclude: vtkPythonOverload.h

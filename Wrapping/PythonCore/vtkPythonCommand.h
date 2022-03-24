@@ -21,8 +21,8 @@
 #include "vtkPython.h"
 #include "vtkWrappingPythonCoreModule.h" // For export macro
 
-// To allow Python to use the vtkCommand features
 VTK_ABI_NAMESPACE_BEGIN
+// To allow Python to use the vtkCommand features
 class VTKWRAPPINGPYTHONCORE_EXPORT vtkPythonCommand : public vtkCommand
 {
 public:
@@ -41,7 +41,7 @@ protected:
   vtkPythonCommand();
   ~vtkPythonCommand() override;
 };
-
 VTK_ABI_NAMESPACE_END
+
 #endif
 // VTK-HeaderTest-Exclude: vtkPythonCommand.h

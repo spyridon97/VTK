@@ -35,7 +35,6 @@
 //------------------------------------------------------------------------------
 // C API
 
-VTK_ABI_NAMESPACE_BEGIN
 PyObject* PyVTKMethodDescriptor_New(PyTypeObject* pytype, PyMethodDef* meth)
 {
   PyMethodDescrObject* descr =
@@ -227,4 +226,3 @@ PyTypeObject PyVTKMethodDescriptor_Type = {
   nullptr,                                 // tp_weaklist
   VTK_WRAP_PYTHON_SUPPRESS_UNINITIALIZED };
 // clang-format on
-VTK_ABI_NAMESPACE_END

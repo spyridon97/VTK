@@ -67,6 +67,7 @@ struct PyVTKSpecialObject
   void* vtk_ptr;
   long vtk_hash;
 };
+VTK_ABI_NAMESPACE_END
 
 extern "C"
 {
@@ -87,5 +88,4 @@ extern "C"
   PyObject* PyVTKSpecialObject_SequenceString(PyObject* self);
 }
 
-VTK_ABI_NAMESPACE_END
 #endif
