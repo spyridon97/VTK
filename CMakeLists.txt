@@ -351,6 +351,7 @@ endif ()
 set(VTK_ABI_NAMESPACE_NAME
   "<DEFAULT>"
   CACHE STRING "Inline namespace name for mangling VTK symbols.")
+# The default is to guard VTK using only the major version
 if (VTK_ABI_NAMESPACE_NAME STREQUAL "<DEFAULT>")
   set(VTK_ABI_NAMESPACE_NAME "vtk${VTK_MAJOR_VERSION}")
 endif ()
@@ -364,7 +365,8 @@ else ()
 endif ()
 configure_file(
   "${vtk_cmake_dir}/vtkABINamespace.h.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/vtkABINamespace.h")
+  "${CMAKE_CURRENT_BINARY_DIR}/vtkABINamespace.h"
+  @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vtkABINamespace.h"
   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/vtk${vtk_version_suffix}")
