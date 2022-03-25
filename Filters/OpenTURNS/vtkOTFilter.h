@@ -29,12 +29,12 @@
 #include "vtkFiltersOpenTURNSModule.h" // For export macro
 #include "vtkTableAlgorithm.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace OT
 {
 class Sample;
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKFILTERSOPENTURNS_EXPORT vtkOTFilter : public vtkTableAlgorithm
 {
 public:

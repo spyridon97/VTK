@@ -25,12 +25,12 @@
 #include "vtkFiltersOpenTURNSModule.h" // For export macro
 #include "vtkOTFilter.h"
 
-VTK_ABI_NAMESPACE_BEGIN
 namespace OT
 {
 class KernelSmoothing;
 }
 
+VTK_ABI_NAMESPACE_BEGIN
 class VTKFILTERSOPENTURNS_EXPORT vtkOTKernelSmoothing : public vtkOTFilter
 {
 public:

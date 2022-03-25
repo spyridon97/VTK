@@ -19,10 +19,10 @@
 #include "vtkOTIncludes.h"
 #include "vtkOTUtilities.h"
 
+using namespace OT;
+
 VTK_ABI_NAMESPACE_BEGIN
 vtkStandardNewMacro(vtkOTKernelSmoothing);
-
-using namespace OT;
 
 //------------------------------------------------------------------------------
 vtkOTKernelSmoothing::vtkOTKernelSmoothing()

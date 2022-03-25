@@ -155,6 +155,7 @@ bool CheckOpenGLVersion::hasVersion_3_2()
 
   return false;
 }
+VTK_ABI_NAMESPACE_END
 
 int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE /*hPrevInstance*/,
   _In_ LPSTR lpCmdLine, _In_ int /*nCmdShow*/)
@@ -177,4 +178,3 @@ int CALLBACK WinMain(_In_ HINSTANCE hInstance, _In_ HINSTANCE /*hPrevInstance*/,
 
   return (result ? 0 : 1);
 }
-VTK_ABI_NAMESPACE_END
