@@ -1656,7 +1656,6 @@ void vtkPSurfaceLICComposite::PrintSelf(ostream& os, vtkIndent indent)
   Superclass::PrintSelf(os, indent);
   os << *this << endl;
 }
-VTK_ABI_NAMESPACE_END
 
 // ****************************************************************************
 ostream& operator<<(ostream& os, vtkPSurfaceLICComposite& ss)
@@ -1710,3 +1709,4 @@ ostream& operator<<(ostream& os, vtkPSurfaceLICComposite& ss)
   }
   return os;
 }
+VTK_ABI_NAMESPACE_END
