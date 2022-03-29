@@ -86,7 +86,7 @@
     variables:
         CMAKE_PREFIX_PATH: /usr/local/intelmpi
         # Disable shared memory; it doesn't work so well inside of containers.
-        I_MPI_SHM: disable
+        I_MPI_SHM: 0
 
 .el8_icc_mpi_python:
     extends:
