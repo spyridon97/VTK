@@ -38,17 +38,13 @@
 #ifndef vtkParametricSpline_h
 #define vtkParametricSpline_h
 
-#include "vtkABINamespace.h"
+#include "vtkCommonComputationalGeometryModule.h" // For export macro
+#include "vtkParametricFunction.h"
 
 VTK_ABI_NAMESPACE_BEGIN
 class vtkSpline;
 class vtkPoints;
 
-VTK_ABI_NAMESPACE_END
-#include "vtkCommonComputationalGeometryModule.h" // For export macro
-#include "vtkParametricFunction.h"
-
-VTK_ABI_NAMESPACE_BEGIN
 class VTKCOMMONCOMPUTATIONALGEOMETRY_EXPORT vtkParametricSpline : public vtkParametricFunction
 {
 public:
