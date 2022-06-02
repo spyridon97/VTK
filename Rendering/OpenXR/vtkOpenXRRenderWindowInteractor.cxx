@@ -189,7 +189,7 @@ void vtkOpenXRRenderWindowInteractor::ProcessXrEvents()
         }
         break;
       }
-
+#ifdef OpenXR_USE_REMOTING
       case XR_TYPE_REMOTING_EVENT_DATA_CONNECTED_MSFT:
       {
         vtkDebugMacro("Holographic Remoting: Connected.");
@@ -201,7 +201,7 @@ void vtkOpenXRRenderWindowInteractor::ProcessXrEvents()
         vtkDebugMacro("Holographic Remoting: Disconnected.");
         break;
       }
-
+#endif
       default:
       {
         vtkWarningMacro(<< "Unhandled event type "
