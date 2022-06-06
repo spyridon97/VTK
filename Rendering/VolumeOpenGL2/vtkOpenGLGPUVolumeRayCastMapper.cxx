@@ -2982,7 +2982,7 @@ bool vtkOpenGLGPUVolumeRayCastMapper::vtkInternal::UpdateInputs(vtkRenderer* ren
       if (item.second.Volume->GetProperty()->HasGradientOpacity() != hasGradient)
       {
         vtkGenericWarningMacro(
-          "Current implentation of vtkOpenGLGPUVolumeRayCastMapper does not support MultiVolume "
+          "Current implementation of vtkOpenGLGPUVolumeRayCastMapper does not support MultiVolume "
           "where some volumes have a gradient opacity function and some others don't. "
           "Rendering of the MultiVolume is disabled.");
         success = false;
@@ -3262,7 +3262,7 @@ void vtkOpenGLGPUVolumeRayCastMapper::vtkInternal::RenderWithDepthPass(
   {
     // NOTE: This is a must call or else, multiple viewport rendering would
     // not work. The glViewport could have been changed by any of the internal
-    // FBOs (RenderToTexure, etc.).  The viewport should (ideally) not be set
+    // FBOs (RenderToTexture, etc.).  The viewport should (ideally) not be set
     // within the mapper, because it could cause issues when vtkOpenGLRenderPass
     // instances modify it too (this is a workaround for that).
     renWin->GetState()->vtkglViewport(

@@ -445,7 +445,7 @@ protected:
 
   /**
    * A transformation is applied (translation) to the input.  The resulting
-   * data is stored in TransformedInputs. Takes as an argumet the port of an
+   * data is stored in TransformedInputs. Takes as an argument the port of an
    * input connection.
    *
    * ///TODO Elaborate on why this is an issue, texture coords (?)

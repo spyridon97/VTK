@@ -493,7 +493,7 @@ protected:
 
   ///@{
   /**
-   * Keep a cache of the last input to the mapper so that input data changes can be propogated to
+   * Keep a cache of the last input to the mapper so that input data changes can be propagated to
    * the resample filter and internal mappers.
    */
   vtkDataSet* LastInput;

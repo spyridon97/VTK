@@ -1026,7 +1026,7 @@ bool vtkMatplotlibMathTextUtilities::DrawInteriorLines(vtkImageData* image, int 
 bool vtkMatplotlibMathTextUtilities::ParseString(
   const char* str, GridOfStrings& strGrid, std::size_t& maxNumberOfCells)
 {
-  // First, change all occurence of escaped pipe ("\|")
+  // First, change all occurrence of escaped pipe ("\|")
   // Into a special character and recover them after splitting
   std::string stdStr = std::string(str);
   this->FindAndReplaceInString(stdStr, "\\|", vtkMatplotlibMathTextUtilities::PipeProtectString);
