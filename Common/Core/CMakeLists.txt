@@ -248,10 +248,7 @@ set(classes
   vtkXMLFileOutputWindow
 
   # These classes are deprecated.
-  vtkConditionVariable
-  vtkCriticalSection
-  vtkSimpleCriticalSection
-  vtkMutexLock)
+  vtkCriticalSection)
 
 set(template_classes
   vtkAOSDataArrayTemplate
@@ -445,10 +442,6 @@ set(generated_headers
   vtkThreads.h
   vtkVersionFull.h
   vtkVersionMacros.h)
-if (NOT VTK_LEGACY_REMOVE)
-  list(APPEND generated_headers
-    vtkConfigureDeprecated.h)
-endif ()
 foreach (generated_header IN LISTS generated_headers)
   configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/${generated_header}.in"
@@ -457,12 +450,6 @@ foreach (generated_header IN LISTS generated_headers)
   list(APPEND headers
     "${CMAKE_CURRENT_BINARY_DIR}/${generated_header}")
 endforeach ()
-
-if (NOT VTK_LEGACY_REMOVE)
-  list(APPEND nowrap_headers
-    vtkConfigure.h
-    vtkToolkits.h)
-endif ()
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/vtkTypeArrays.cmake")
 

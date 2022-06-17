@@ -14,7 +14,6 @@ set(classes
   vtkExtractUserDefinedPiece
   vtkHyperTreeGridGhostCellsGenerator
   vtkIntegrateAttributes
-  vtkPassThroughFilter
   vtkPeriodicFilter
   vtkPCellDataToPointData
   vtkPConvertToMultiBlockDataSet
@@ -47,8 +46,7 @@ set(classes
   vtkTransmitRectilinearGridPiece
   vtkTransmitStructuredDataPiece
   vtkTransmitStructuredGridPiece
-  vtkTransmitUnstructuredGridPiece
-  vtkUnstructuredGridGhostCellsGenerator)
+  vtkTransmitUnstructuredGridPiece)
 
 set(headers
   vtkBlockDistribution.h)

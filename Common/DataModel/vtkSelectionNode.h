@@ -214,7 +214,6 @@
 #define vtkSelectionNode_h
 
 #include "vtkCommonDataModelModule.h" // For export macro
-#include "vtkDeprecation.h"           // for deprecation
 #include "vtkObject.h"
 
 class vtkAbstractArray;
@@ -480,12 +479,6 @@ public:
   static vtkInformationIntegerKey* HIERARCHICAL_LEVEL();
   static vtkInformationIntegerKey* HIERARCHICAL_INDEX();
   ///@}
-
-  /**
-   * @deprecated no longer relevant.
-   */
-  VTK_DEPRECATED_IN_9_1_0("no longer relevant")
-  static vtkInformationIntegerKey* INDEXED_VERTICES();
 
   /**
    * Merges the selection list between self and the other. Assumes that both has
