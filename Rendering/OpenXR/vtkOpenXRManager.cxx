@@ -769,6 +769,8 @@ std::vector<const char*> vtkOpenXRManager::SelectExtensions()
   this->OptionalExtensions.ControllerModelExtensionSupported =
     EnableExtensionIfSupported(XR_MSFT_CONTROLLER_MODEL_EXTENSION_NAME);
 
+  EnableExtensionIfSupported(XR_EXT_HP_MIXED_REALITY_CONTROLLER_EXTENSION_NAME);
+
   this->OptionalExtensions.UnboundedRefSpaceSupported =
     EnableExtensionIfSupported(XR_MSFT_UNBOUNDED_REFERENCE_SPACE_EXTENSION_NAME);
 
