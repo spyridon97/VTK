@@ -26,6 +26,7 @@
 #include "vtkWin32OpenGLDXRenderWindow.h"
 
 #include <system_error>
+#include <wrl/client.h> // For Microsoft::WRL::ComPtr
 
 // Clear background using Direct3D and render the VTK scene in the same shared texture.
 void Render(Microsoft::WRL::ComPtr<ID3D11DeviceContext> d3dDeviceContext,
@@ -38,7 +39,7 @@ void Render(Microsoft::WRL::ComPtr<ID3D11DeviceContext> d3dDeviceContext,
   d3dDeviceContext->ClearRenderTargetView(d3DRenderTargetView.Get(), backgroundColor);
 
   // Copy D3D framebuffer into VTK's shared texture
-  d3dDeviceContext->CopySubresourceRegion(renderWindow->GetD3DSharedTexture().Get(), // destination
+  d3dDeviceContext->CopySubresourceRegion(renderWindow->GetD3DSharedTexture(), // destination
     0,                           // destination subresource id
     0, 0, 0,                     // destination origin x,y,z
     d3dFramebufferTexture.Get(), // source
