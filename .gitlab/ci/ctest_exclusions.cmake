@@ -170,6 +170,9 @@ if ("$ENV{CMAKE_CONFIGURATION}" MATCHES "windows")
 
     # Timeout; needs investigated
     "^VTK::FiltersPointsPython-TestPointSmoothingFilter$"
+
+    # Fail to present D3D resources (see #18657)
+    "^VTK::RenderingOpenGL2Cxx-TestWin32OpenGLDXRenderWindow$"
   )
 endif ()
 
