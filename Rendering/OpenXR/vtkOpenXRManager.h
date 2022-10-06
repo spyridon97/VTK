@@ -41,7 +41,7 @@ class vtkOpenGLRenderWindow;
 class VTKRENDERINGOPENXR_EXPORT vtkOpenXRManager
 {
 public:
-  //@{
+  ///@{
   /**
    * Return the singleton instance.
    */
@@ -50,25 +50,25 @@ public:
     static vtkOpenXRManager UniqueInstance;
     return UniqueInstance;
   }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Utility function to check the XrResult, print the result message
    * and raise an error if the result failed.
    */
   bool XrCheckError(const XrResult&, const std::string& message);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Utility function to check the XrResult, print the result message
    * and raise a warning if the result failed.
    */
   bool XrCheckWarn(const XrResult&, const std::string& message);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Utility functions to print information about OpenXR manager internal structures.
    */
@@ -77,30 +77,30 @@ public:
   void PrintSupportedViewConfigs();
   void PrintViewConfigViewInfo(const std::vector<XrViewConfigurationView>&);
   bool PrintReferenceSpaces();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Initialize the OpenXR SDK to render images in a virtual reality device.
    * The helper window must be a vtkWin32OpenGLRenderWindow if the platform is Win32,
    * else a vtkXOpenGLRenderWindow if the platform is X.
    */
   bool Initialize(vtkOpenGLRenderWindow*);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * End the OpenXR session and destroy it and the OpenXR instance.
    */
   void Finalize();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return as a tuple the OpenXR recommended texture size to be sent to the device.
    */
   std::tuple<uint32_t, uint32_t> GetRecommendedImageRectSize();
-  //@}
+  ///@}
 
   //@{
   /**
@@ -117,15 +117,15 @@ public:
     return static_cast<uint32_t>(this->RenderResources->ConfigViews.size());
   }
 
-  //@{
+  ///@{
   /**
    * Return the OpenXR properties as a string, with format
    * "RuntimeName MAJOR.MINOR.PATCH"
    */
   std::string GetOpenXRPropertiesAsString();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Returns a pointer to the view pose that contains the view orientation
    * and position for the specified eye, or nullptr if eye exceeds or equals
@@ -140,9 +140,9 @@ public:
     }
     return &(this->RenderResources->Views[eye].pose);
   }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Returns a pointer to the projection field of view for the specified eye,
    * or nullptr if eye exceeds or equals the number of configured views.  This
@@ -156,64 +156,64 @@ public:
     }
     return &(this->RenderResources->Views[eye].fov);
   }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return true if the runtime supports the depth extension.
    */
   bool IsDepthExtensionSupported() { return this->OptionalExtensions.DepthExtensionSupported; }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return true if the current frame should be rendered.
    * This value is updated each time we call WaitAndBeginFrame and
    * EndFrame.
    */
   bool GetShouldRenderCurrentFrame() { return this->ShouldRenderCurrentFrame; }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Start the OpenXR session.
    * If successful, SessionRunning becomes true.
    */
   bool BeginSession();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return the OpenXR Session.
    */
   const XrSession& GetSession() { return this->Session; }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return the instance used to communicate with the runtime
    */
   const XrInstance& GetXrRuntimeInstance() { return this->Instance; }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Return true if the OpenXR session is currently running, ie.
    * the call to BeginSession was successful.
    */
   bool IsSessionRunning() { return this->SessionRunning; }
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * This function is used to start a frame. If the frame should be rendered,
    * then we locate the views to update the view pose and projection for each
    * eye / display
    */
   bool WaitAndBeginFrame();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Prepare the rendering resources for the specified eye and store in \p colorTextureId and
    * in \p depthTextureId (if the depth extension is supported) the texture in which we need
@@ -221,72 +221,72 @@ public:
    * Return true if no error occurred.
    */
   bool PrepareRendering(uint32_t eye, void* colorTextureId, void* depthTextureId);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * When the rendering in a swapchain image is done, it must be released with
    * this function.
    */
   void ReleaseSwapchainImage(uint32_t eye);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Submit the composition layers for the predicted display time of the current frame.
    * It must be called at the end of each frame.
    */
   bool EndFrame();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Store in eventData the result of xrPollEvent.
    */
   bool PollEvent(XrEventDataBuffer& eventData);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Get the XrPath from the well-formed string \p path.
    */
   XrPath GetXrPath(const std::string& path);
-  //@}
+  ///@}
 
   const std::array<XrPath, 2>& GetSubactionPaths() { return this->SubactionPaths; }
 
-  //@{
+  ///@{
   /**
    * Creates an action set and add it to the vector of action sets.
    */
   bool CreateActionSet(const std::string& actionSetName, const std::string& localizedActionSetName);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Selects the current active action set from the
    * ActionSets vector using its index.
    */
   bool SelectActiveActionSet(unsigned int index);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Attach all action sets in the ActionSets vector to the session.
    */
   bool AttachSessionActionSets();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Iterate over and destroy all action sets that have been created.
    */
-  //@}
+  ///@}
   void DestroyActionSets();
 
   struct Action_t;
 
-  //@{
+  ///@{
   /**
    * Creates one action with name \p name and localizedName \p localizedName
    * and store the action handle inside \p actionT using the selected
@@ -294,25 +294,25 @@ public:
    */
   bool CreateOneAction(
     Action_t& actionT, const std::string& name, const std::string& localizedName);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Suggest actions stored in \p actionSuggestedBindings for the interaction profile \p profile
    */
   bool SuggestActions(
     const std::string& profile, std::vector<XrActionSuggestedBinding>& actionSuggestedBindings);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Update the action states using the active action set. This function should be called
    * before UpdateActionData
    */
   bool SyncActions();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Update the action data and store it in action_t.States for one hand.
    * For pose actions :
@@ -321,7 +321,7 @@ public:
    *  - we can store its pose velocity if StorePoseVelocities is true.
    */
   bool UpdateActionData(Action_t& action_t, const int hand);
-  //@}
+  ///@}
 
   /**
    * Apply haptic vibration
@@ -358,7 +358,7 @@ public:
     XrSpaceVelocity PoseVelocities[ControllerIndex::NumberOfControllers];
   };
 
-  //@{
+  ///@{
   /**
    * Get/set whether OpenXR remoting is used.
    */
@@ -381,13 +381,13 @@ public:
    */
   void SetGraphicsStrategy(vtkOpenXRManagerGraphics* strategy);
   vtkGetObjectMacro(GraphicsStrategy, vtkOpenXRManagerGraphics);
-  //@}
+  ///@}
 
 protected:
   vtkOpenXRManager();
   ~vtkOpenXRManager() = default;
 
-  //@{
+  ///@{
   /**
    * OpenXR Instance creation.
    * This is where we select the extensions using
@@ -395,23 +395,23 @@ protected:
    */
   bool CreateInstance();
   std::vector<const char*> SelectExtensions();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Print the optional extensions which were found and enabled.
    */
   void PrintOptionalExtensions();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * OpenXR System creation
    */
   bool CreateSystem();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Enable system properties such as hand tracking,
    * and choose environment blend modes.
@@ -426,25 +426,25 @@ protected:
    * \pre CreateGraphicsBinding must be called
    */
   bool CreateSession();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Swapchaines creation : there is one swapchain per view / display.
    * This function calls CreateConfigViews
    */
   bool CreateSwapchains();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * There is one configuration view per view, and it contains the recommended
    * texture resolution in pixels and the recommended swapchain samples
    */
   bool CreateConfigViews();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * During the creation of the swapchains, we need to check the runtime available
    * pixels formats, and we pick the first one from the list of our supported color
@@ -452,50 +452,50 @@ protected:
    * and vtkOpenXRManagerGraphics::GetSupportedDepthFormats
    */
   std::tuple<int64_t, int64_t> SelectSwapchainPixelFormats();
-  //@}
+  ///@}
 
   struct Swapchain_t;
 
-  //@{
+  ///@{
   /**
    * Create an XrSwapchain handle used to present rendered image
    * to the user with the given parameters for the XrSwapchainCreateInfo structure
    */
   Swapchain_t CreateSwapchain(int64_t format, uint32_t width, uint32_t height, uint32_t sampleCount,
     XrSwapchainCreateFlags createFlags, XrSwapchainUsageFlags usageFlags);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    *  Creates the reference space of type ReferenceSpaceType that will be used to locate views
    */
   bool CreateReferenceSpace();
-  //@}
+  ///@}
 
   bool LoadControllerModels();
 
-  //@{
+  ///@{
   /**
    * For pose actions, we must create an action space to locate it
    */
   bool CreateOneActionSpace(const XrAction& action, const XrPath& subactionPath,
     const XrPosef& poseInActionSpace, XrSpace& space);
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * Creates one subaction path for each hand.
    */
   bool CreateSubactionPaths();
-  //@}
+  ///@}
 
-  //@{
+  ///@{
   /**
    * When preparing the rendering for an eye, we must ask the runtime
    * for a texture to draw in it.
    */
   uint32_t WaitAndAcquireSwapchainImage(const XrSwapchain& swapchainHandle);
-  //@}
+  ///@}
 
   // Currently VTK only supports HeadMountedDisplay (HMD)
   constexpr static XrFormFactor FormFactor = XR_FORM_FACTOR_HEAD_MOUNTED_DISPLAY;
@@ -534,7 +534,7 @@ protected:
   // Non optional extension
   bool RenderingBackendExtensionSupported = false;
 
-  //@{
+  ///@{
   /**
    * Structure to hold optional extensions
    * loaded with SelectExtensions
@@ -549,7 +549,7 @@ protected:
     bool HandTrackingSupported{ false };
     bool RemotingSupported{ false };
   } OptionalExtensions;
-  //@}
+  ///@}
 
   /**
    * Swapchain structure storing information common to all rendering backend.
@@ -563,7 +563,7 @@ protected:
     uint32_t Height{ 0 };
   };
 
-  //@{
+  ///@{
   /**
    * This struct stores all needed information to render the images
    * and send it to the user
@@ -585,7 +585,7 @@ protected:
     std::vector<XrCompositionLayerDepthInfoKHR> DepthInfoViews;
   };
   std::unique_ptr<RenderResources_t> RenderResources{};
-  //@}
+  ///@}
 
   // There is one subaction path for each hand.
   std::array<XrPath, 2> SubactionPaths;

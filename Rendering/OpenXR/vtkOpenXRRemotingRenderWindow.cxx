@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkOpenXRManagerD3DGraphics.cxx
+  Module:    vtkOpenXRRemotingRenderWindow.cxx
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -76,10 +76,10 @@ void vtkOpenXRRemotingRenderWindow::Initialize()
 //------------------------------------------------------------------------------
 void vtkOpenXRRemotingRenderWindow::StereoUpdate()
 {
-  this->Superclass::StereoUpdate();
-
   // Lock the shared texture for rendering
   vtkWin32OpenGLDXRenderWindow::SafeDownCast(this->HelperWindow)->Lock();
+
+  this->Superclass::StereoUpdate();
 }
 
 //------------------------------------------------------------------------------

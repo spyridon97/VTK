@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkWin32OpenGL2RenderWindow.h
+  Module:    vtkWin32OpenGLDXRenderWindow.cxx
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -24,7 +24,7 @@
 vtkStandardNewMacro(vtkWin32OpenGLDXRenderWindow);
 
 //------------------------------------------------------------------------------
-void vtkWin32OpenGLDXRenderWindow::Initialize(void)
+void vtkWin32OpenGLDXRenderWindow::Initialize()
 {
   this->Superclass::Initialize();
 
@@ -72,6 +72,7 @@ void vtkWin32OpenGLDXRenderWindow::Initialize(void)
   if (!this->Device)
   {
     vtkErrorMacro("D3D11CreateDevice failed in Initialize().");
+    return;
   }
 
   // Acquire a handle to the D3D device for use in OpenGL
@@ -99,7 +100,7 @@ void vtkWin32OpenGLDXRenderWindow::Initialize(void)
 }
 
 //------------------------------------------------------------------------------
-void vtkWin32OpenGLDXRenderWindow::Lock(void)
+void vtkWin32OpenGLDXRenderWindow::Lock()
 {
   if (!this->DeviceHandle || !this->GLSharedTextureHandle)
   {
@@ -111,7 +112,7 @@ void vtkWin32OpenGLDXRenderWindow::Lock(void)
 }
 
 //------------------------------------------------------------------------------
-void vtkWin32OpenGLDXRenderWindow::Unlock(void)
+void vtkWin32OpenGLDXRenderWindow::Unlock()
 {
   if (!this->DeviceHandle || !this->GLSharedTextureHandle)
   {

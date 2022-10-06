@@ -1,7 +1,7 @@
 /*=========================================================================
 
   Program:   Visualization Toolkit
-  Module:    vtkWin32OpenGL2RenderWindow.h
+  Module:    vtkWin32OpenGLDXRenderWindow.h
 
   Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
   All rights reserved.
@@ -40,7 +40,7 @@ public:
   /**
    * Overriden to create the D3D device, context and texture.
    */
-  void Initialize(void) override;
+  void Initialize() override;
 
   //@{
   /**
