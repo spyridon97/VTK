@@ -338,6 +338,25 @@ if (NOT ANDROID AND NOT APPLE_IOS AND NOT CMAKE_SYSTEM_NAME STREQUAL
     "Emscripten" AND NOT VTK_OPENGL_USE_GLES)
   VTK_ADD_EXECUTABLE(vtkProbeOpenGLVersion vtkProbeOpenGLVersion.cxx)
   target_link_libraries(vtkProbeOpenGLVersion ${vtk-module})
+  #
+  # Workaround the following link errors reported when using gcc 9.4.0 (Ubuntu 20.04)
+  # with VTK_ENABLE_KITS:BOOL=ON
+  #
+  # [100%] Linking CXX executable ../../bin/vtkProbeOpenGLVersion
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_setspecific'
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_getspecific'
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_key_create'
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_mutexattr_settype'
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_mutexattr_init'
+  # ../../lib/libvtkexodusII-8.2.so.1: error: undefined reference to 'pthread_once'
+  # ../../lib/libvtkhdf5-8.2.so.1: error: undefined reference to 'dlerror'
+  # ../../lib/libvtkhdf5-8.2.so.1: error: undefined reference to 'dlsym'
+  # ../../lib/libvtkhdf5-8.2.so.1: error: undefined reference to 'dlopen'
+  # ../../lib/libvtkhdf5-8.2.so.1: error: undefined reference to 'dlclose'
+  #
+  if(VTK_ENABLE_KITS AND UNIX)
+    target_link_libraries(vtkProbeOpenGLVersion ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+  endif()
 endif()
 
 if (WIN32 AND ( NOT CMAKE_CROSSCOMPILING OR DEFINED CMAKE_CROSSCOMPILING_EMULATOR) )
