@@ -163,6 +163,7 @@ bool vtkOpenXRManagerOpenGLGraphics::CreateGraphicsBinding(vtkOpenGLRenderWindow
   graphicsBindingGLX->glxFBConfig = *fbConfig;
 
 #elif defined(_WIN32)
+  (void)helperWindow; // Hide unused parameter warning
   auto graphicsBindingGLWin32 =
     std::shared_ptr<XrGraphicsBindingOpenGLWin32KHR>(new XrGraphicsBindingOpenGLWin32KHR{
       XR_TYPE_GRAPHICS_BINDING_OPENGL_WIN32_KHR, // .type
@@ -176,6 +177,7 @@ bool vtkOpenXRManagerOpenGLGraphics::CreateGraphicsBinding(vtkOpenGLRenderWindow
   graphicsBindingGLWin32->hGLRC = wglGetCurrentContext();
 
 #else
+  (void)helperWindow; // Hide unused parameter warning
   vtkErrorMacro(<< "Only X11 and Win32 are supported at the moment.");
   return false;
 #endif
