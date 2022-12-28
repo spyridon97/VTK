@@ -146,20 +146,19 @@ void vtkOpenVRRenderWindow::UpdateHMDMatrixPose()
   }
 
   // Retrieve Open VR poses
-  vr::TrackedDevicePose_t OpenVRTrackedDevicePoses[vr::k_unMaxTrackedDeviceCount];
   vr::VRCompositor()->WaitGetPoses(
-    OpenVRTrackedDevicePoses, vr::k_unMaxTrackedDeviceCount, nullptr, 0);
+    this->OpenVRTrackedDevicePoses, vr::k_unMaxTrackedDeviceCount, nullptr, 0);
 
   // Store poses with generic type
   for (uint32_t deviceIdx = 0; deviceIdx < vr::k_unMaxTrackedDeviceCount; ++deviceIdx)
   {
-    if (OpenVRTrackedDevicePoses[deviceIdx].bPoseIsValid)
+    if (this->OpenVRTrackedDevicePoses[deviceIdx].bPoseIsValid)
     {
       auto handle = this->GetDeviceHandleForOpenVRHandle(deviceIdx);
       auto device = this->GetDeviceForOpenVRHandle(deviceIdx);
       this->AddDeviceHandle(handle, device);
       vtkMatrix4x4* tdPose = this->GetDeviceToPhysicalMatrixForDeviceHandle(handle);
-      this->SetMatrixFromOpenVRPose(tdPose, OpenVRTrackedDevicePoses[deviceIdx]);
+      this->SetMatrixFromOpenVRPose(tdPose, this->OpenVRTrackedDevicePoses[deviceIdx]);
     }
   }
 
@@ -213,20 +212,19 @@ void vtkOpenVRRenderWindow::Render()
   else
   {
     // Retrieve OpenVR poses
-    vr::TrackedDevicePose_t OpenVRTrackedDevicePoses[vr::k_unMaxTrackedDeviceCount];
     vr::VRCompositor()->WaitGetPoses(
-      OpenVRTrackedDevicePoses, vr::k_unMaxTrackedDeviceCount, nullptr, 0);
+      this->OpenVRTrackedDevicePoses, vr::k_unMaxTrackedDeviceCount, nullptr, 0);
 
     // Store poses with generic type
     for (uint32_t deviceIdx = 0; deviceIdx < vr::k_unMaxTrackedDeviceCount; ++deviceIdx)
     {
-      if (OpenVRTrackedDevicePoses[deviceIdx].bPoseIsValid)
+      if (this->OpenVRTrackedDevicePoses[deviceIdx].bPoseIsValid)
       {
         auto handle = this->GetDeviceHandleForOpenVRHandle(deviceIdx);
         auto device = this->GetDeviceForOpenVRHandle(deviceIdx);
         this->AddDeviceHandle(handle, device);
         vtkMatrix4x4* tdPose = this->GetDeviceToPhysicalMatrixForDeviceHandle(handle);
-        this->SetMatrixFromOpenVRPose(tdPose, OpenVRTrackedDevicePoses[deviceIdx]);
+        this->SetMatrixFromOpenVRPose(tdPose, this->OpenVRTrackedDevicePoses[deviceIdx]);
       }
     }
   }
@@ -484,4 +482,16 @@ vtkEventDataDevice vtkOpenVRRenderWindow::GetDeviceForOpenVRHandle(vr::TrackedDe
   }
 
   return vtkEventDataDevice::Unknown;
+}
+
+//------------------------------------------------------------------------------
+void  vtkOpenVRRenderWindow::GetOpenVRPose(
+  vtkEventDataDevice dev, uint32_t index, vr::TrackedDevicePose_t** pose)
+{
+  auto handle = this->GetDeviceHandleForDevice(dev, index);
+  if (handle < vr::k_unMaxTrackedDeviceCount)
+  {
+    *pose = &(this->OpenVRTrackedDevicePoses[handle]);
+  }
+  *pose = nullptr;
 }
