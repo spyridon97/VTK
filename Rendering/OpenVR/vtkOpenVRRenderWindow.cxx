@@ -493,5 +493,8 @@ void  vtkOpenVRRenderWindow::GetOpenVRPose(
   {
     *pose = &(this->OpenVRTrackedDevicePoses[handle]);
   }
-  *pose = nullptr;
+  else
+  {
+    *pose = nullptr;
+  }
 }
