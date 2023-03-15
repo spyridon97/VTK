@@ -32,6 +32,10 @@ To generate pyi files for your own modules in your own package:
 
     python -m vtkmodules.generate_pyi -p mypackage mymodule [mymodule2 ...]
 
+To generate pyi files with docstrings:
+
+    python -m vtkmodules.generate_pyi --include-docstrings -p mypackage mymodule [mymodule2 ...]
+
 """
 
 from vtkmodules.vtkCommonCore import vtkObject, vtkSOADataArrayTemplate
@@ -44,6 +48,7 @@ import argparse
 import builtins
 import inspect
 import importlib.util
+import textwrap
 
 
 # ==== For type inspection ====
@@ -293,7 +298,7 @@ def add_indent(s, indent):
     """
     return indent + re.sub(r"\n(?=([^\n]))", "\n" + indent, s)
 
-def make_def(s, indent):
+def make_def(s, indent, docstring=None):
     """Generate a method definition stub from the signature and an indent.
     The indent is a string (tabs or spaces).
     """
@@ -310,10 +315,15 @@ def make_def(s, indent):
         out += indent
         out += "def "
         out += s[pos:]
-        out += ": ..."
+        if docstring:
+            out += ":\n"
+            out += textwrap.indent("\"\"\"" + docstring + "\"\"\"", indent + "    ") + "\n"
+            out += indent + "    " + "..." + "\n"
+        else:
+            out += ": ..."
     return out
 
-def namespace_pyi(c, mod):
+def namespace_pyi(c, mod, include_docstrings=False):
     """Fake a namespace by creating a dummy class.
     """
     base = "namespace"
@@ -327,7 +337,7 @@ def namespace_pyi(c, mod):
     others = []
     for m,o in items:
         if isenum(o) and m == o.__name__:
-            out += add_indent(class_pyi(o), "    ")
+            out += add_indent(class_pyi(o, include_docstrings), "    ")
             count += 1
         else:
             others.append((m, o))
@@ -347,7 +357,7 @@ def namespace_pyi(c, mod):
 
     return out
 
-def class_pyi(c):
+def class_pyi(c, include_docstrings=False):
     """Generate all the method stubs for a class.
     """
     bases = []
@@ -358,6 +368,8 @@ def class_pyi(c):
             bases.append(b.__module__ + "." + b.__name__)
 
     out = "class " + c.__name__ + "(" + ", ".join(bases) + "):\n"
+    if include_docstrings and c.__doc__:
+        out += textwrap.indent("\"\"\"" + c.__doc__ + "\"\"\"", "    ") + "\n"
     count = 0
 
     # do all nested classes (these are usually enum types)
@@ -365,7 +377,7 @@ def class_pyi(c):
     others = []
     for m,o in items:
         if isclass(o) and m == o.__name__:
-            out += add_indent(class_pyi(o), "    ")
+            out += add_indent(class_pyi(o, include_docstrings), "    ")
             count += 1
         else:
             others.append((m, o))
@@ -405,10 +417,10 @@ def class_pyi(c):
                 continue
             count += 1
             if len(signatures) == 1:
-                 out += make_def(signatures[0], "    ") + "\n"
+                 out += make_def(signatures[0], "    ", o.__doc__ if include_docstrings else None) + "\n"
                  continue
             for overload in signatures:
-                 out += make_def("@overload\n" + overload, "    ") + "\n"
+                 out += make_def("@overload\n" + overload, "    ", o.__doc__ if include_docstrings else None) + "\n"
         else:
             others.append((m, o))
 
@@ -417,7 +429,7 @@ def class_pyi(c):
 
     return out
 
-def module_pyi(mod, output):
+def module_pyi(mod, output, include_docstrings=False):
     """Generate the contents of a .pyi file for a VTK module.
     """
     # needed stuff from typing module
@@ -453,7 +465,7 @@ def module_pyi(mod, output):
     others = []
     for m,o in items:
         if isnamespace(o) and m == o.__name__:
-            output.write(namespace_pyi(o, mod))
+            output.write(namespace_pyi(o, mod, include_docstrings))
             output.write("\n")
         else:
             others.append((m, o))
@@ -463,7 +475,7 @@ def module_pyi(mod, output):
     others = []
     for m,o in items:
         if isenum(o) and m == o.__name__:
-            output.write(class_pyi(o))
+            output.write(class_pyi(o, include_docstrings))
             output.write("\n")
         else:
             others.append((m, o))
@@ -493,7 +505,7 @@ def module_pyi(mod, output):
     others = []
     for m,o in items:
         if isclass(o) and m == o.__name__:
-            output.write(class_pyi(o))
+            output.write(class_pyi(o, include_docstrings))
             output.write("\n")
         else:
             others.append((m, o))
@@ -511,13 +523,23 @@ def main(argv=sys.argv):
     # for error messages etcetera
     progname = os.path.basename(argv[0])
 
+    def get_default_package(args):
+        if args.without_package:
+            return None
+        else:
+            return 'vtkmodule'
+
     # parse the program arguments
     parser = argparse.ArgumentParser(
         prog=argv[0],
         usage="python " + progname + " [-p package] [-o output_dir]",
         description="A .pyi generator for the VTK python wrappers.")
-    parser.add_argument('-p', '--package', type=str, default="vtkmodules",
+    parser.add_argument('-p', '--package', type=str, default=argparse.SUPPRESS,
                         help="Package name [vtkmodules].")
+    parser.add_argument('--without-package', action='store_true', default=False,
+                        help="Indicate the VTK module is standalone.")
+    parser.add_argument('--include-docstrings', action='store_true', default=False,
+                        help="Include docstrings in generate .pyi files.")
     parser.add_argument('-o', '--output', type=str,
                         help="Output directory [package directory].")
     parser.add_argument('-e', '--ext', type=str, default=".pyi",
@@ -529,20 +551,22 @@ def main(argv=sys.argv):
     args = parser.parse_args(argv[1:])
 
     # for convenience
-    packagename = args.package
+    packagename = args.package if 'package' in args else get_default_package(args)
     modules = args.modules
-    basedir = args.output
+    outputdir = args.output
     ext = args.ext
 
     # get information about the package
-    mod = importlib.import_module(packagename)
-    filename = inspect.getfile(mod)
-    if os.path.basename(filename) != '__init__.py':
-        sys.stderr.write(progname + ": " + packagename + " has no __init__.py\n")
-        return 1
-    if basedir is None:
-        basedir = os.path.dirname(filename)
+    mod = None
+    if packagename:
+        mod = importlib.import_module(packagename)
+        filename = inspect.getfile(mod)
+    if outputdir is None:
+        outputdir = os.path.dirname(filename)
     if len(modules) == 0:
+        if os.path.basename(filename) != '__init__.py':
+            sys.stderr.write(progname + ": " + packagename + " has no __init__.py\n")
+            return 1
         for modname in mod.__all__:
             # only generate .pyi files for the extension modules in __all__
             try:
@@ -562,7 +586,7 @@ def main(argv=sys.argv):
     # iterate through the modules in the package
     errflag = False
     for modname in modules:
-        pyifile = os.path.join(basedir, modname + ext)
+        pyifile = os.path.join(outputdir, modname + ext)
         if args.test:
             # test the syntax of the .pyi file
             flags = ast.PyCF_TYPE_COMMENTS if sys.hexversion >= 0x3080000 else 0
@@ -570,9 +594,10 @@ def main(argv=sys.argv):
                 compile(f.read(), pyifile, 'exec', flags)
         else:
             # generate the .pyi file for the module
-            mod = importlib.import_module(packagename + "." + modname)
+            module_path = packagename + "." + modname if packagename else modname
+            mod = importlib.import_module(module_path)
             with open(pyifile, "w") as f:
-                module_pyi(mod, f)
+                module_pyi(mod, f, include_docstrings=args.include_docstrings)
 
 if __name__ == '__main__':
     result = main(sys.argv)
