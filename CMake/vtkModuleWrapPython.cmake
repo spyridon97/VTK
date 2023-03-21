@@ -1032,7 +1032,21 @@ static void ${_vtk_python_TARGET_NAME}_load() {\n")
         DESTINATION "${_vtk_python_MODULE_DESTINATION}/${_vtk_python_PYTHON_PACKAGE}"
         COMPONENT   "${_vtk_python_component}")
 
-      add_custom_target("${_vtk_python_TARGET_NAME}_pyi" ALL
+      # Due to the following error being reported when building Slicer on Windows,
+      # the "ALL" parameter was commented out.
+      # Until this is addressed, this should ensure the build succeeds.
+      # 
+      #   Creating .pyi files for vtkpythonmodules
+      #   Traceback (most recent call last):
+      #     File "C:\path\to\S-0-build\python-install\Lib\runpy.py", line 197, in _run_module_as_main
+      #       return _run_code(code, main_globals, None,
+      #     File "C:\path\to\S-0-build\python-install\Lib\runpy.py", line 87, in _run_code
+      #       exec(code, run_globals)
+      #     File "C:\path\to\S-0-build\VTK-build\bin\Lib\site-packages\vtkmodules\generate_pyi.py", line 37, in <module>
+      #       from vtkmodules.vtkCommonCore import vtkObject, vtkSOADataArrayTemplate
+      #   ImportError: DLL load failed while importing vtkCommonCore: The specified module could not be found.
+      #
+      add_custom_target("${_vtk_python_TARGET_NAME}_pyi" # ALL
         DEPENDS ${_vtk_python_pyi_files})
     endif ()
 
