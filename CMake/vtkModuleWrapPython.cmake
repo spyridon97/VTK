@@ -1027,13 +1027,13 @@ static void ${_vtk_python_TARGET_NAME}_load() {\n")
                   "${_vtk_pyi_script}"
         COMMENT   "Creating .pyi files for ${_vtk_python_TARGET_NAME}")
 
-      install(
-        FILES       ${_vtk_python_pyi_files}
-        DESTINATION "${_vtk_python_MODULE_DESTINATION}/${_vtk_python_PYTHON_PACKAGE}"
-        COMPONENT   "${_vtk_python_component}")
+      #install(
+      #  FILES       ${_vtk_python_pyi_files}
+      #  DESTINATION "${_vtk_python_MODULE_DESTINATION}/${_vtk_python_PYTHON_PACKAGE}"
+      #  COMPONENT   "${_vtk_python_component}")
 
       # Due to the following error being reported when building Slicer on Windows,
-      # the "ALL" parameter was commented out.
+      # the "ALL" parameter and install rules above were commented out
       # Until this is addressed, this should ensure the build succeeds.
       # 
       #   Creating .pyi files for vtkpythonmodules
