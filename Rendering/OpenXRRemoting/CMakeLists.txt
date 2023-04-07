@@ -15,4 +15,4 @@ vtk_module_add_module(VTK::RenderingOpenXRRemoting
   NOWRAP_HEADERS ${nowrap_headers}
   )
 
-vtk_module_link(VTK::RenderingOpenXR PUBLIC OpenXR::Remoting)
+vtk_module_link(VTK::RenderingOpenXRRemoting PUBLIC OpenXR::Remoting)
