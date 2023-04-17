@@ -57,6 +57,11 @@ public:
   bool Paint(vtkContext2D* painter) override;
 
   /**
+   * Draw a rect on a specific axis
+   */
+  bool PaintRect(vtkContext2D* painter, int axis, float min, float max);
+
+  /**
    * Set the visibility of the specified column.
    */
   void SetColumnVisibility(const vtkStdString& name, bool visible);
@@ -91,6 +96,17 @@ public:
    * Get the number of plots the chart contains.
    */
   vtkIdType GetNumberOfPlots() override;
+
+  /**
+   * Set whether the chart should draw a legend.
+   */
+  void SetShowLegend(bool visible) override;
+
+  /**
+   * Get the legend for the chart, if available. Can return nullptr if there is no
+   * legend.
+   */
+  vtkChartLegend* GetLegend() override;
 
   /**
    * Get the axis specified by axisIndex.
@@ -149,6 +165,12 @@ public:
    */
   bool MouseWheelEvent(const vtkContextMouseEvent& mouse, int delta) override;
 
+  /**
+   * Update the selection of an axis based on the current selectionMode we
+   * have previously set.
+   */
+  void UpdateCurrentAxisSelection(int axisId);
+
 protected:
   vtkChartParallelCoordinates();
   ~vtkChartParallelCoordinates() override;
@@ -157,9 +179,14 @@ protected:
   /**
    * Private storage object - where we hide all of our STL objects...
    */
-  class Private;
+  struct Private;
   Private* Storage;
   ///@}
+
+  /**
+   * The legend for the chart.
+   */
+  vtkChartLegend* Legend;
 
   bool GeometryValid;
 
@@ -179,9 +206,9 @@ protected:
   vtkTimeStamp BuildTime;
 
   void ResetSelection();
-  bool ResetAxeSelection(int axe);
+  void ResetAxeSelection(int axe);
   void ResetAxesSelection();
-  void UpdateGeometry();
+  void UpdateGeometry(vtkContext2D* painter);
   void CalculatePlotTransform();
   void SwapAxes(int a1, int a2);
 

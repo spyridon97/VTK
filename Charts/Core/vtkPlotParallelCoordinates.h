@@ -30,10 +30,11 @@
 #include "vtkScalarsToColors.h" // For VTK_COLOR_MODE_DEFAULT and _MAP_SCALARS
 #include "vtkStdString.h"       // For vtkStdString ivars
 
+#include <vector> // For std::vector
+
 class vtkChartParallelCoordinates;
-class vtkTable;
-class vtkStdString;
 class vtkScalarsToColors;
+class vtkTable;
 class vtkUnsignedCharArray;
 
 class VTKCHARTSCORE_EXPORT vtkPlotParallelCoordinates : public vtkPlot
@@ -66,9 +67,16 @@ public:
   void GetBounds(double bounds[4]) override;
 
   /**
-   * Set the selection criteria on the given axis in normalized space (0.0 - 1.0).
+   * Set the selection criteria on the given axis in normalized space (0.0 - 1.0) for a specific
+   * range.
    */
-  bool SetSelectionRange(int Axis, float low, float high);
+  bool SetSelectionRange(int axis, float low, float high);
+
+  /**
+   * Set the selection criteria on the given axis in normalized space [0.0 ; 1.0]
+   * axisSelection should be a list like {minRange1, maxRange1, minRange2, maxRange2, ...}
+   */
+  bool SetSelectionRange(int axis, std::vector<float> axisSelection);
 
   /**
    * Reset the selection criteria for the chart.
@@ -161,11 +169,6 @@ protected:
   class Private;
   Private* Storage;
   ///@}
-
-  /**
-   * The point cache is marked dirty until it has been initialized.
-   */
-  vtkTimeStamp BuildTime;
 
   ///@{
   /**
