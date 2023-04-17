@@ -468,6 +468,9 @@ void vtkPlotParallelCoordinates::SelectColorArray(const vtkStdString& arrayName)
   {
     if (table->GetColumnName(c) == arrayName)
     {
+      // hide the color column
+      vtkChartParallelCoordinates* parent = vtkChartParallelCoordinates::SafeDownCast(this->Parent);
+      parent->SetColumnVisibility(arrayName, false);
       this->ColorArrayName = arrayName;
       this->Modified();
       return;
@@ -508,6 +511,9 @@ void vtkPlotParallelCoordinates::SelectColorArray(vtkIdType arrayNum)
     }
     else
     {
+      // hide the color column
+      vtkChartParallelCoordinates* parent = vtkChartParallelCoordinates::SafeDownCast(this->Parent);
+      parent->SetColumnVisibility(table->GetColumnName(arrayNum), false);
       this->ColorArrayName = table->GetColumnName(arrayNum);
       this->Modified();
     }
